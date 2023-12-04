@@ -145,6 +145,7 @@
             android:id="@+id/edtTxtPassword"
             android:layout_width="@dimen/_282pxh"
             android:layout_height="@dimen/_51pxv"
+            android:inputType="textPassword"
             android:layout_gravity="center_horizontal"
             android:layout_marginStart="@dimen/_15pxh"
             android:layout_marginTop="@dimen/_7pxv"
@@ -200,6 +201,16 @@
                 android:text="@string/msg_forgot_password"
                 tools:text="@string/msg_forgot_password" />
         </LinearLayout>
+
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            android:visibility="gone"
+            android:paddingTop="10dp"
+            android:paddingBottom="7dp"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSignIn"

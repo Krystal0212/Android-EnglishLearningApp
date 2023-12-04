@@ -1,8 +1,5 @@
 package com.example.loginactivity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,11 +9,18 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.loginactivity.fragment.ProfileFragment;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -35,7 +39,6 @@ public class LoginActivity extends AppCompatActivity {
         initUI();
         initListener();
     }
-
     private void initUI() {
         signUp = findViewById(R.id.txtSignUp);
         edtEmail = findViewById(R.id.edtTxtEmail);
@@ -79,17 +82,58 @@ public class LoginActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             progressBar.setVisibility(View.GONE );
                             if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                Toast.makeText(LoginActivity.this, "Have fun with Quizme!",
-                                        Toast.LENGTH_SHORT).show();
-                                startActivity(intent);
-                                finish();
+                                checkIfEmailVerified();
                             } else {
                                 // If sign in fails, display a message to the user.
                                 Toast.makeText(LoginActivity.this, task.getException().getMessage(),
                                         Toast.LENGTH_SHORT).show();
                             }
+                        }
+                    });
+        }
+    }
+
+    private void checkIfEmailVerified() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("User");
+
+        if (user.isEmailVerified())
+        {
+            String key = user.getUid();
+            userRef.child(key + "/email").setValue(user.getEmail());
+            userRef.child(key + "/verify").setValue(true).addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void unused) {
+                    // Sign in success, update UI with the signed-in user's information
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    Toast.makeText(LoginActivity.this, "Have fun with Quizme!",
+                            Toast.LENGTH_SHORT).show();
+                    startActivity(intent);
+                    finish();
+                }
+            });
+        }
+        else
+        {
+            user.sendEmailVerification()
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void unused) {
+                            FirebaseAuth.getInstance().signOut();
+                            Toast.makeText(LoginActivity.this, "You have not verified your account yet. We have sent a mail!",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            FirebaseAuth.getInstance().signOut();
+                            Toast.makeText(LoginActivity.this, "Failed: Check your email again to verify!", Toast.LENGTH_LONG).show();
+                            //restart this activity
+                            overridePendingTransition(0, 0);
+                            finish();
+                            overridePendingTransition(0, 0);
+                            startActivity(getIntent());
+
                         }
                     });
         }
