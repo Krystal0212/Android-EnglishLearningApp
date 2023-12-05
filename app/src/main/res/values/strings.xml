@@ -26,7 +26,7 @@
     <string name="lbl_sign_in">Sign In</string>
     <string name="msg_already_have_an">Already have an account?</string>
     <string name="lbl_email">Email</string>
-    <string name="msg_or_sign_in">---- Or sign in with Email and Password ----</string>
+    <string name="msg_or_sign_in">-- Or sign in with Email and Password --</string>
     <string name="msg_confirm_passwor">Confirm Password</string>
     <string name="lbl_sign_up">Sign Up</string>
     <string name="lbl_remember_me">Remember me</string>

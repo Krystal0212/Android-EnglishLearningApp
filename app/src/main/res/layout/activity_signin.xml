@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:gravity="center_horizontal"
+    android:id="@+id/linearSignInPage"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:orientation="vertical" style="@style/groupStyleLight_blue_500">
+    <androidx.appcompat.widget.Toolbar
         android:gravity="center_horizontal"
-        android:id="@+id/linearSignInPage"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        android:orientation="vertical" style="@style/groupStyleLight_blue_500">
-        <androidx.appcompat.widget.Toolbar
-            android:gravity="center_horizontal"
-            android:id="@+id/toolbarToolbar"
+        android:id="@+id/toolbarToolbar"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_21pxh"
+        android:layout_marginStart="@dimen/_21pxh"
+        android:layout_marginTop="@dimen/_21pxv"
+        android:layout_width="match_parent" app:contentInsetStart="0dp">
+        <FrameLayout
+            android:id="@+id/frameStackSignIn"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_22pxh"
-            android:layout_marginStart="@dimen/_22pxh"
-            android:layout_marginTop="@dimen/_21pxv"
-            android:layout_width="match_parent" app:contentInsetStart="0dp">
-            <FrameLayout
-                android:id="@+id/frameStackSignIn"
-                android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                android:id="@+id/txtSignIn"
+                style="@style/txtRubikBubblesregular55"
                 android:layout_width="match_parent"
-                android:layout_gravity="center_horizontal">
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginStart="@dimen/_10pxh"
+                android:layout_marginTop="@dimen/_10pxv"
+                android:layout_marginBottom="@dimen/_9pxv"
+                android:ellipsize="end"
+                android:gravity="end"
+                android:singleLine="true"
+                android:text="@string/lbl_sign_in"
+                tools:text="@string/lbl_sign_in" />
 
-                <TextView
-                    android:id="@+id/txtSignIn"
-                    style="@style/txtRubikBubblesregular55"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="end"
-                    android:layout_marginStart="@dimen/_10pxh"
-                    android:layout_marginTop="@dimen/_10pxv"
-                    android:layout_marginBottom="@dimen/_9pxv"
-                    android:ellipsize="end"
-                    android:gravity="end"
-                    android:singleLine="true"
-                    android:text="@string/lbl_sign_in"
-                    tools:text="@string/lbl_sign_in" />
-
-                <ImageView android:id="@+id/imageImgWelcome"
-                    android:layout_gravity="start"
-                    android:layout_height="@dimen/_95pxh"
-                    android:layout_marginEnd="@dimen/_10pxh"
-                    android:layout_width="@dimen/_118pxh"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_imgwelcome"/>
-            </FrameLayout>
-        </androidx.appcompat.widget.Toolbar>
+            <ImageView android:id="@+id/imageImgWelcome"
+                android:layout_gravity="start"
+                android:layout_height="@dimen/_95pxh"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_width="@dimen/_118pxh"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_imgwelcome"/>
+        </FrameLayout>
+    </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:id="@+id/llSignIn"
@@ -135,22 +135,27 @@
             android:layout_width="@dimen/_282pxh"
             android:layout_height="@dimen/_52pxv"
             android:layout_gravity="center_horizontal"
+            android:paddingStart="@dimen/_8pxh"
+            android:paddingEnd="@dimen/_8pxh"
             android:layout_marginStart="@dimen/_15pxh"
             android:layout_marginTop="@dimen/_18pxv"
             android:layout_marginEnd="@dimen/_15pxh"
             android:background="@drawable/rectangle_bg_white_a700_border_gray_600_radius_5"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <EditText
             android:id="@+id/edtTxtPassword"
             android:layout_width="@dimen/_282pxh"
             android:layout_height="@dimen/_51pxv"
-            android:inputType="textPassword"
             android:layout_gravity="center_horizontal"
+            android:paddingStart="@dimen/_8pxh"
+            android:paddingEnd="@dimen/_8pxh"
             android:layout_marginStart="@dimen/_15pxh"
             android:layout_marginTop="@dimen/_7pxv"
             android:layout_marginEnd="@dimen/_15pxh"
-            android:background="@drawable/rectangle_bg_white_a700_border_gray_600_radius_5" />
+            android:background="@drawable/rectangle_bg_white_a700_border_gray_600_radius_5"
+            tools:ignore="SpeakableTextPresentCheck" />
 
         <LinearLayout
             android:id="@+id/linearRowcheckmark"
@@ -163,16 +168,13 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/btnCheckmark"
-                android:layout_width="@dimen/_20pxh"
-                android:layout_height="@dimen/_20pxh"
+                android:id="@+id/btnRememberMe"
+                android:layout_width="@dimen/_22pxh"
+                android:layout_height="@dimen/_22pxh"
                 android:layout_marginTop="@dimen/_1pxv"
                 android:layout_marginBottom="@dimen/_1pxv"
-                android:background="@drawable/rectangle_border_gray_600_radius_5"
-                android:paddingHorizontal="@dimen/_2pxh"
-                android:paddingVertical="@dimen/_2pxv"
                 android:scaleType="fitCenter"
-                android:src="@drawable/img_checkmark"
+                android:background="@drawable/unticked"
                 tools:ignore="ContentDescription,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
             <TextView
@@ -180,37 +182,22 @@
                 style="@style/txtRobotoRegular15"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_7pxh"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/_2pxh"
                 android:layout_marginBottom="@dimen/_1pxv"
-                android:layout_weight="0.41"
-                android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@string/lbl_remember_me"
                 tools:text="@string/lbl_remember_me" />
 
             <TextView
-                android:id="@+id/txtTxtForgotPasswo"
+                android:id="@+id/txtTxtForgotPassword"
                 style="@style/txtRobotoRegular15_1"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_17pxh"
-                android:layout_marginTop="@dimen/_1pxv"
-                android:layout_weight="0.52"
-                android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@string/msg_forgot_password"
                 tools:text="@string/msg_forgot_password" />
         </LinearLayout>
-
-
-        <ProgressBar
-            android:layout_width="wrap_content"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content"
-            android:id="@+id/progressBar"
-            android:visibility="gone"
-            android:paddingTop="10dp"
-            android:paddingBottom="7dp"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSignIn"
@@ -218,7 +205,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_15pxh"
-            android:layout_marginTop="@dimen/_41pxv"
+            android:layout_marginTop="@dimen/_27pxv"
             android:layout_marginEnd="@dimen/_15pxh"
             android:ellipsize="end"
             android:gravity="center"
@@ -244,7 +231,7 @@
 
             <TextView
                 android:id="@+id/txtConfirmation"
-                style="@style/txtRobotoRegular16"
+                style="@style/txtRobotoRegular16_2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/_1pxv"
