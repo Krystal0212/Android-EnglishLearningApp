@@ -75,4 +75,6 @@ dependencies {
     implementation("androidx.security:security-crypto:1.0.0")
     implementation("com.airbnb.android:lottie:3.4.0")
     implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.17")
+    implementation ("com.google.firebase:firebase-storage:20.2.1")
+
 }

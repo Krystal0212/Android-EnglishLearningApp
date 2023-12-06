@@ -21,4 +21,7 @@
     <color name="indigo_800_b7">#b730398d</color>
     <color name="indigo_800">#30398d</color>
 
+    <color name="bluelight">#2FDCE2</color>
+    <color name="green">#0DC82C</color>
+    <color name="gray">#E81C1C</color>
 </resources>

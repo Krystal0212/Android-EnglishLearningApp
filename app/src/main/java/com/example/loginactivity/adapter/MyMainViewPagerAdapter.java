@@ -8,7 +8,6 @@ import androidx.viewpager2.adapter.FragmentStateAdapter;
 import com.example.loginactivity.fragment.HomeFragment;
 import com.example.loginactivity.fragment.LibraryFragment;
 import com.example.loginactivity.fragment.ProfileFragment;
-import com.example.loginactivity.fragment.UpdateProfileFragment;
 
 public class MyMainViewPagerAdapter extends FragmentStateAdapter {
 
@@ -26,8 +25,6 @@ public class MyMainViewPagerAdapter extends FragmentStateAdapter {
                 return new LibraryFragment();
             case 2:
                 return new ProfileFragment();
-            case 3:
-                return new UpdateProfileFragment();
             default:
                 return new HomeFragment();
         }
@@ -35,6 +32,7 @@ public class MyMainViewPagerAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 3;
     }
+
 }

@@ -1,19 +1,16 @@
 package com.example.loginactivity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager2.widget.ViewPager2;
-
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
+
 import com.example.loginactivity.adapter.MyMainViewPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.tabs.TabLayout;
 
-public class MainActivity extends AppCompatActivity implements FragmentCallback {
+public class MainActivity extends AppCompatActivity {
 
     public ViewPager2 mViewPager;
     private BottomNavigationView bottomNavigationView;
@@ -76,15 +73,5 @@ public class MainActivity extends AppCompatActivity implements FragmentCallback 
                 return true;
             }
         });
-    }
-
-    @Override
-    public void goTo(int pos) {
-        mViewPager.setCurrentItem(pos);
-    }
-
-    @Override
-    public void goBack() {
-        getSupportFragmentManager().popBackStack();
     }
 }

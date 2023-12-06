@@ -1,9 +1,7 @@
 package com.example.loginactivity;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -11,20 +9,28 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.loginactivity.fragment.ProfileFragment;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.loginactivity.models.User;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    EditText edtEmail, edtPassword, edtConfirmPassword;
+    EditText edtEmail, edtPassword, edtdisplayName, edtPasswordConfirm;
     Button btnSignup;
-
     ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +43,9 @@ public class SignUpActivity extends AppCompatActivity {
     private void initUI() {
         edtEmail = findViewById(R.id.edtEmail);
         edtPassword = findViewById(R.id.edtPassword);
-        edtConfirmPassword = findViewById(R.id.edtConfirmPassword);
+        edtPasswordConfirm = findViewById(R.id.edtConfirmPassword);
         btnSignup = findViewById(R.id.btnSignUp);
+        edtdisplayName = findViewById(R.id.edtName);
         progressBar = findViewById(R.id.progressBar);
     }
 
@@ -54,49 +61,102 @@ public class SignUpActivity extends AppCompatActivity {
     private void onClickSignup() {
         String email = edtEmail.getText().toString().trim();
         String password = edtPassword.getText().toString().trim();
-        String confirmPassword = edtConfirmPassword.getText().toString().trim();
+        String passwordConfirm = edtPasswordConfirm.getText().toString().trim();
+        String displayName = edtdisplayName.getText().toString().trim();
+        Uri photoUrl =  Uri.parse( "https://firebasestorage.googleapis.com/v0/b/finaltermandroid-ba01a.appspot.com/o/icons8-avatar-64.png?alt=media&token=efb2e06d-589a-40f0-96a0-a1eddfdbb352" );
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
         progressBar.setVisibility(View.VISIBLE);
-        if(email.isEmpty() || password.isEmpty()){
+        if(email.isEmpty() || password.isEmpty() || passwordConfirm.isEmpty() || displayName.isEmpty()){
             Toast.makeText(SignUpActivity.this, "Please fill out all fields !",
                     Toast.LENGTH_SHORT).show();
             progressBar.setVisibility(View.GONE);
-        }
-        else if(password.equals(confirmPassword)){
-            Toast.makeText(SignUpActivity.this, "Passwords inserted were not matched!",
+        } else if (!password.equals(passwordConfirm)) {
+            Toast.makeText(SignUpActivity.this, "Password does not matched !",
                     Toast.LENGTH_SHORT).show();
             progressBar.setVisibility(View.GONE);
         }
         else{
-                mAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            progressBar.setVisibility(View.GONE);
-                            if (task.isSuccessful()) {
-                                // Sign in success, update UI with the signed-in user's information
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("User");
+            userRef.orderByChild("displayName").equalTo(displayName).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    if (dataSnapshot.exists()) {
+                        // displayName đã tồn tại
+                        Toast.makeText(SignUpActivity.this, "This display name has been taken by another user!", Toast.LENGTH_SHORT).show();
+                        progressBar.setVisibility(View.GONE);
+                    } else {
+                        // Tạo người dùng mới
+                        mAuth.createUserWithEmailAndPassword(email, password)
+                                .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        if (task.isSuccessful()) {
+                                            FirebaseUser user = mAuth.getCurrentUser();
+                                            user.sendEmailVerification()
+                                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                        @Override
+                                                        public void onSuccess(Void unused) {
+                                                            Toast.makeText(SignUpActivity.this, "Verification mail has been sent!", Toast.LENGTH_LONG).show();
+                                                        }
+                                                    }).addOnFailureListener(new OnFailureListener() {
+                                                        @Override
+                                                        public void onFailure(@NonNull Exception e) {
+                                                            Toast.makeText(SignUpActivity.this, "Failed: email not sent!", Toast.LENGTH_LONG).show();
+                                                            //restart this activity
+                                                            overridePendingTransition(0, 0);
+                                                            finish();
+                                                            overridePendingTransition(0, 0);
+                                                            startActivity(getIntent());
 
-                                DatabaseReference myRef = database.getReference("User");
-                                String key = user.getUid();
-                                myRef.child(key + "/email").setValue(user.getEmail());
-                                myRef.child(key + "/name").setValue(user.getDisplayName());
+                                                        }
+                                                    });
+                                            //cap nhat thong tin user len authentication
+                                            UserProfileChangeRequest profileUpdates = new UserProfileChangeRequest.Builder()
+                                                    .setDisplayName(displayName)
+                                                    .setPhotoUri(photoUrl)
+                                                    .build();
 
-                                Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
-                                Toast.makeText(SignUpActivity.this, "Successfully registered!", Toast.LENGTH_LONG).show();
+                                            user.updateProfile(profileUpdates)
+                                                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task) {
+                                                            //cap nhat thong tin user len realtime db
+                                                            if (task.isSuccessful()) {
 
-                                startActivity(intent);
-                                finish();
-                            } else {
-                                // If sign in fails, display a message to the user.
-                                Toast.makeText(SignUpActivity.this, task.getException().getMessage(),
-                                        Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+                                                                //user tím này là user từ authentication
+                                                                String key = user.getUid();
+                                                                User newUser = new User(user.getEmail(), user.getDisplayName(), "https://firebasestorage.googleapis.com/v0/b/finaltermandroid-ba01a.appspot.com/o/icons8-avatar-64.png?alt=media&token=efb2e06d-589a-40f0-96a0-a1eddfdbb352", false);
+                                                                userRef.child(key).setValue(newUser).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                    @Override
+                                                                    public void onSuccess(Void unused) {
+                                                                        progressBar.setVisibility(View.GONE);
+                                                                        FirebaseAuth.getInstance().signOut();
+                                                                        Intent intent = new Intent(SignUpActivity.this, LoginActivity.class);
+                                                                        startActivity(intent);
+                                                                        finish();
+                                                                    }
+                                                                });
+                                                            }
+                                                        }
+                                                    });
+
+                                        } else {
+                                            // If sign in fails, display a message to the user.
+                                            progressBar.setVisibility(View.GONE);
+                                            Toast.makeText(SignUpActivity.this, task.getException().getMessage(),
+                                                    Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    // Xử lý khi có lỗi xảy ra
+                    Toast.makeText(SignUpActivity.this, "Error checking Display Name existence", Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
+                }
+            });
         }
     }
-
-
 }

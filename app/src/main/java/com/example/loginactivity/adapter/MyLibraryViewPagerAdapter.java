@@ -5,10 +5,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.viewpager2.adapter.FragmentStateAdapter;
 
-import com.example.loginactivity.fragment.HomeFragment;
-import com.example.loginactivity.fragment.LibraryFragment;
-import com.example.loginactivity.fragment.ProfileFragment;
-import com.example.loginactivity.fragment.UpdateProfileFragment;
 import com.example.loginactivity.library.ClassFragment;
 import com.example.loginactivity.library.FolderFragment;
 import com.example.loginactivity.library.SetFragment;
