@@ -12,8 +12,8 @@
             android:gravity="center_horizontal"
             android:id="@+id/toolbarToolbar"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_22pxh"
-            android:layout_marginStart="@dimen/_22pxh"
+            android:layout_marginEnd="@dimen/_21pxh"
+            android:layout_marginStart="@dimen/_21pxh"
             android:layout_marginTop="@dimen/_21pxv"
             android:layout_width="match_parent" app:contentInsetStart="0dp">
             <FrameLayout
@@ -163,11 +163,11 @@
 
             <ImageButton
                 android:id="@+id/btnCheckmark"
-                android:layout_width="@dimen/_20pxh"
-                android:layout_height="@dimen/_20pxh"
+                android:layout_width="@dimen/_22pxh"
+                android:layout_height="@dimen/_22pxh"
                 android:layout_marginTop="@dimen/_1pxv"
                 android:layout_marginBottom="@dimen/_1pxv"
-                android:background="@drawable/rectangle_border_gray_600_radius_5"
+                android:background="@drawable/unticked"
                 android:paddingHorizontal="@dimen/_2pxh"
                 android:paddingVertical="@dimen/_2pxv"
                 android:scaleType="fitCenter"
@@ -179,23 +179,18 @@
                 style="@style/txtRobotoRegular15"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_7pxh"
+                android:layout_weight="1"
+                android:layout_marginStart="@dimen/_2pxh"
                 android:layout_marginBottom="@dimen/_1pxv"
-                android:layout_weight="0.41"
-                android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@string/lbl_remember_me"
                 tools:text="@string/lbl_remember_me" />
 
             <TextView
-                android:id="@+id/txtTxtForgotPasswo"
+                android:id="@+id/txtTxtForgotPassword"
                 style="@style/txtRobotoRegular15_1"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_17pxh"
-                android:layout_marginTop="@dimen/_1pxv"
-                android:layout_weight="0.52"
-                android:ellipsize="end"
                 android:singleLine="true"
                 android:text="@string/msg_forgot_password"
                 tools:text="@string/msg_forgot_password" />

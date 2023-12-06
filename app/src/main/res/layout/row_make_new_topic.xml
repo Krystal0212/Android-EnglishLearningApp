@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <LinearLayout android:id="@+id/linearTerminology"
+    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" android:orientation="horizontal"
+    android:paddingBottom="5dp">
+        <EditText
+            android:background="@drawable/rectangle_bg_white_a700_border_cyan_a200_radius_3"
+            android:id="@+id/viewEnglish"
+            android:hint="English"
+            android:paddingStart="5dp"
+            android:layout_height="@dimen/_32pxv" android:layout_width="@dimen/_140pxh"/>
+        <EditText
+            android:background="@drawable/rectangle_bg_white_a700_border_deep_orange_a100_radius_3"
+            android:id="@+id/viewVietnamese"
+            android:hint="Vietnamese"
+            android:paddingStart="5dp"
+            android:layout_height="@dimen/_32pxv"
+            android:layout_marginStart="@dimen/_10pxh" android:layout_width="@dimen/_140pxh"/>
+        <ImageView android:id="@+id/imageTrash"
+            android:layout_height="@dimen/_32pxh"
+            android:layout_marginStart="@dimen/_10pxh"
+            android:layout_width="@dimen/_32pxh"
+            android:scaleType="fitXY" android:src="@drawable/img_trash"
+            tools:ignore="ContentDescription" tools:src="@drawable/img_trash"/>
+    </LinearLayout>
