@@ -141,7 +141,6 @@ public class ProfileFragment extends Fragment {
     public void onStart() {
         super.onStart();
         showUserInformation();
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     }
 
     private void initUI(View mview) {

@@ -1,8 +1,14 @@
 package com.example.loginactivity;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -24,12 +30,15 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
 
-    TextView signUp;
+    TextView signUp, txtForgotPassword;
 
     EditText edtEmail, edtPassword;
     Button btnSignin;
 
     ProgressBar progressBar;
+
+    private ProgressDialog progressDialog;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         edtPassword = findViewById(R.id.edtTxtPassword);
         btnSignin = findViewById(R.id.btnSignIn);
         progressBar = findViewById(R.id.progressBar);
+        txtForgotPassword = findViewById(R.id.txtForgotPassword);
     }
 
     private void initListener() {
@@ -62,6 +72,63 @@ public class LoginActivity extends AppCompatActivity {
                 onClickSignIn();
             }
         });
+
+        txtForgotPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickForgotPassword();
+            }
+        });
+    }
+
+    private void onClickForgotPassword() {
+        final Dialog dialog = new Dialog(LoginActivity.this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.edit_profile_dialog);
+        Window window = dialog.getWindow();
+        window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCancelable(false);
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        TextView title = dialog.findViewById(R.id.txtTitle);
+        title.setText("Type your email here");
+        EditText email = dialog.findViewById(R.id.edt_new_information);
+
+        Button btnCancel = dialog.findViewById(R.id.btnCancel);
+        Button btnApply = dialog.findViewById(R.id.btnApply);
+
+        btnCancel.setOnClickListener(view -> dialog.dismiss());
+        btnApply.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                progressDialog = new ProgressDialog(LoginActivity.this);
+
+                progressDialog.setTitle("Sending email");
+                progressDialog.setMessage("Please wait a second...");
+                progressDialog.show();
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                String emailAddress = email.getText().toString().trim();
+
+                auth.sendPasswordResetEmail(emailAddress)
+                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Void> task) {
+                                progressDialog.dismiss();
+                                if (task.isSuccessful()) {
+                                    dialog.dismiss();
+                                    Toast.makeText(LoginActivity.this, "We have sent a recovery password email to you !",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    Toast.makeText(LoginActivity.this, task.getException().getMessage(),
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        });
+            }
+        });
+        dialog.show();
     }
 
     private void onClickSignIn() {

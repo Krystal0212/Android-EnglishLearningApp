@@ -189,7 +189,7 @@
                 tools:text="@string/lbl_remember_me" />
 
             <TextView
-                android:id="@+id/txtTxtForgotPasswo"
+                android:id="@+id/txtForgotPassword"
                 style="@style/txtRobotoRegular15_1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

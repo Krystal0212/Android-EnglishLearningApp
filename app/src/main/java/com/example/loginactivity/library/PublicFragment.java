@@ -10,10 +10,10 @@ import androidx.fragment.app.Fragment;
 import com.example.loginactivity.R;
 
 
-public class ClassFragment extends Fragment {
+public class PublicFragment extends Fragment {
 
 
-    public ClassFragment() {
+    public PublicFragment() {
         // Required empty public constructor
     }
 
@@ -22,6 +22,6 @@ public class ClassFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_classes, container, false);
+        return inflater.inflate(R.layout.fragment_public, container, false);
     }
 }
