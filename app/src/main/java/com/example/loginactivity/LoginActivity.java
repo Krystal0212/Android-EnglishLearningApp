@@ -11,12 +11,14 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -33,8 +35,8 @@ public class LoginActivity extends AppCompatActivity {
     TextView signUp, txtForgotPassword;
 
     EditText edtEmail, edtPassword;
-    Button btnSignin;
-
+    Button btnSignIn;
+    ImageButton btnRememberMe;
     ProgressBar progressBar;
 
     private ProgressDialog progressDialog;
@@ -52,9 +54,10 @@ public class LoginActivity extends AppCompatActivity {
         signUp = findViewById(R.id.txtSignUp);
         edtEmail = findViewById(R.id.edtTxtEmail);
         edtPassword = findViewById(R.id.edtTxtPassword);
-        btnSignin = findViewById(R.id.btnSignIn);
+        btnSignIn = findViewById(R.id.btnSignIn);
         progressBar = findViewById(R.id.progressBar);
         txtForgotPassword = findViewById(R.id.txtForgotPassword);
+        btnRememberMe = findViewById(R.id.btnRememberMe);
     }
 
     private void initListener() {
@@ -66,10 +69,21 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        btnSignin.setOnClickListener(new View.OnClickListener() {
+        btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onClickSignIn();
+            }
+        });
+
+        btnRememberMe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (btnRememberMe.isSelected()) {
+                    btnRememberMe.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.ticked));
+                } else {
+                    btnRememberMe.setBackground(ContextCompat.getDrawable(getApplicationContext(), R.drawable.unticked));
+                }
             }
         });
 
