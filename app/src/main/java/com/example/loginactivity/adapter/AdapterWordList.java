@@ -32,7 +32,7 @@ public class AdapterWordList extends RecyclerView.Adapter<AdapterWordList.MyView
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.add_topic_item, parent, false);
+        View view = inflater.inflate(R.layout.row_make_new_topic, parent, false);
         return new MyViewHolder(view);
     }
 

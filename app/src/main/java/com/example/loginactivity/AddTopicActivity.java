@@ -1,10 +1,12 @@
 package com.example.loginactivity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -13,41 +15,50 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.example.loginactivity.adapter.AdapterWordList;
 import com.example.loginactivity.models.Participant;
 import com.example.loginactivity.models.Topic;
 import com.example.loginactivity.models.Word;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 public class AddTopicActivity extends AppCompatActivity {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FloatingActionButton btnAddWord;
-    
+    RadioGroup radio;
+    ImageView btnBack;
     Button btnSave;
     EditText edt_title;
     ArrayList<Participant> participant = new ArrayList<>();
     ArrayList<Word> words = new ArrayList<>();
     AdapterWordList adapter;
     RecyclerView recyclerView;
+
+    private ProgressDialog progressDialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_topic);
+        setContentView(R.layout.activity_make_new_topic);
 
         initUI();
         initListener();
-        setupWordList();
-    }
-
-    private void setupWordList() {
-
     }
 
     private void initUI() {
@@ -55,6 +66,8 @@ public class AddTopicActivity extends AppCompatActivity {
         edt_title = findViewById(R.id.edt_title);
         recyclerView = findViewById(R.id.addTopic_recyclerView);
         btnSave = findViewById(R.id.btnSave);
+        btnBack = findViewById(R.id.btnBack);
+        radio = findViewById(R.id.access);
         
         adapter = new AdapterWordList(this, words);
         recyclerView.setAdapter(adapter);
@@ -70,10 +83,67 @@ public class AddTopicActivity extends AppCompatActivity {
         btnSave.setOnClickListener(v -> {
             onClickSave();
         });
+
+        btnBack.setOnClickListener(v -> {
+            onBackPressed();
+            finish();
+        });
     }
 
     private void onClickSave() {
+        progressDialog = new ProgressDialog(this);
 
+        progressDialog.setTitle("Adding topic");
+        progressDialog.setMessage("Please wait...");
+        progressDialog.show();
+
+        //get access
+        int radioButtonID = radio.getCheckedRadioButtonId();
+        View radioButton = radio.findViewById(radioButtonID);
+        int idx = radio.indexOfChild(radioButton);
+        RadioButton r = (RadioButton) radio.getChildAt(idx);
+        //get title
+        String title = edt_title.getText().toString().trim();
+
+        if(title.isEmpty()){
+            progressDialog.dismiss();
+            Toast.makeText(AddTopicActivity.this, "Please enter topic title.", Toast.LENGTH_SHORT).show();
+        } else if (r == null){
+            progressDialog.dismiss();
+            Toast.makeText(AddTopicActivity.this, "Please choose topic access.", Toast.LENGTH_SHORT).show();
+        } else if(words.size() < 2){
+            progressDialog.dismiss();
+            Toast.makeText(AddTopicActivity.this, "Add at least 2 term to continue.", Toast.LENGTH_SHORT).show();
+        } else if(words.isEmpty()){
+            progressDialog.dismiss();
+            Toast.makeText(AddTopicActivity.this, "You have not added any term yet.", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            // Lấy access
+            String access = r.getText().toString();
+            // Lấy ngày hiện tại
+            Date currentDate = new Date();
+
+            // Định dạng ngày theo yêu cầu "dd/MM/yyyy"
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
+            String createDate = dateFormat.format(currentDate);
+
+            DatabaseReference topicRef = FirebaseDatabase.getInstance().getReference("Topic");
+            String key = topicRef.push().getKey();
+
+            participant.add(new Participant(user.getDisplayName()));
+
+            topicRef.child(key).setValue(new Topic(access, createDate, key, title, user.getDisplayName(),participant ,words))
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            progressDialog.dismiss();
+                            Toast.makeText(AddTopicActivity.this, "Create topic successfully.", Toast.LENGTH_SHORT).show();
+                            onBackPressed();
+                            finish();
+                        }
+                    });
+        }
     }
 
     private void onClickAddWord() {
@@ -126,7 +196,4 @@ public class AddTopicActivity extends AppCompatActivity {
         dialog.show();
     }
 
-    public void addParticipant(){
-        participant.add(new Participant(user.getDisplayName()));
-    }
 }
