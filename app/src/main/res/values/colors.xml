@@ -19,8 +19,10 @@
     <color name="cyan_A200">#00ffff</color>
     <color name="deep_orange_A100">#ff9870</color>
     <color name="indigo_800_b7">#b730398d</color>
+    <color name="light_blue_100_42">#429de7ff</color>
+    <color name="black_900">#000000</color>
+    <color name="black_901">#030104</color>
     <color name="indigo_800">#30398d</color>
-
     <color name="bluelight">#2FDCE2</color>
     <color name="green">#0DC82C</color>
     <color name="gray">#E81C1C</color>

@@ -201,6 +201,15 @@
                 tools:text="@string/msg_forgot_password" />
         </LinearLayout>
 
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            android:visibility="gone"
+            android:paddingTop="10dp"
+            android:paddingBottom="7dp"/>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSignIn"
             style="@style/btnSolidRounded"
