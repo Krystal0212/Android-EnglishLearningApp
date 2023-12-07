@@ -60,7 +60,5 @@
                 android:id="@+id/txt_description"
                 android:text="Your description"/>
         </LinearLayout>
-
-
     </androidx.cardview.widget.CardView>
 </LinearLayout>

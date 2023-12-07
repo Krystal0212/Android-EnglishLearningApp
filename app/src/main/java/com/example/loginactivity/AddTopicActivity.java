@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -49,6 +50,7 @@ public class AddTopicActivity extends AppCompatActivity {
     ArrayList<Word> words = new ArrayList<>();
     AdapterWordList adapter;
     RecyclerView recyclerView;
+    LinearLayout llTopic;
 
     private ProgressDialog progressDialog;
 
@@ -68,7 +70,9 @@ public class AddTopicActivity extends AppCompatActivity {
         btnSave = findViewById(R.id.btnSave);
         btnBack = findViewById(R.id.btnBack);
         radio = findViewById(R.id.access);
-        
+        llTopic = findViewById(R.id.linearMakeNewTopic);
+
+        btnAddWord.setImageResource(R.drawable.img_add);
         adapter = new AdapterWordList(this, words);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

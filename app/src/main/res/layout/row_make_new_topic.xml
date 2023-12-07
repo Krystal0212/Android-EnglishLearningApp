@@ -19,22 +19,20 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.85"
             android:layout_width="0dp" android:orientation="vertical">
-            <LinearLayout android:gravity="start"
+            <LinearLayout android:gravity="start|center"
                 android:id="@+id/linearDescriptionSec"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:orientation="horizontal" style="@style/groupStyle">
-                <TextView android:ellipsize="end"
+                <TextView
                     android:id="@+id/txtDescription"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/_3pxv"
                     android:layout_marginStart="@dimen/_10pxh"
-                    android:layout_marginTop="@dimen/_6pxv"
                     android:layout_width="wrap_content"
                     android:singleLine="true"
                     android:text="@string/lbl_description"
                     style="@style/txtSalsaregular18" tools:text="@string/lbl_description"/>
-                <TextView android:ellipsize="end"
+                <TextView
                     android:id="@+id/txtInsertDescription"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_9pxv"
@@ -58,26 +56,24 @@
                     android:layout_marginBottom="@dimen/_6pxv"
                     android:layout_marginStart="@dimen/_13pxh"
                     android:layout_marginTop="@dimen/_12pxv"
-                    android:layout_weight="0.58"
+                    android:layout_weight="1"
                     android:layout_width="0dp" android:orientation="vertical">
                     <TextView android:ellipsize="end"
-                        android:gravity="start"
                         android:id="@+id/txtTerminology"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/_10pxh"
                         android:layout_width="match_parent"
+                        android:gravity="center_horizontal"
                         android:singleLine="true"
                         android:text="@string/lbl_terminology"
                         style="@style/txtSalsaregular20" tools:text="@string/lbl_terminology"/>
                     <TextView android:ellipsize="end"
                         android:id="@+id/txtLanguage"
-                        android:layout_gravity="start"
+                        android:layout_gravity="center"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_23pxh"
                         android:layout_marginStart="@dimen/_23pxh"
-                        android:layout_marginTop="@dimen/_10pxv"
+                        android:layout_marginTop="@dimen/_7pxv"
                         android:layout_width="wrap_content"
-                        android:singleLine="true"
                         android:text="@string/lbl_english"
                         style="@style/txtSalsaregular20_1" tools:text="@string/lbl_english"/>
                 </LinearLayout>
@@ -88,7 +84,7 @@
                     android:layout_marginBottom="@dimen/_8pxv"
                     android:layout_marginEnd="@dimen/_19pxh"
                     android:layout_marginTop="@dimen/_12pxv"
-                    android:layout_weight="0.42"
+                    android:layout_weight="1"
                     android:layout_width="0dp" android:orientation="vertical">
                     <TextView android:ellipsize="end"
                         android:gravity="center_horizontal"
@@ -101,7 +97,7 @@
                         android:text="@string/lbl_meaning"
                         style="@style/txtSalsaregular20" tools:text="@string/lbl_meaning"/>
                     <TextView android:ellipsize="end"
-                        android:gravity="start"
+                        android:gravity="center"
                         android:id="@+id/txtVietnamese"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_7pxv"
