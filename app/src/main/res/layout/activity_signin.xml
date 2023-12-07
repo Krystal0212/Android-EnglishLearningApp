@@ -1,51 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:gravity="center_horizontal"
-    android:id="@+id/linearSignInPage"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    android:orientation="vertical" style="@style/groupStyleLight_blue_500">
-    <androidx.appcompat.widget.Toolbar
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:gravity="center_horizontal"
-        android:id="@+id/toolbarToolbar"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/_21pxh"
-        android:layout_marginStart="@dimen/_21pxh"
-        android:layout_marginTop="@dimen/_21pxv"
-        android:layout_width="match_parent" app:contentInsetStart="0dp">
-        <FrameLayout
-            android:id="@+id/frameStackSignIn"
+        android:id="@+id/linearSignInPage"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical" style="@style/groupStyleLight_blue_500">
+        <androidx.appcompat.widget.Toolbar
+            android:gravity="center_horizontal"
+            android:id="@+id/toolbarToolbar"
             android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:layout_gravity="center_horizontal">
-
-            <TextView
-                android:id="@+id/txtSignIn"
-                style="@style/txtRubikBubblesregular55"
-                android:layout_width="match_parent"
+            android:layout_marginEnd="@dimen/_22pxh"
+            android:layout_marginStart="@dimen/_22pxh"
+            android:layout_marginTop="@dimen/_21pxv"
+            android:layout_width="match_parent" app:contentInsetStart="0dp">
+            <FrameLayout
+                android:id="@+id/frameStackSignIn"
                 android:layout_height="wrap_content"
-                android:layout_gravity="end"
-                android:layout_marginStart="@dimen/_10pxh"
-                android:layout_marginTop="@dimen/_10pxv"
-                android:layout_marginBottom="@dimen/_9pxv"
-                android:ellipsize="end"
-                android:gravity="end"
-                android:singleLine="true"
-                android:text="@string/lbl_sign_in"
-                tools:text="@string/lbl_sign_in" />
+                android:layout_width="match_parent"
+                android:layout_gravity="center_horizontal">
 
-            <ImageView android:id="@+id/imageImgWelcome"
-                android:layout_gravity="start"
-                android:layout_height="@dimen/_95pxh"
-                android:layout_marginEnd="@dimen/_10pxh"
-                android:layout_width="@dimen/_118pxh"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_imgwelcome"/>
-        </FrameLayout>
-    </androidx.appcompat.widget.Toolbar>
+                <TextView
+                    android:id="@+id/txtSignIn"
+                    style="@style/txtRubikBubblesregular55"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginStart="@dimen/_10pxh"
+                    android:layout_marginTop="@dimen/_10pxv"
+                    android:layout_marginBottom="@dimen/_9pxv"
+                    android:ellipsize="end"
+                    android:gravity="end"
+                    android:singleLine="true"
+                    android:text="@string/lbl_sign_in"
+                    tools:text="@string/lbl_sign_in" />
+
+                <ImageView android:id="@+id/imageImgWelcome"
+                    android:layout_gravity="start"
+                    android:layout_height="@dimen/_95pxh"
+                    android:layout_marginEnd="@dimen/_10pxh"
+                    android:layout_width="@dimen/_118pxh"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_imgwelcome"/>
+            </FrameLayout>
+        </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:id="@+id/llSignIn"
@@ -192,7 +192,7 @@
                 tools:text="@string/lbl_remember_me" />
 
             <TextView
-                android:id="@+id/txtTxtForgotPassword"
+                android:id="@+id/txtForgotPassword"
                 style="@style/txtRobotoRegular15_1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

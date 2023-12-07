@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -20,7 +24,8 @@
                 android:id="@+id/linearTitleandsave"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent" android:orientation="horizontal">
-                <ImageView android:id="@+id/imageImageThree"
+                <ImageView
+                    android:id="@+id/btnBack"
                     android:layout_height="@dimen/_30pxh"
                     android:layout_width="@dimen/_30pxh"
                     android:scaleType="fitXY"
@@ -51,7 +56,7 @@
         </androidx.appcompat.widget.Toolbar>
         <ImageView android:id="@+id/imageLandscape"
             android:layout_gravity="center_horizontal"
-            android:layout_height="@dimen/_186pxh"
+            android:layout_height="@dimen/_130pxh"
             android:layout_marginEnd="@dimen/_14pxh"
             android:layout_marginStart="@dimen/_14pxh"
             android:layout_marginTop="@dimen/_22pxv"
@@ -60,9 +65,9 @@
             android:src="@drawable/img_landscape"/>
         <EditText
             android:background="@drawable/rectangle_bg_white_a700_border_indigo_800_radius_3"
-            android:id="@+id/viewTopic"
+            android:id="@+id/edt_title"
             android:layout_gravity="center_horizontal"
-            android:hint="Insert topic here"
+            android:hint="Insert topic title here"
             android:paddingStart="5dp"
             android:layout_height="@dimen/_35pxv"
             android:layout_marginEnd="@dimen/_14pxh"
@@ -77,9 +82,51 @@
             android:layout_width="@dimen/_80pxh"
             android:scaleType="fitXY" android:src="@drawable/img_zigzag"
             tools:ignore="ContentDescription" tools:src="@drawable/img_zigzag"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_14pxh"
+            android:layout_marginStart="@dimen/_14pxh"
+            android:layout_marginTop="@dimen/_8pxv"
+            android:text="Access"
+            android:id="@+id/txtAccess" />
 
+        <RadioGroup
+            android:id="@+id/access"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginEnd="@dimen/_14pxh"
+            android:layout_marginStart="@dimen/_14pxh"
+            android:layout_marginTop="@dimen/_8pxv"
+            android:gravity="center">
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:background="@drawable/btn_selector"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="PRIVATE"
+                android:layout_weight="1"
+                android:button="?attr/selectableItemBackground"
+                android:textAlignment="center">
+
+            </androidx.appcompat.widget.AppCompatRadioButton>
+
+
+            <androidx.appcompat.widget.AppCompatRadioButton
+                android:background="@drawable/btn_selector"
+                android:layout_marginStart="20dp"
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:text="PUBLIC"
+                android:layout_weight="1"
+                android:button="?attr/selectableItemBackground"
+                android:textAlignment="center">
+
+            </androidx.appcompat.widget.AppCompatRadioButton>
+
+        </RadioGroup>
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerMakeNewTopic"
+            android:id="@+id/addTopic_recyclerView"
             itemSpace="@{@dimen/_9pxh}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -90,16 +137,18 @@
             android:orientation="vertical"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             tools:ignore="SpeakableTextPresentCheck"
-            tools:itemCount="5"
-            tools:listitem="@layout/row_make_new_topic" />
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/imageAdd"
-            android:layout_gravity="end"
-            android:layout_height="@dimen/_75pxh"
-            android:layout_marginEnd="@dimen/_13pxh"
-            android:layout_marginStart="@dimen/_13pxh"
-            android:layout_marginTop="@dimen/_14pxv"
-            android:layout_width="@dimen/_75pxh"
-            android:scaleType="fitXY"
-            android:src="@drawable/img_add"/>
+            tools:itemCount="5" />
     </LinearLayout>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAddWord"
+        android:layout_width="@dimen/_40pxh"
+        android:layout_height="@dimen/_40pxh"
+        android:layout_gravity="bottom|right"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginRight="5dp"
+        android:layout_marginBottom="5dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_add" />
+</RelativeLayout>
