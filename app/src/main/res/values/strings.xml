@@ -36,4 +36,17 @@
     <string name="lbl_name">Name</string>
     <string name="lbl_save">Save</string>
     <string name="msg_create_new_topi">Create new topic</string>
+    <string name="lbl_description">Description</string>
+    <string name="msg_a_sentence_of_d">A sentence of description</string>
+    <string name="lbl_vietnamese">Vietnamese</string>
+    <string name="lbl_meaning">Meaning</string>
+    <string name="lbl_english">English</string>
+    <string name="lbl_1">1</string>
+    <string name="msg_insert_your_top">Insert your topic here</string>
+    <string name="lbl_terminology">Terminology</string>
+    <string name="msg_edit_terminolog">Edit terminology</string>
+    <string name="lbl_cancel">Cancel</string>
+    <string name="msg_description_op">Description (Optional)</string>
+    <string name="lbl_term">Term</string>
+    <string name="lbl_apply">Apply</string>
 </resources>

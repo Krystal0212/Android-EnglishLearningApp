@@ -1,0 +1,13 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Selected state -->
+    <item android:state_checked="true">
+        <shape android:shape="rectangle">
+            <!-- Set the color you want for the selected item background -->
+            <solid android:color="@color/white_B" />
+        </shape>
+    </item>
+    <!-- Default state -->
+    <item>
+        <color android:color="@android:color/transparent" />
+    </item>
+</selector>

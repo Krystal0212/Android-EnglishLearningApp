@@ -16,6 +16,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
@@ -35,7 +36,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Locale;
 
 public class AddTopicActivity extends AppCompatActivity {
@@ -49,13 +49,14 @@ public class AddTopicActivity extends AppCompatActivity {
     ArrayList<Word> words = new ArrayList<>();
     AdapterWordList adapter;
     RecyclerView recyclerView;
+    LinearLayout llTopic;
 
     private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_make_new_topic);
+        setContentView(R.layout.activity_topic_make_new_term);
 
         initUI();
         initListener();
@@ -68,7 +69,9 @@ public class AddTopicActivity extends AppCompatActivity {
         btnSave = findViewById(R.id.btnSave);
         btnBack = findViewById(R.id.btnBack);
         radio = findViewById(R.id.access);
-        
+        llTopic = findViewById(R.id.linearMakeNewTopic);
+
+        btnAddWord.setImageResource(R.drawable.img_add);
         adapter = new AdapterWordList(this, words);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

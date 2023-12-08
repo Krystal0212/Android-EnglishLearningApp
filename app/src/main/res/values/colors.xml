@@ -14,14 +14,23 @@
     <color name="bluegray_100">#cccccc</color>
     <color name="light_blue_500">#03a9f4</color>
     <color name="white_A700">#ffffff</color>
+    <color name="white_B">#E5E2EC</color>
     <color name="light_blue_900">#01579b</color>
     <color name="ic_launcher_background">#FFFFFF</color>
     <color name="cyan_A200">#00ffff</color>
     <color name="deep_orange_A100">#ff9870</color>
     <color name="indigo_800_b7">#b730398d</color>
+    <color name="light_blue_100_42">#429de7ff</color>
+    <color name="black_900">#000000</color>
+    <color name="black_901">#030104</color>
     <color name="indigo_800">#30398d</color>
-
     <color name="bluelight">#2FDCE2</color>
+    <color name="light_cyan">#9DE7FF</color>
     <color name="green">#0DC82C</color>
     <color name="gray">#E81C1C</color>
+    <color name="gray_400">#b8b0b0</color>
+    <color name="gray_800">#3d3d3d</color>
+    <color name="indigo_A100">#959ffd</color>
+    <color name="green_600">#2eb82e</color>
+    <color name="bluegray_900">#2b2b2b</color>
 </resources>

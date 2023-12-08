@@ -79,5 +79,6 @@ dependencies {
     implementation ("com.google.firebase:firebase-storage:20.2.1")
     implementation ("com.squareup.picasso:picasso:2.71828")
     implementation ("me.relex:circleindicator:2.1.6")
+    implementation ("com.google.android.flexbox:flexbox:3.0.0")
 
 }
