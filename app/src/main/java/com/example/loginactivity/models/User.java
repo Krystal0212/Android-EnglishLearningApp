@@ -5,16 +5,25 @@ public class User {
     String avtUrl;
     String displayName;
     Boolean verify;
-
+    String id;
     public User() {
     }
 
-    public User(String email, String displayName, String avtUrl, Boolean verify) {
+    public User(String email, String displayName, String avtUrl, Boolean verify, String id) {
         this.email = email;
         this.avtUrl = avtUrl;
         this.displayName = displayName;
         this.verify = verify;
+        this.id = id;
     }
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public Boolean getVerify() {
         return verify;
     }

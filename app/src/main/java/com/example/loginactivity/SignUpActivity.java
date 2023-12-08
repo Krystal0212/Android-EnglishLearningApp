@@ -128,7 +128,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                                                                 //user tím này là user từ authentication
                                                                 String key = user.getUid();
-                                                                User newUser = new User(user.getEmail(), user.getDisplayName(), "https://firebasestorage.googleapis.com/v0/b/finaltermandroid-ba01a.appspot.com/o/icons8-avatar-64.png?alt=media&token=efb2e06d-589a-40f0-96a0-a1eddfdbb352", false);
+                                                                User newUser = new User(user.getEmail(), user.getDisplayName(), "https://firebasestorage.googleapis.com/v0/b/finaltermandroid-ba01a.appspot.com/o/icons8-avatar-64.png?alt=media&token=efb2e06d-589a-40f0-96a0-a1eddfdbb352", false, key);
                                                                 userRef.child(key).setValue(newUser).addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                     @Override
                                                                     public void onSuccess(Void unused) {

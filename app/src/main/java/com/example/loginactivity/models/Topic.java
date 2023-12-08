@@ -1,19 +1,25 @@
 package com.example.loginactivity.models;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class Topic {
+public class Topic implements Parcelable {
     String access;
     String createDate;
     String id;
     String title;
     String owner;
+    String ownerAvtUrl;
     ArrayList<Participant> participant;
     ArrayList<Word> word;
     HashMap<String, Boolean> belongToFolder;
 
-    public Topic(String access, String createDate, String id, String title, String owner, ArrayList<Participant> participant, ArrayList<Word> word) {
+    public Topic(String access, String createDate, String id, String title, String owner, String ownerAvtUrl, ArrayList<Participant> participant, ArrayList<Word> word) {
         this.access = access;
         this.createDate = createDate;
         this.id = id;
@@ -21,11 +27,50 @@ public class Topic {
         this.owner = owner;
         this.participant = participant;
         this.word = word;
+        this.ownerAvtUrl = ownerAvtUrl;
         HashMap<String,Boolean> belong = new HashMap<>();
         belong.put("temp_folder", false);
         this.belongToFolder = belong;
     }
 
+    protected Topic(Parcel in) {
+        access = in.readString();
+        createDate = in.readString();
+        id = in.readString();
+        title = in.readString();
+        owner = in.readString();
+        ownerAvtUrl = in.readString();
+        participant = in.createTypedArrayList(Participant.CREATOR);
+        word = in.createTypedArrayList(Word.CREATOR);
+    }
+
+    public static final Creator<Topic> CREATOR = new Creator<Topic>() {
+        @Override
+        public Topic createFromParcel(Parcel in) {
+            return new Topic(in);
+        }
+
+        @Override
+        public Topic[] newArray(int size) {
+            return new Topic[size];
+        }
+    };
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getOwnerAvtUrl() {
+        return ownerAvtUrl;
+    }
+
+    public void setOwnerAvtUrl(String ownerAvtUrl) {
+        this.ownerAvtUrl = ownerAvtUrl;
+    }
     public Topic(){
 
     }
@@ -54,13 +99,6 @@ public class Topic {
         this.id = id;
     }
 
-    public String getName() {
-        return title;
-    }
-
-    public void setName(String name) {
-        this.title = name;
-    }
 
     public String getOwner() {
         return owner;
@@ -92,5 +130,22 @@ public class Topic {
 
     public void setBelongToFolder(HashMap<String, Boolean> belongToFolder) {
         this.belongToFolder = belongToFolder;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(access);
+        dest.writeString(createDate);
+        dest.writeString(id);
+        dest.writeString(title);
+        dest.writeString(owner);
+        dest.writeString(ownerAvtUrl);
+        dest.writeTypedList(participant);
+        dest.writeTypedList(word);
     }
 }

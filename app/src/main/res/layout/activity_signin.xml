@@ -140,6 +140,8 @@
             android:layout_marginStart="@dimen/_15pxh"
             android:layout_marginTop="@dimen/_18pxv"
             android:layout_marginEnd="@dimen/_15pxh"
+            android:drawableStart="@drawable/person"
+            android:drawablePadding="5dp"
             android:background="@drawable/rectangle_bg_white_a700_border_gray_600_radius_5"
             android:textColor="@color/black"
             tools:ignore="SpeakableTextPresentCheck" />
@@ -154,6 +156,8 @@
             android:layout_marginStart="@dimen/_15pxh"
             android:layout_marginTop="@dimen/_7pxv"
             android:layout_marginEnd="@dimen/_15pxh"
+            android:drawableStart="@drawable/lock"
+            android:drawablePadding="5dp"
             android:background="@drawable/rectangle_bg_white_a700_border_gray_600_radius_5"
             tools:ignore="SpeakableTextPresentCheck" />
 
@@ -200,6 +204,15 @@
                 android:text="@string/msg_forgot_password"
                 tools:text="@string/msg_forgot_password" />
         </LinearLayout>
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:id="@+id/progressBar"
+            android:visibility="gone"
+            android:paddingTop="10dp"
+            android:paddingBottom="0dp"/>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnSignIn"

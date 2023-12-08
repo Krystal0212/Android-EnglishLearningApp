@@ -81,6 +81,8 @@ public class ProfileFragment extends Fragment {
         storageReference = FirebaseStorage.getInstance().getReference("userImg/" + user.getUid() + "/");
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("User");
+        DatabaseReference topicRef = database.getReference("Topic");
+
 
         if(mUri != null){
             storageReference.putFile(mUri)
@@ -109,6 +111,20 @@ public class ProfileFragment extends Fragment {
                                                             public void onSuccess(Void unused) {
                                                                 Toast.makeText(getContext(), "Update avatar success !",
                                                                         Toast.LENGTH_SHORT).show();
+                                                                // cap nhat table Topic
+                                                                topicRef.orderByChild("owner").equalTo(user.getDisplayName()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                                                    @Override
+                                                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                        for(DataSnapshot snap : snapshot.getChildren()){
+                                                                            snap.child("ownerAvtUrl").getRef().setValue(uri.toString());
+                                                                        }
+                                                                    }
+
+                                                                    @Override
+                                                                    public void onCancelled(@NonNull DatabaseError error) {
+
+                                                                    }
+                                                                });
                                                             }
                                                         });
                                                     }

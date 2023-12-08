@@ -70,11 +70,14 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.16.0")
 
     implementation("androidx.viewpager2:viewpager2:1.0.0")
+    //noinspection GradleCompatible
     implementation("androidx.databinding:databinding-runtime:7.2.0")
 
     implementation("androidx.security:security-crypto:1.0.0")
     implementation("com.airbnb.android:lottie:3.4.0")
     implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.17")
     implementation ("com.google.firebase:firebase-storage:20.2.1")
+    implementation ("com.squareup.picasso:picasso:2.71828")
+    implementation ("me.relex:circleindicator:2.1.6")
 
 }

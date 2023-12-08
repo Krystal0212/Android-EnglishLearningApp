@@ -1,6 +1,11 @@
 package com.example.loginactivity.models;
 
-public class Word {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class Word implements Parcelable {
     String english;
     String vietnamese;
 
@@ -11,6 +16,29 @@ public class Word {
         this.vietnamese = vietnamese;
         this.description = description;
     }
+
+    public Word (){
+
+    }
+
+    protected Word(Parcel in) {
+        english = in.readString();
+        vietnamese = in.readString();
+        description = in.readString();
+    }
+
+    public static final Creator<Word> CREATOR = new Creator<Word>() {
+        @Override
+        public Word createFromParcel(Parcel in) {
+            return new Word(in);
+        }
+
+        @Override
+        public Word[] newArray(int size) {
+            return new Word[size];
+        }
+    };
+
     public String getDescription() {
         return description;
     }
@@ -34,4 +62,15 @@ public class Word {
         this.vietnamese = vietnamese;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(english);
+        dest.writeString(vietnamese);
+        dest.writeString(description);
+    }
 }

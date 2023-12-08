@@ -187,7 +187,7 @@ public class LoginActivity extends AppCompatActivity {
                 public void onSuccess(Void unused) {
                     // Sign in success, update UI with the signed-in user's information
                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                    Toast.makeText(LoginActivity.this, "Have fun with Quizme!",
+                    Toast.makeText(LoginActivity.this, "Have fun with Quizzme!",
                             Toast.LENGTH_SHORT).show();
                     startActivity(intent);
                     finish();

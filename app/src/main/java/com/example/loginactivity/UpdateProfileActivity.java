@@ -18,6 +18,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.example.loginactivity.models.Topic;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -289,9 +290,11 @@ public class UpdateProfileActivity extends AppCompatActivity {
         btnApply.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String currentName = user.getDisplayName();
                 String new_DisplayName = edt_New.getText().toString().trim();
 
                 DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("User");
+
                 userRef.orderByChild("displayName").equalTo(new_DisplayName).addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -321,6 +324,22 @@ public class UpdateProfileActivity extends AppCompatActivity {
                                                                     showUserInformation();
                                                                     dialog.dismiss();
                                                                     Toast.makeText(UpdateProfileActivity.this, "Successfully updated display name!", Toast.LENGTH_LONG).show();
+                                                                    DatabaseReference topicRef = FirebaseDatabase.getInstance().getReference("Topic");
+                                                                    // cap nhat table Topic
+                                                                    topicRef.orderByChild("owner").equalTo(currentName).addListenerForSingleValueEvent(new ValueEventListener() {
+                                                                        @Override
+                                                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                            for(DataSnapshot snap : snapshot.getChildren()){
+                                                                                //name mới trên authen
+                                                                                snap.child("owner").getRef().setValue(user.getDisplayName());
+                                                                            }
+                                                                        }
+
+                                                                        @Override
+                                                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                                                        }
+                                                                    });
                                                                 }
                                                             });
                                                         }

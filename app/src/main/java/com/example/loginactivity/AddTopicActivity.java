@@ -131,9 +131,9 @@ public class AddTopicActivity extends AppCompatActivity {
             DatabaseReference topicRef = FirebaseDatabase.getInstance().getReference("Topic");
             String key = topicRef.push().getKey();
 
-            participant.add(new Participant(user.getDisplayName()));
+            participant.add(new Participant(user.getUid()));
 
-            topicRef.child(key).setValue(new Topic(access, createDate, key, title, user.getDisplayName(),participant ,words))
+            topicRef.child(key).setValue(new Topic(access, createDate, key, title, user.getDisplayName(),user.getPhotoUrl().toString(),participant ,words))
                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {

@@ -1,0 +1,50 @@
+<!-- res/animator/card_flip_animation_set.xml -->
+<set xmlns:android="http://schemas.android.com/apk/res/android">
+    <objectAnimator
+        android:valueFrom="0.0"
+        android:valueTo="180.0"
+        android:propertyName="rotationY"
+        android:interpolator="@android:interpolator/accelerate_decelerate"
+        android:duration="500"/>
+
+    <!-- Sử dụng pivotX và pivotY để xác định điểm neo cho quay -->
+    <objectAnimator
+        android:valueFrom="1.0"
+        android:valueTo="0.0"
+        android:propertyName="scaleX"
+        android:interpolator="@android:interpolator/accelerate_decelerate"
+        android:duration="250"
+        android:pivotX="50%"
+        android:pivotY="50%"/>
+
+    <objectAnimator
+        android:valueFrom="0.0"
+        android:valueTo="1.0"
+        android:propertyName="scaleX"
+        android:interpolator="@android:interpolator/accelerate_decelerate"
+        android:duration="250"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        />
+
+    <!-- Tương tự cho scaleY -->
+    <objectAnimator
+        android:valueFrom="1.0"
+        android:valueTo="0.0"
+        android:propertyName="scaleY"
+        android:interpolator="@android:interpolator/accelerate_decelerate"
+        android:duration="250"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        />
+
+    <objectAnimator
+        android:valueFrom="0.0"
+        android:valueTo="1.0"
+        android:propertyName="scaleY"
+        android:interpolator="@android:interpolator/accelerate_decelerate"
+        android:duration="250"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        />
+</set>
