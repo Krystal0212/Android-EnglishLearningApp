@@ -14,6 +14,7 @@ import android.widget.ViewFlipper;
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.loginactivity.R;
 import com.example.loginactivity.TextToSpeechHelper;
@@ -24,14 +25,17 @@ import java.util.Locale;
 
 public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardViewPagerAdapter.FlashCardViewHolder>{
 
-    private ArrayList<Word> words;
+    public ArrayList<Word> words;
     Context context;
-    private TextToSpeechHelper textToSpeechHelper;
+    public TextToSpeechHelper textToSpeechHelper;
+
+    public ViewPager2 viewPager2;
 
 
-    public FlashCardViewPagerAdapter(Context context, ArrayList<Word> words) {
+    public FlashCardViewPagerAdapter(Context context, ArrayList<Word> words, ViewPager2 viewPager2) {
         this.words = words;
         this.context = context;
+        this.viewPager2 = viewPager2;
     }
 
     @NonNull
@@ -59,6 +63,7 @@ public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardVi
 
             // Đảo chiều hiển thị của ViewFlipper để hiển thị mặt khác của card
             holder.flipInterface.showNext();
+
         });
 
         holder.soundFront.setOnClickListener(view -> {
@@ -70,6 +75,7 @@ public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardVi
             textToSpeechHelper.setLanguage(new Locale("vi", "VN"));
             textToSpeechHelper.speak(word.getVietnamese());
         });
+
     }
 
     @Override
@@ -80,13 +86,23 @@ public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardVi
         return 0;
     }
 
+    // Phương thức để lấy ViewHolder tại vị trí cụ thể
+    public FlashCardViewHolder getViewHolderAtPosition(int position) {
+        RecyclerView recyclerView = (RecyclerView) viewPager2.getChildAt(0);
+        FlashCardViewPagerAdapter.FlashCardViewHolder viewHolder = (FlashCardViewPagerAdapter.FlashCardViewHolder) recyclerView.findViewHolderForAdapterPosition(position);
+        if (viewHolder instanceof FlashCardViewHolder) {
+            return (FlashCardViewHolder) viewHolder;
+        }
+        return null;
+    }
+
     public class FlashCardViewHolder extends RecyclerView.ViewHolder{
 
-        private ViewFlipper flipInterface;
-        private TextView term, meaning;
-        private CardView cardFront, cardBack;
+        public ViewFlipper flipInterface;
+        public TextView term, meaning;
+        public CardView cardFront, cardBack;
 
-        private ImageView soundFront, soundBack;
+        public ImageView soundFront, soundBack;
         public FlashCardViewHolder(@NonNull View itemView) {
             super(itemView);
             term = itemView.findViewById(R.id.txt_term);
@@ -96,7 +112,6 @@ public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardVi
             cardFront = itemView.findViewById(R.id.cardFront);
             soundBack = itemView.findViewById(R.id.soundIconBack);
             soundFront = itemView.findViewById(R.id.soundIconFront);
-
         }
     }
 }

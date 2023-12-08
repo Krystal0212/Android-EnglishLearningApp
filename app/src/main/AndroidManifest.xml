@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -22,9 +22,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LogInActivity"
         android:usesCleartextTraffic="true"
-        tools:targetApi="31">
+        tools:targetApi="31" >
         <activity
             android:name=".TopicDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".FlashCardResult"
+            android:exported="false" />
+        <activity
+            android:name=".FlashCardActivity"
             android:exported="false" />
         <activity
             android:name=".AddTopicActivity"
@@ -46,7 +52,7 @@
             android:exported="true" />
         <activity
             android:name=".SplashActivity"
-            android:exported="true">
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

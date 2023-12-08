@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,8 +18,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.loginactivity.R;
+import com.example.loginactivity.FlashCardActivity;
 import com.example.loginactivity.TopicDetailActivity;
-import com.example.loginactivity.UpdateProfileActivity;
 import com.example.loginactivity.models.Participant;
 import com.example.loginactivity.models.Topic;
 import com.google.android.gms.tasks.OnSuccessListener;
