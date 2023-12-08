@@ -88,10 +88,9 @@
                 android:layout_height="@dimen/_45pxh"
                 android:layout_marginStart="@dimen/_20pxh"
                 android:scaleType="fitXY"
-                android:src="@drawable/img_google"
                 app:layout_constraintLeft_toLeftOf="parent"
                 tools:ignore="ContentDescription,MissingConstraints"
-                tools:src="@drawable/img_google" />
+                 />
 
             <ImageView
                 android:id="@+id/imageFacebook"
