@@ -12,66 +12,66 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
+            style="@style/etSolidRoundedOutline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="12dp">
+
             <TextView
-                android:layout_marginTop="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                android:textColor="@color/black"
                 android:id="@+id/txt_title"
-                android:paddingStart="3dp"
-                android:text="Your Title"/>
-
-            <TextView
-                android:layout_marginTop="8dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:id="@+id/txt_total_terms"
-                android:textColor="@color/black"
+                android:layout_marginTop="8dp"
                 android:paddingStart="3dp"
-                android:text="Your total terms"/>
+                android:text="Your Title"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/txt_total_terms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:paddingStart="3dp"
+                android:text="Your total terms"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
             <LinearLayout
-                android:layout_marginTop="12dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
                 android:orientation="horizontal">
+
                 <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/owner_avatar"
                     android:layout_width="35dp"
                     android:layout_height="35dp"
                     android:gravity="center"
-                    android:src="@drawable/ic_avatar_default"
-                    android:id="@+id/owner_avatar"/>
+                    android:src="@drawable/ic_avatar_default" />
 
                 <TextView
-                    android:layout_marginTop="9dp"
+                    android:id="@+id/txt_owner_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="9dp"
                     android:paddingStart="7dp"
-                    android:textSize="15sp"
-                    android:id="@+id/txt_owner_name"
+                    android:text="Your owner"
                     android:textColor="@color/black"
-                    android:text="Your owner"/>
+                    android:textSize="15sp" />
 
                 <TextView
-                    android:layout_marginTop="9dp"
+                    android:id="@+id/txt_total_participants"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="15sp"
+                    android:layout_marginTop="9dp"
+                    android:text="Your participant"
                     android:textAlignment="textEnd"
                     android:textColor="@color/black"
-                    android:id="@+id/txt_total_participants"
-                    android:text="Your participant"/>
-
+                    android:textSize="15sp" />
             </LinearLayout>
-
         </LinearLayout>
 
 

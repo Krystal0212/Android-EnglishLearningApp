@@ -258,4 +258,77 @@
     <style name="groupStylelight_blue_500">
         <item name="android:background">@drawable/rectangle_bg_light_blue_500</item>
     </style>
+    <style name="txtOpenSansromansemibold20">
+        <item name="android:textSize">@dimen/_20pxh</item>
+        <item name="android:textColor">@color/black_900</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textFontWeight" tools:targetApi="p">600</item>
+    </style>
+    <style name="txtOpenSans14">
+        <item name="android:textSize">@dimen/_14pxh</item>
+        <item name="android:textColor">@color/black_900</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textFontWeight" tools:targetApi="p">400</item>
+    </style>
+    <style name="txtOpenSansromansemibold28">
+        <item name="android:textSize">@dimen/_28pxh</item>
+        <item name="android:textColor">@color/black_900</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textFontWeight" tools:targetApi="p">600</item>
+    </style>
+    <style name="txtOpenSansromansemibold16">
+        <item name="android:textSize">@dimen/_16pxh</item>
+        <item name="android:textColor">@color/black_900</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textFontWeight" tools:targetApi="p">600</item>
+    </style>
+    <style name="groupStylewhite_A700cornerRadius_0">
+        <item name="android:background">@drawable/rectangle_bg_white_a700_border_yellow_600_radius_8</item>
+    </style>
+    <style name="txtOpenSansromanbold24">
+        <item name="android:textSize">@dimen/_24pxh</item>
+        <item name="android:textColor">@color/black_900</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textFontWeight" tools:targetApi="p">700</item>
+    </style>
+    <style name="txtOpenSansromanregular16">
+        <item name="android:textSize">@dimen/_16pxh</item>
+        <item name="android:textColor">@color/black_900</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textFontWeight" tools:targetApi="p">400</item>
+    </style>
+    <style name="groupStylecyan_50cornerRadius">
+        <item name="android:background">@drawable/rectangle_bg_cyan_50_radius_10</item>
+    </style>
+    <style name="groupStyleyellow_600cornerRadius">
+        <item name="android:background">@drawable/rectangle_bg_yellow_600_border_black_900_radius_10</item>
+    </style>
+    <style name="groupStyleyellow_600_75cornerRadius">
+        <item name="android:background">@drawable/rectangle_bg_yellow_600_75_border_black_900_75_radius_10</item>
+    </style>
+    <style name="txtOpenSans12">
+        <item name="android:textSize">@dimen/_18pxh</item>
+        <item name="android:textColor">@color/black_900</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textFontWeight" tools:targetApi="p">400</item>
+    </style>
+    <style name="btnSolidRoundedOutline">
+        <item name="android:textSize">@dimen/_20pxh</item>
+        <item name="android:textColor">@color/white_A700</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textFontWeight" tools:targetApi="p">600</item>
+        <item name="android:background">@drawable/rectangle_bg_teal_300_border_black_900_radius_8</item>
+    </style>
+    <style name="btnSolidRoundedOutline_1">
+        <item name="android:textColor">@color/black_900</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textFontWeight" tools:targetApi="p">600</item>
+        <item name="android:background">@drawable/rectangle_bg_yellow_600_border_black_900_radius_10</item>
+    </style>
+    <style name="btnSolidRoundedOutline_2">
+        <item name="android:textColor">@color/black_900</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textFontWeight" tools:targetApi="p">600</item>
+        <item name="android:background">@drawable/rectangle_bg_yellow_600_border_black_900_radius_10</item>
+    </style>
 </resources>

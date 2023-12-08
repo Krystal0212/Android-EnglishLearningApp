@@ -112,6 +112,7 @@ public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardVi
             cardFront = itemView.findViewById(R.id.cardFront);
             soundBack = itemView.findViewById(R.id.soundIconBack);
             soundFront = itemView.findViewById(R.id.soundIconFront);
+
         }
     }
 }

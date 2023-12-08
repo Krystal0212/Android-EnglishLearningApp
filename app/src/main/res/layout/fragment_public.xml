@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="15dp"
-    android:background="@color/deep_orange_A100"
+    android:background="@drawable/banner_sample"
     tools:context=".fragment.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
