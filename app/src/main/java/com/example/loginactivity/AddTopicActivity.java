@@ -36,7 +36,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Locale;
 
 public class AddTopicActivity extends AppCompatActivity {
@@ -57,7 +56,7 @@ public class AddTopicActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_make_new_topic);
+        setContentView(R.layout.activity_topic_make_new_term);
 
         initUI();
         initListener();

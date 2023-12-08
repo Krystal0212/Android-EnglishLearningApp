@@ -1,16 +1,12 @@
 package com.example.loginactivity.adapter;
 
 import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.loginactivity.R;
@@ -32,7 +28,7 @@ public class AdapterWordList extends RecyclerView.Adapter<AdapterWordList.MyView
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.row_make_new_topic, parent, false);
+        View view = inflater.inflate(R.layout.activity_topic_make_new_word, parent, false);
         return new MyViewHolder(view);
     }
 

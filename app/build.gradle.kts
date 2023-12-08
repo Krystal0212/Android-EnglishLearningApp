@@ -76,5 +76,6 @@ dependencies {
     implementation("com.airbnb.android:lottie:3.4.0")
     implementation("pl.droidsonroids.gif:android-gif-drawable:1.2.17")
     implementation ("com.google.firebase:firebase-storage:20.2.1")
+    implementation ("com.google.android.flexbox:flexbox:3.0.0")
 
 }
