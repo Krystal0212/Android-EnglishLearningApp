@@ -19,11 +19,13 @@
             android:layout_height="wrap_content"
             android:layout_weight="0.85"
             android:layout_width="0dp" android:orientation="vertical">
-            <LinearLayout android:gravity="start|center"
+            <LinearLayout
+                android:gravity="start|center"
                 android:id="@+id/linearDescriptionSec"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:orientation="horizontal" style="@style/groupStyle">
+                android:orientation="horizontal"
+                style="@style/groupStyle">
                 <TextView
                     android:id="@+id/txtDescription"
                     android:layout_height="wrap_content"
@@ -33,7 +35,7 @@
                     android:text="@string/lbl_description"
                     style="@style/txtSalsaregular18" tools:text="@string/lbl_description"/>
                 <TextView
-                    android:id="@+id/txtInsertDescription"
+                    android:id="@+id/txt_description"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_9pxv"
                     android:layout_marginEnd="@dimen/_55pxh"
@@ -54,9 +56,8 @@
                     android:id="@+id/linearTerminology1"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_6pxv"
-                    android:layout_marginStart="@dimen/_13pxh"
                     android:layout_marginTop="@dimen/_12pxv"
-                    android:layout_weight="1"
+                    android:layout_weight="0.5"
                     android:layout_width="0dp" android:orientation="vertical">
                     <TextView android:ellipsize="end"
                         android:id="@+id/txtTerminology"
@@ -67,7 +68,7 @@
                         android:text="@string/lbl_terminology"
                         style="@style/txtSalsaregular20" tools:text="@string/lbl_terminology"/>
                     <TextView android:ellipsize="end"
-                        android:id="@+id/txtLanguage"
+                        android:id="@+id/txt_english"
                         android:layout_gravity="center"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_23pxh"
@@ -82,9 +83,8 @@
                     android:id="@+id/linearMeaning"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_8pxv"
-                    android:layout_marginEnd="@dimen/_19pxh"
                     android:layout_marginTop="@dimen/_12pxv"
-                    android:layout_weight="1"
+                    android:layout_weight="0.5"
                     android:layout_width="0dp" android:orientation="vertical">
                     <TextView android:ellipsize="end"
                         android:gravity="center_horizontal"
@@ -98,7 +98,7 @@
                         style="@style/txtSalsaregular20" tools:text="@string/lbl_meaning"/>
                     <TextView android:ellipsize="end"
                         android:gravity="center"
-                        android:id="@+id/txtVietnamese"
+                        android:id="@+id/txt_vietnamese"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_7pxv"
                         android:layout_width="match_parent"

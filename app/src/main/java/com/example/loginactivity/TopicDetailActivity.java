@@ -23,6 +23,7 @@ public class TopicDetailActivity extends AppCompatActivity {
 
     ArrayList<Word> words = new ArrayList<>();
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,6 +44,5 @@ public class TopicDetailActivity extends AppCompatActivity {
         viewPager2.setAdapter(adapter);
 
         circleIndicator3.setViewPager(viewPager2);
-
     }
 }

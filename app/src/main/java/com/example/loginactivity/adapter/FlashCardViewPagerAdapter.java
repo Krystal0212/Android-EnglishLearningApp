@@ -38,7 +38,7 @@ public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardVi
     @Override
     public FlashCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.flashcard, parent, false);
+        View view = inflater.inflate(R.layout.activity_middle_flash_card_one, parent, false);
         return new FlashCardViewHolder(view);
     }
 
@@ -83,13 +83,14 @@ public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardVi
     public class FlashCardViewHolder extends RecyclerView.ViewHolder{
 
         private ViewFlipper flipInterface;
-        private TextView term, meaning;
+        private TextView term, meaning, description;
         private CardView cardFront, cardBack;
 
         private ImageView soundFront, soundBack;
         public FlashCardViewHolder(@NonNull View itemView) {
             super(itemView);
             term = itemView.findViewById(R.id.txt_term);
+            description = itemView.findViewById(R.id.txt_description);
             meaning = itemView.findViewById(R.id.txt_meaning);
             flipInterface = itemView.findViewById(R.id.flashCard);
             cardBack = itemView.findViewById(R.id.cardBack);
