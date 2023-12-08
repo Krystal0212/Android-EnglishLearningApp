@@ -36,7 +36,6 @@ public class AdapterWordList extends RecyclerView.Adapter<AdapterWordList.MyView
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.txt_english.setText(words.get(position).getEnglish());
         holder.txt_vietnamese.setText(words.get(position).getVietnamese());
-
         if(words.get(position).getDescription().equals("")){
             holder.txt_description.setText("No description");
         } else {

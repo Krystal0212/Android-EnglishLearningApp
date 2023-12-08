@@ -110,30 +110,15 @@
         </LinearLayout>
         <LinearLayout android:gravity="center_horizontal"
             android:id="@+id/linearAction"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="0.16"
             android:layout_width="0dp"
             android:orientation="vertical" style="@style/groupStylewhite_1">
-            <TextView android:ellipsize="end"
-                android:id="@+id/txtNumberOfRow"
-                android:layout_gravity="center_horizontal"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_16pxh"
-                android:layout_marginStart="@dimen/_16pxh"
-                android:layout_marginTop="@dimen/_14pxv"
-                android:layout_width="wrap_content"
-                android:singleLine="true"
-                android:text="@string/lbl_1"
-                style="@style/txtRubikWetPaintregular29" tools:text="@string/lbl_1"/>
-            <ImageView android:gravity="center_horizontal"
+
+            <ImageView android:layout_gravity="center"
                 android:id="@+id/imageTrash"
-                android:layout_height="@dimen/_38pxh"
-                android:layout_marginBottom="@dimen/_13pxv"
-                android:layout_marginEnd="@dimen/_2pxh"
-                android:layout_marginStart="@dimen/_2pxh"
-                android:layout_marginTop="@dimen/_11pxv"
+                android:layout_height="match_parent"
                 android:layout_width="match_parent"
-                android:scaleType="fitXY"
                 android:src="@drawable/img_trash_38x49"
                 tools:ignore="ContentDescription" tools:src="@drawable/img_trash_38x49"/>
         </LinearLayout>
