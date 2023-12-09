@@ -46,7 +46,7 @@
                 android:layout_marginRight="10dp"
                 android:id="@+id/btn_all"
                 android:textColor="@color/black"
-                android:background="@drawable/bg_gray_corner_16"/>
+                android:background="@drawable/bg_green_corner_16"/>
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

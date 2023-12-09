@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,7 +17,7 @@ import java.util.ArrayList;
 
 public class AdapterWordList extends RecyclerView.Adapter<AdapterWordList.MyViewHolder> {
     Context context;
-    ArrayList<Word> words;
+    public ArrayList<Word> words;
 
     public AdapterWordList(Context context, ArrayList<Word> words) {
         //constructor
@@ -34,16 +35,27 @@ public class AdapterWordList extends RecyclerView.Adapter<AdapterWordList.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.txt_english.setText(words.get(position).getEnglish());
-        holder.txt_vietnamese.setText(words.get(position).getVietnamese());
-        if(words.get(position).getDescription().equals("")){
+        Word word = words.get(position);
+        holder.txt_english.setText(word.getEnglish());
+        holder.txt_vietnamese.setText(word.getVietnamese());
+        if(word.getDescription().equals("")){
             holder.txt_description.setText("No description");
         } else {
-            holder.txt_description.setText(words.get(position).getDescription());
+            holder.txt_description.setText(word.getDescription());
         }
 
         holder.itemView.setOnClickListener(v -> {
             onClickWord();
+        });
+
+        //xu ly xoa word trong list
+        holder.imageTrash.setOnClickListener(v -> {
+            for(int i = 0; i < words.size(); i++){
+                if(word.getEnglish().equals(words.get(i).getEnglish())){
+                    words.remove(words.get(i));
+                    notifyDataSetChanged();
+                }
+            }
         });
     }
 
@@ -63,12 +75,15 @@ public class AdapterWordList extends RecyclerView.Adapter<AdapterWordList.MyView
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
         TextView txt_english, txt_vietnamese, txt_description;
+
+        ImageView imageTrash;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
             txt_english = itemView.findViewById(R.id.txt_english);
             txt_vietnamese = itemView.findViewById(R.id.txt_vietnamese);
             txt_description = itemView.findViewById(R.id.txt_description);
+            imageTrash = itemView.findViewById(R.id.imageTrash);
         }
     }
 }
