@@ -16,23 +16,14 @@
         android:textColor="@color/black"
         android:text="12/20"/>
 
-    <Switch
-        android:layout_alignParentRight="true"
-        android:id="@+id/switchButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:text="Auto run"/>
+
 
     <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager2"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:paddingStart="60dp"
-        android:paddingEnd="60dp"
+        android:layout_height="650dp"
         android:layout_below="@id/starus"
-        android:id="@+id/viewPager2"/>
+        android:layout_marginTop="25dp" />
 
     <me.relex.circleindicator.CircleIndicator3
         android:id="@+id/circle_indicator_3"
@@ -41,6 +32,16 @@
         android:layout_below="@id/viewPager2"
         android:layout_centerInParent="true"
         app:ci_drawable="@drawable/bg_indicator_3" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switchButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        app:showText="false"
+        android:trackTint="@drawable/switch_track_selector"
+        android:trackTintMode="src_in"
+        android:thumb="@drawable/switch_thumb_selector" />
 
     <Button
         android:layout_width="wrap_content"

@@ -1,6 +1,8 @@
 package com.example.loginactivity.adapter;
 
+import android.animation.Animator;
 import android.animation.AnimatorInflater;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -58,12 +60,20 @@ public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardVi
         holder.meaning.setText(word.getVietnamese());
 
         holder.flipInterface.setOnClickListener(view -> {
-            holder.cardFront.animate().rotationYBy(180).setDuration(300);
-            holder.cardBack.animate().rotationYBy(180).setDuration(300);
+                    // Kiểm tra nếu thẻ không đang lật
+                    if (!holder.isFlipping) {
+                        holder.isFlipping = true; // Đánh dấu bắt đầu lật thẻ
 
-            // Đảo chiều hiển thị của ViewFlipper để hiển thị mặt khác của card
-            holder.flipInterface.showNext();
-
+                        holder.cardFront.animate().rotationYBy(180).setDuration(300);
+                        holder.cardBack.animate().rotationYBy(180).setDuration(300).setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                super.onAnimationEnd(animation);
+                                holder.flipInterface.showNext(); // Hiển thị mặt khác của thẻ
+                                holder.isFlipping = false; // Đánh dấu kết thúc lật thẻ
+                            }
+                        });
+                    }
         });
 
         holder.soundFront.setOnClickListener(view -> {
@@ -76,6 +86,16 @@ public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardVi
             textToSpeechHelper.speak(word.getVietnamese());
         });
 
+    }
+
+    // Phương thức lật thẻ về mặt trước
+    public void flipCardToFront(int position) {
+        FlashCardViewHolder viewHolder = getViewHolderAtPosition(position);
+        if (viewHolder != null && viewHolder.flipInterface.getDisplayedChild() != 0) {
+            viewHolder.cardFront.setRotationY(0);
+            viewHolder.cardBack.setRotationY(180);
+            viewHolder.flipInterface.showPrevious();
+        }
     }
 
     @Override
@@ -103,6 +123,7 @@ public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardVi
         public CardView cardFront, cardBack;
 
         public ImageView soundFront, soundBack;
+        public boolean isFlipping = false; // Biến theo dõi trạng thái lật thẻ
         public FlashCardViewHolder(@NonNull View itemView) {
             super(itemView);
             term = itemView.findViewById(R.id.txt_term);
@@ -113,6 +134,16 @@ public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardVi
             soundBack = itemView.findViewById(R.id.soundIconBack);
             soundFront = itemView.findViewById(R.id.soundIconFront);
 
+        }
+
+        // Phương thức kiểm tra và lật thẻ
+        public void flipToFront() {
+            if (flipInterface.getDisplayedChild() != 0) {
+                // Cập nhật góc xoay
+                cardFront.setRotationY(0);
+                cardBack.setRotationY(180);
+                flipInterface.showPrevious();
+            }
         }
     }
 }

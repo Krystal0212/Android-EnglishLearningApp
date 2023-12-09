@@ -194,11 +194,14 @@ public class ProfileFragment extends Fragment {
         });
     }
     private void onClickRequestPermission() {
-        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.M){
-            openGallery();
-            return;
+        if(Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU){
+            if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED  ) {
+                openGallery();
+            } else {
+                String [] permissions = {Manifest.permission.READ_EXTERNAL_STORAGE};
+                ActivityCompat.requestPermissions(getActivity(),permissions, MY_REQ_CODE);
+            }
         }
-
         if(ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_MEDIA_IMAGES) == PackageManager.PERMISSION_GRANTED  ) {
             openGallery();
         } else {

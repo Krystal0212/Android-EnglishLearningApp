@@ -1,6 +1,7 @@
 package com.example.loginactivity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
@@ -8,6 +9,8 @@ import androidx.viewpager2.widget.ViewPager2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -27,14 +30,11 @@ public class FlashCardActivity extends AppCompatActivity {
 
     public ViewPager2 viewPager2;
     CircleIndicator3 circleIndicator3;
-
-    Topic topic;
-
     ArrayList<Word> words = new ArrayList<>();
 
     TextView status;
 
-    Switch switchButton;
+    SwitchCompat switchButton;
 
     FlashCardViewPagerAdapter adapter;
 
@@ -42,6 +42,9 @@ public class FlashCardActivity extends AppCompatActivity {
 
     public TextToSpeechHelper textToSpeechHelper;
     private boolean isLastPage = false;
+
+    private float initialX, finalX;
+
 
     private Handler mHandler = new Handler();
     private Runnable mRunnable = new Runnable() {
@@ -54,6 +57,9 @@ public class FlashCardActivity extends AppCompatActivity {
                 finish();
 
             } else {
+                int currentItem = viewPager2.getCurrentItem();
+                adapter.flipCardToFront(currentItem);
+
                 viewPager2.setCurrentItem(viewPager2.getCurrentItem() + 1);
                 // Gọi hàm speechAndFlipCard() sau khi chuyển trang
                 new Handler().postDelayed(() -> speechAndFlipCard(), 500);
@@ -79,8 +85,7 @@ public class FlashCardActivity extends AppCompatActivity {
         textToSpeechHelper = new TextToSpeechHelper(this);
 
         Intent intent = getIntent();
-        topic = intent.getParcelableExtra("topic");
-        words = topic.getWord();
+        words = intent.getParcelableArrayListExtra("words");
 
         //Setting viewpager2
         viewPager2.setOffscreenPageLimit(3);
@@ -96,6 +101,8 @@ public class FlashCardActivity extends AppCompatActivity {
 
         circleIndicator3.setViewPager(viewPager2);
         viewPager2.setPageTransformer(new ZoomOutPageTransformer());
+
+
 
     }
 
@@ -113,6 +120,14 @@ public class FlashCardActivity extends AppCompatActivity {
 
         ViewPager2.OnPageChangeCallback UpdatePage = new ViewPager2.OnPageChangeCallback() {
             @Override
+            public void onPageScrollStateChanged(int state) {
+                super.onPageScrollStateChanged(state);
+                if (state == ViewPager2.SCROLL_STATE_DRAGGING) {
+                    int currentItem = viewPager2.getCurrentItem();
+                    adapter.flipCardToFront(currentItem);
+                }
+            }
+            @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 String page = (position + 1) + " / " + adapter.getItemCount();
@@ -129,13 +144,32 @@ public class FlashCardActivity extends AppCompatActivity {
         };
 
         viewPager2.registerOnPageChangeCallback(UpdatePage);
+
+        viewPager2.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        initialX = event.getX();
+                        return true;
+                    case MotionEvent.ACTION_UP:
+                        finalX = event.getX();
+                        if (isLastPage && (finalX > initialX)) {
+                            // Người dùng vuốt sang phải ở trang cuối cùng
+                            Intent intent = new Intent(FlashCardActivity.this, FlashCardResult.class);
+                            startActivity(intent);
+                        }
+                        break;
+                }
+                return false;
+            }
+        });
+
         ViewPager2.OnPageChangeCallback onPageChangeCallback = new ViewPager2.OnPageChangeCallback() {
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
                 if (switchButton.isChecked()) {
-                    String page = (position + 1) + " / " + adapter.getItemCount();
-                    status.setText(page);
                     mHandler.removeCallbacks(mRunnable);
                     mHandler.postDelayed(mRunnable, 6000);
                 }
@@ -162,41 +196,48 @@ public class FlashCardActivity extends AppCompatActivity {
     private void speechAndFlipCard() {
         int currentItem = viewPager2.getCurrentItem();
         FlashCardViewPagerAdapter.FlashCardViewHolder holder = adapter.getViewHolderAtPosition(currentItem);
-        Word word = words.get(currentItem);
+        if (holder != null && !holder.isFlipping) { // Kiểm tra nếu ViewHolder tồn tại và không đang lật
+            if (holder.flipInterface.getDisplayedChild() != 0) {
+                // Lật card về mặt trước nếu nó đang ở mặt sau
+                adapter.flipCardToFront(currentItem);
+            }
+            Word word = words.get(currentItem);
 
-        //doc tieng anh
-        textToSpeechHelper.setLanguage(Locale.ENGLISH);
-        textToSpeechHelper.speak(word.getEnglish());
+            textToSpeechHelper.setLanguage(Locale.ENGLISH);
+            textToSpeechHelper.speak(word.getEnglish());
 
-        // Sử dụng Handler để chờ một khoảng thời gian trước khi thực hiện thao tác tiếp theo
-        new Handler().postDelayed(() -> {
-            //flip
-            holder.cardFront.animate().rotationYBy(180).setDuration(300);
-            holder.cardBack.animate().rotationYBy(180).setDuration(300);
+            mHandler.postDelayed(() -> {
+                //flip
+                holder.cardFront.animate().rotationY(180).setDuration(300);
+                holder.cardBack.animate().rotationY(0).setDuration(300);
 
-            // Đảo chiều hiển thị của ViewFlipper để hiển thị mặt khác của card
-            holder.flipInterface.showNext();
+                holder.flipInterface.showNext();
 
-            // Sử dụng Handler để chờ một khoảng thời gian trước khi thực hiện thao tác tiếp theo
-            new Handler().postDelayed(() -> {
-                //doc tieng viet
-                textToSpeechHelper.setLanguage(new Locale("vi", "VN"));
-                textToSpeechHelper.speak(word.getVietnamese());
+                mHandler.postDelayed(() -> {
+                    textToSpeechHelper.setLanguage(new Locale("vi", "VN"));
+                    textToSpeechHelper.speak(word.getVietnamese());
+                }, 1000); // Thời gian chờ giữa hai bước
             }, 1000); // Thời gian chờ giữa hai bước
-
-        }, 1000); // Thời gian chờ giữa hai bước
+        }
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         mHandler.removeCallbacks(mRunnable);
+        // Tắt TextToSpeech khi không cần thiết
+        if (textToSpeechHelper != null) {
+            textToSpeechHelper.shutdown();
+        }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if(switchButton.isChecked()){
+        if (textToSpeechHelper == null) {
+            textToSpeechHelper = new TextToSpeechHelper(this);
+        }
+        if (switchButton.isChecked()) {
             mHandler.postDelayed(mRunnable, 6000);
         }
     }
