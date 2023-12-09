@@ -7,6 +7,7 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.GestureDetector;
@@ -14,6 +15,8 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 
@@ -38,10 +41,11 @@ public class FlashCardActivity extends AppCompatActivity {
 
     FlashCardViewPagerAdapter adapter;
 
-    Button btn_back, btn_complete;
-
+    Button btn_complete;
+    ImageView btn_back;
     public TextToSpeechHelper textToSpeechHelper;
     private boolean isLastPage = false;
+    private boolean isFirstPage = true;
 
     private float initialX, finalX;
 
@@ -82,6 +86,7 @@ public class FlashCardActivity extends AppCompatActivity {
         switchButton = findViewById(R.id.switchButton);
         btn_back = findViewById(R.id.btn_back);
         btn_complete = findViewById(R.id.btn_complete);
+
         textToSpeechHelper = new TextToSpeechHelper(this);
 
         Intent intent = getIntent();
@@ -134,6 +139,7 @@ public class FlashCardActivity extends AppCompatActivity {
                 status.setText(page);
                 // Kiểm tra nếu đang ở trang cuối cùng
                 isLastPage = (position == adapter.getItemCount() - 1);
+
                 // Nếu đang ở trang cuối cùng và đang swipe
                 if (isLastPage) {
                    btn_complete.setVisibility(View.VISIBLE);

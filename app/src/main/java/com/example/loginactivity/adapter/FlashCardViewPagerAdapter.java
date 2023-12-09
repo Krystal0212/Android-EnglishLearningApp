@@ -5,11 +5,13 @@ import android.animation.AnimatorInflater;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewPropertyAnimator;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
@@ -30,6 +32,8 @@ public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardVi
     public ArrayList<Word> words;
     Context context;
     public TextToSpeechHelper textToSpeechHelper;
+    private boolean isLastPage = false;
+    private boolean isFirstPage = true;
 
     public ViewPager2 viewPager2;
 
@@ -44,13 +48,27 @@ public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardVi
     @Override
     public FlashCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.flashcard, parent, false);
+        View view = inflater.inflate(R.layout.activity_middle_flash_card_one, parent, false);
         return new FlashCardViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull FlashCardViewHolder holder, int position) {
         Word word = words.get(position);
+        isLastPage = (position == getItemCount() - 1);
+        isFirstPage = (position == 0);
+
+        // Lay style cua cac khung
+        int styleResourceId = R.style.groupStyleyellow_600_75cornerRadius;
+        TypedArray attributes = context.obtainStyledAttributes(styleResourceId, new int[]{android.R.attr.background});
+        int backgroundResourceId = attributes.getResourceId(0, 0);
+
+        int styleResourceId2 = R.style.groupStyleyellow_600cornerRadius;
+        TypedArray attributes2 = context.obtainStyledAttributes(styleResourceId2, new int[]{android.R.attr.background});
+        int backgroundResourceId2 = attributes2.getResourceId(0, 0);
+
+        attributes.recycle();
+
         if(word == null){
             return;
         }
@@ -58,6 +76,23 @@ public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardVi
 
         holder.term.setText(word.getEnglish());
         holder.meaning.setText(word.getVietnamese());
+
+        if(isFirstPage){
+            holder.llPreviousBack.setBackgroundResource(backgroundResourceId);
+            holder.llPreviousFront.setBackgroundResource(backgroundResourceId);
+        }
+        else{
+            holder.llPreviousBack.setBackgroundResource(backgroundResourceId2);
+            holder.llPreviousFront.setBackgroundResource(backgroundResourceId2);
+        }
+
+        if(isLastPage){
+            holder.llNextBack.setBackgroundResource(backgroundResourceId);
+            holder.llNextFront.setBackgroundResource(backgroundResourceId);
+        }else {
+            holder.llNextBack.setBackgroundResource(backgroundResourceId2);
+            holder.llNextFront.setBackgroundResource(backgroundResourceId2);
+        }
 
         holder.flipInterface.setOnClickListener(view -> {
                     // Kiểm tra nếu thẻ không đang lật
@@ -121,6 +156,7 @@ public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardVi
         public ViewFlipper flipInterface;
         public TextView term, meaning;
         public CardView cardFront, cardBack;
+        LinearLayout llPreviousFront, llPreviousBack, llNextFront, llNextBack;
 
         public ImageView soundFront, soundBack;
         public boolean isFlipping = false; // Biến theo dõi trạng thái lật thẻ
@@ -133,7 +169,10 @@ public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardVi
             cardFront = itemView.findViewById(R.id.cardFront);
             soundBack = itemView.findViewById(R.id.soundIconBack);
             soundFront = itemView.findViewById(R.id.soundIconFront);
-
+            llPreviousFront = itemView.findViewById(R.id.llPreviousFront);
+            llPreviousBack = itemView.findViewById(R.id.llPreviousBack);
+            llNextBack = itemView.findViewById(R.id.llNextBack);
+            llNextFront = itemView.findViewById(R.id.llNextFront);
         }
 
         // Phương thức kiểm tra và lật thẻ
