@@ -7,21 +7,16 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.content.Intent;
-import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.Switch;
 import android.widget.TextView;
 
-import com.example.loginactivity.adapter.FlashCardViewPagerAdapter;
-import com.example.loginactivity.models.Topic;
+import com.example.loginactivity.adapter.FlashCardLongViewPagerAdapter;
 import com.example.loginactivity.models.Word;
 
 import java.util.ArrayList;
@@ -39,7 +34,7 @@ public class FlashCardActivity extends AppCompatActivity {
 
     SwitchCompat switchButton;
 
-    FlashCardViewPagerAdapter adapter;
+    FlashCardLongViewPagerAdapter adapter;
 
     Button btn_complete;
     ImageView btn_back;
@@ -101,7 +96,7 @@ public class FlashCardActivity extends AppCompatActivity {
         compositePageTransformer.addTransformer(new MarginPageTransformer(40));
         viewPager2.setPageTransformer(compositePageTransformer);
         //viet su kien thay doi status
-        adapter = new FlashCardViewPagerAdapter(this, words, viewPager2);
+        adapter = new FlashCardLongViewPagerAdapter(this, words, viewPager2);
         viewPager2.setAdapter(adapter);
 
         circleIndicator3.setViewPager(viewPager2);
@@ -201,7 +196,7 @@ public class FlashCardActivity extends AppCompatActivity {
 
     private void speechAndFlipCard() {
         int currentItem = viewPager2.getCurrentItem();
-        FlashCardViewPagerAdapter.FlashCardViewHolder holder = adapter.getViewHolderAtPosition(currentItem);
+        FlashCardLongViewPagerAdapter.FlashCardViewHolder holder = adapter.getViewHolderAtPosition(currentItem);
         if (holder != null && !holder.isFlipping) { // Kiểm tra nếu ViewHolder tồn tại và không đang lật
             if (holder.flipInterface.getDisplayedChild() != 0) {
                 // Lật card về mặt trước nếu nó đang ở mặt sau

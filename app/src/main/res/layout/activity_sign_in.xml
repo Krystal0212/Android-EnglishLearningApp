@@ -86,6 +86,7 @@
                 android:id="@+id/imageGoogle"
                 android:layout_width="@dimen/_45pxh"
                 android:layout_height="@dimen/_45pxh"
+                android:src="@drawable/img_google"
                 android:layout_marginStart="@dimen/_20pxh"
                 android:scaleType="fitXY"
                 app:layout_constraintLeft_toLeftOf="parent"

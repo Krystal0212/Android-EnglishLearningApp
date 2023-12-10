@@ -15,16 +15,12 @@ import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
-import com.example.loginactivity.adapter.AdapterWordList;
 import com.example.loginactivity.adapter.AdapterWordListTopic;
-import com.example.loginactivity.adapter.FlashCardViewPagerAdapter;
+import com.example.loginactivity.adapter.FlashCardBasicViewPagerAdapter;
 import com.example.loginactivity.models.Topic;
 import com.example.loginactivity.models.Word;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
@@ -40,7 +36,7 @@ public class TopicDetailActivity extends AppCompatActivity {
 
     ArrayList<Word> words = new ArrayList<>();
 
-    FlashCardViewPagerAdapter adapter;
+    FlashCardBasicViewPagerAdapter adapter;
 
     AdapterWordListTopic adapterWordListTopic;
 
@@ -73,7 +69,7 @@ public class TopicDetailActivity extends AppCompatActivity {
         compositePageTransformer.addTransformer(new MarginPageTransformer(40));
         viewPager2.setPageTransformer(compositePageTransformer);
 
-        adapter = new FlashCardViewPagerAdapter(this, words, viewPager2);
+        adapter = new FlashCardBasicViewPagerAdapter(this, words, viewPager2);
         viewPager2.setAdapter(adapter);
 
         circleIndicator3.setViewPager(viewPager2);

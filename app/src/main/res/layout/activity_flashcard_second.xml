@@ -24,14 +24,14 @@
                 android:background="@color/white"
                 android:backgroundTint="@color/white"
                 android:layout_width="333dp"
-                android:layout_height="270dp"
-                android:layout_gravity="center_horizontal"
+                android:layout_height="540dp"
+                android:layout_gravity="center"
                 android:layoutDirection="ltr">
 
                 <View
                     android:id="@+id/vBackCardFront"
                     android:layout_width="@dimen/_260pxh"
-                    android:layout_height="@dimen/_185pxv"
+                    android:layout_height="@dimen/_370pxv"
                     android:layout_gravity="bottom"
                     android:layout_marginStart="@dimen/_15pxh"
                     android:layout_marginTop="@dimen/_1pxv"
@@ -42,7 +42,7 @@
                     android:id="@+id/llCardFront"
                     style="@style/groupStylewhite_A700cornerRadius_0"
                     android:layout_width="match_parent"
-                    android:layout_height="255dp"
+                    android:layout_height="525dp"
                     android:layout_gravity="top|start"
 
                     android:layout_marginBottom="@dimen/_10pxv"
@@ -87,7 +87,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_25pxh"
-                        android:layout_marginTop="@dimen/_5pxv"
+                        android:layout_marginTop="@dimen/_105pxv"
                         android:layout_marginEnd="@dimen/_25pxh"
                         android:gravity="center_horizontal"
                         android:lineSpacingExtra="@dimen/_11pxh"
@@ -104,9 +104,6 @@
                         android:layout_marginStart="@dimen/_25pxh"
                         android:layout_marginTop="@dimen/_3pxv"
                         android:layout_marginEnd="@dimen/_25pxh"
-                        android:ellipsize="end"
-                        android:lineSpacingExtra="@dimen/_5pxh"
-                        android:singleLine="true"
                         android:text="@string/lbl_h_p_p_t_m_s"
                         tools:text="@string/lbl_h_p_p_t_m_s" />
 
@@ -115,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:layout_marginStart="@dimen/_25pxh"
-                        android:layout_marginTop="@dimen/_25pxv"
+                        android:layout_marginTop="@dimen/_125pxv"
                         android:layout_marginEnd="@dimen/_25pxh"
                         android:layout_marginBottom="@dimen/_18pxv"
                         android:orientation="horizontal">
@@ -204,14 +201,14 @@
                 android:background="@color/white"
                 android:backgroundTint="@color/white"
                 android:layout_width="333dp"
-                android:layout_height="270dp"
+                android:layout_height="540dp"
                 android:layout_gravity="center_horizontal"
                 android:layoutDirection="ltr">
 
                 <View
                     android:id="@+id/vBackCardBack"
                     android:layout_width="@dimen/_260pxh"
-                    android:layout_height="@dimen/_185pxv"
+                    android:layout_height="@dimen/_370pxv"
                     android:layout_gravity="bottom"
                     android:layout_marginStart="@dimen/_15pxh"
                     android:layout_marginTop="@dimen/_1pxv"
@@ -221,7 +218,7 @@
                 <LinearLayout android:id="@+id/llCardBack"
                     style="@style/groupStylewhite_A700cornerRadius_0"
                     android:layout_width="match_parent"
-                    android:layout_height="255dp"
+                    android:layout_height="525dp"
                     android:layout_gravity="top|start"
                     android:layout_marginBottom="@dimen/_10pxv"
                     android:orientation="vertical">
@@ -259,77 +256,91 @@
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_40pxh"
                         android:layout_marginStart="@dimen/_40pxh"
-                        android:layout_marginTop="@dimen/_15pxv"
+                        android:layout_marginTop="@dimen/_110pxv"
                         android:layout_width="wrap_content"
                         android:lineSpacingExtra="@dimen/_11pxh"
                         android:singleLine="true"
                         android:text="@string/lbl_h_m"
                         style="@style/txtOpenSansromansemibold28" tools:text="@string/lbl_h_m"/>
+
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
                         android:layout_marginStart="@dimen/_25pxh"
-                        android:layout_marginTop="@dimen/_35pxv"
+                        android:layout_marginTop="@dimen/_144pxv"
                         android:layout_marginEnd="@dimen/_25pxh"
                         android:layout_marginBottom="@dimen/_8pxv"
                         android:orientation="horizontal">
+
                         <LinearLayout
                             android:id="@+id/llPreviousBack"
+                            style="@style/groupStyleyellow_600cornerRadius"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="0.59"
-                            android:layout_width="0dp"
-                            android:orientation="horizontal" style="@style/groupStyleyellow_600cornerRadius">
+                            android:orientation="horizontal">
+
                             <ImageView
+                                android:layout_width="@dimen/_6pxh"
                                 android:layout_height="@dimen/_9pxh"
-                                android:layout_marginBottom="@dimen/_9pxv"
                                 android:layout_marginStart="@dimen/_7pxh"
                                 android:layout_marginTop="@dimen/_10pxv"
-                                android:layout_width="@dimen/_6pxh"
+                                android:layout_marginBottom="@dimen/_9pxv"
                                 android:scaleType="fitXY"
                                 android:src="@drawable/img_arrowleft"
-                                tools:ignore="ContentDescription" tools:src="@drawable/img_arrowleft"/>
+                                tools:ignore="ContentDescription"
+                                tools:src="@drawable/img_arrowleft" />
+
                             <TextView
+                                style="@style/txtOpenSansromansemibold16"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="@dimen/_3pxv"
-                                android:layout_marginEnd="@dimen/_6pxh"
                                 android:layout_marginStart="@dimen/_6pxh"
                                 android:layout_marginTop="@dimen/_4pxv"
+                                android:layout_marginEnd="@dimen/_6pxh"
+                                android:layout_marginBottom="@dimen/_3pxv"
                                 android:layout_weight="0.92"
-                                android:layout_width="0dp"
                                 android:lineSpacingExtra="@dimen/_6pxh"
                                 android:singleLine="true"
                                 android:text="@string/lbl_previous"
-                                style="@style/txtOpenSansromansemibold16" tools:text="@string/lbl_previous"/>
+                                tools:text="@string/lbl_previous" />
                         </LinearLayout>
+
                         <LinearLayout
                             android:id="@+id/llNextBack"
+                            style="@style/groupStyleyellow_600cornerRadius"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_78pxh"
                             android:layout_weight="0.41"
-                            android:layout_width="0dp"
-                            android:orientation="horizontal" style="@style/groupStyleyellow_600cornerRadius">
-                            <TextView android:ellipsize="end"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                style="@style/txtOpenSansromansemibold16"
+                                android:layout_width="0dp"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="@dimen/_4pxv"
                                 android:layout_marginStart="@dimen/_8pxh"
                                 android:layout_marginTop="@dimen/_3pxv"
+                                android:layout_marginBottom="@dimen/_4pxv"
                                 android:layout_weight="0.86"
-                                android:layout_width="0dp"
+                                android:ellipsize="end"
                                 android:lineSpacingExtra="@dimen/_6pxh"
                                 android:singleLine="true"
                                 android:text="@string/lbl_next"
-                                style="@style/txtOpenSansromansemibold16" tools:text="@string/lbl_next"/>
+                                tools:text="@string/lbl_next" />
+
                             <ImageView
+                                android:layout_width="@dimen/_6pxh"
                                 android:layout_height="@dimen/_9pxh"
-                                android:layout_marginBottom="@dimen/_9pxv"
-                                android:layout_marginEnd="@dimen/_7pxh"
                                 android:layout_marginStart="@dimen/_4pxh"
                                 android:layout_marginTop="@dimen/_10pxv"
-                                android:layout_width="@dimen/_6pxh"
+                                android:layout_marginEnd="@dimen/_7pxh"
+                                android:layout_marginBottom="@dimen/_9pxv"
                                 android:scaleType="fitXY"
                                 android:src="@drawable/img_arrowright"
-                                tools:ignore="ContentDescription" tools:src="@drawable/img_arrowright"/>
+                                tools:ignore="ContentDescription"
+                                tools:src="@drawable/img_arrowright" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>

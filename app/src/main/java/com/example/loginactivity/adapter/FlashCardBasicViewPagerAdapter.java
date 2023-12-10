@@ -1,15 +1,12 @@
 package com.example.loginactivity.adapter;
 
 import android.animation.Animator;
-import android.animation.AnimatorInflater;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewPropertyAnimator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,7 +24,7 @@ import com.example.loginactivity.models.Word;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardViewPagerAdapter.FlashCardViewHolder>{
+public class FlashCardBasicViewPagerAdapter extends  RecyclerView.Adapter<FlashCardBasicViewPagerAdapter.FlashCardViewHolder>{
 
     public ArrayList<Word> words;
     Context context;
@@ -38,7 +35,7 @@ public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardVi
     public ViewPager2 viewPager2;
 
 
-    public FlashCardViewPagerAdapter(Context context, ArrayList<Word> words, ViewPager2 viewPager2) {
+    public FlashCardBasicViewPagerAdapter(Context context, ArrayList<Word> words, ViewPager2 viewPager2) {
         this.words = words;
         this.context = context;
         this.viewPager2 = viewPager2;
@@ -48,7 +45,7 @@ public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardVi
     @Override
     public FlashCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.activity_middle_flash_card_one, parent, false);
+        View view = inflater.inflate(R.layout.activity_flashcard_one, parent, false);
         return new FlashCardViewHolder(view);
     }
 
@@ -144,7 +141,7 @@ public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardVi
     // Phương thức để lấy ViewHolder tại vị trí cụ thể
     public FlashCardViewHolder getViewHolderAtPosition(int position) {
         RecyclerView recyclerView = (RecyclerView) viewPager2.getChildAt(0);
-        FlashCardViewPagerAdapter.FlashCardViewHolder viewHolder = (FlashCardViewPagerAdapter.FlashCardViewHolder) recyclerView.findViewHolderForAdapterPosition(position);
+        FlashCardBasicViewPagerAdapter.FlashCardViewHolder viewHolder = (FlashCardBasicViewPagerAdapter.FlashCardViewHolder) recyclerView.findViewHolderForAdapterPosition(position);
         if (viewHolder instanceof FlashCardViewHolder) {
             return (FlashCardViewHolder) viewHolder;
         }

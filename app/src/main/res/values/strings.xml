@@ -63,4 +63,35 @@
     <string name="msg_congratulations">Congratulations on completing the vocabulary test! </string>
     <string name="lbl_lion">Lion</string>
     <string name="previous">Previous</string>
+
+    <string name="lbl_landon_mosby">Landon Mosby</string>
+    <string name="lbl_7_50_am">7:50 am</string>
+    <string name="lbl_man_marin">Man Marin</string>
+    <string name="lbl_2_15_pm">2:15 pm</string>
+    <string name="lbl_6_15_pm">6:15 pm</string>
+    <string name="lbl_jacklyn_kovach">Jacklyn Kovach</string>
+    <string name="lbl_6_30_am">6:30 am</string>
+    <string name="lbl_ali_comer">Ali Comer</string>
+    <string name="lbl_kai_caudle">Kai Caudle</string>
+    <string name="lbl_4_00_pm">4:00 pm</string>
+    <string name="msg_carmelo_roussea">Carmelo Rousseau</string>
+    <string name="lbl_3_45_pm">3:45 pm</string>
+    <string name="lbl_11_50_am">11:50 am</string>
+    <string name="lbl_join_group">Join Group</string>
+    <string name="lbl_rose_j_henry">Rose J. Henry</string>
+    <string name="lbl_user_groups">User Groups</string>
+    <string name="msg_congratulations2">Congratulations on learning all the new words! </string>
+    <string name="msg_take_the_quiz_n">Take the quiz now!</string>
+
+    <string name="lbl_2">2</string>
+    <string name="lbl_3">3</string>
+    <string name="lbl_display_name">Display name</string>
+    <string name="lbl_first_name">First Name</string>
+    <string name="lbl_second_name">Second Name</string>
+    <string name="lbl_username">Username</string>
+    <string name="lbl_my_profile"> My profile</string>
+    <string name="lbl_a_gmail_com">a@gmail.com</string>
+    <string name="lbl_third_name">Third Name</string>
+    <string name="lbl_change_password">Change Password</string>
+    <string name="lbl_username2">username</string>
 </resources>

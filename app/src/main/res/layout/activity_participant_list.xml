@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+    <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:gravity="start"
+        android:id="@+id/linearColumnleftside"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical" style="@style/groupStylegray_50">
+        <androidx.appcompat.widget.Toolbar
+            android:gravity="center_horizontal"
+            android:id="@+id/toolbarToolbar"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_14pxh"
+            android:layout_marginStart="@dimen/_16pxh"
+            android:layout_marginTop="@dimen/_12pxv"
+            android:layout_width="match_parent" app:contentInsetStart="0dp">
+            <LinearLayout android:id="@+id/linearIPhoneXorne"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent" android:orientation="horizontal">
+                <ImageView android:id="@+id/imageLeftSide"
+                    android:layout_height="@dimen/_21pxh"
+                    android:layout_width="@dimen/_54pxh"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_leftside"
+                    tools:ignore="ContentDescription" tools:src="@drawable/img_leftside"/>
+                <ImageView android:id="@+id/imageRightSide"
+                    android:layout_height="@dimen/_11pxh"
+                    android:layout_marginBottom="@dimen/_4pxv"
+                    android:layout_marginStart="@dimen/_271pxh"
+                    android:layout_marginTop="@dimen/_5pxv"
+                    android:layout_width="@dimen/_66pxh"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/img_rightside"
+                    tools:ignore="ContentDescription" tools:src="@drawable/img_rightside"/>
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+        <LinearLayout android:id="@+id/linearRowarrowleft"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_16pxh"
+            android:layout_marginStart="@dimen/_16pxh"
+            android:layout_marginTop="@dimen/_26pxv"
+            android:layout_width="match_parent" android:orientation="horizontal">
+            <ImageView android:id="@+id/imageArrowleft"
+                android:layout_height="@dimen/_12pxh"
+                android:layout_marginBottom="@dimen/_8pxv"
+                android:layout_marginTop="@dimen/_6pxv"
+                android:layout_width="@dimen/_12pxh"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_arrowleft"
+                tools:ignore="ContentDescription" tools:src="@drawable/img_arrowleft"/>
+            <TextView android:ellipsize="end"
+                android:id="@+id/txtUserGroups"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_112pxh"
+                android:layout_marginTop="@dimen/_2pxv"
+                android:layout_weight="0.91" android:layout_width="0dp"
+                android:lineSpacingExtra="@dimen/_1pxh"
+                android:singleLine="true"
+                android:text="@string/lbl_user_groups"
+                style="@style/txtGilroysemibold24" tools:text="@string/lbl_user_groups"/>
+            <ImageView android:id="@+id/imageMorevertical"
+                android:layout_height="@dimen/_16pxh"
+                android:layout_marginBottom="@dimen/_6pxv"
+                android:layout_marginEnd="@dimen/_11pxh"
+                android:layout_marginStart="@dimen/_117pxh"
+                android:layout_marginTop="@dimen/_4pxv"
+                android:layout_width="@dimen/_2pxh"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_morevertical"
+                tools:ignore="ContentDescription" tools:src="@drawable/img_morevertical"/>
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerListprofileimglarg"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_16pxh"
+            android:layout_marginStart="@dimen/_16pxh"
+            android:layout_marginTop="@dimen/_35pxv"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            itemSpace="@{@dimen/_16pxh}" tools:itemCount="7" tools:listitem="@layout/item_participant"/>
+        <androidx.appcompat.widget.AppCompatButton
+            android:ellipsize="end" android:gravity="center"
+            android:id="@+id/btnJoinGroup"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_20pxv"
+            android:layout_marginEnd="@dimen/_16pxh"
+            android:layout_marginStart="@dimen/_16pxh"
+            android:layout_marginTop="@dimen/_231pxv"
+            android:layout_width="match_parent"
+            android:lineSpacingExtra="@dimen/_1pxh"
+            android:paddingBottom="@dimen/_17pxv"
+            android:paddingEnd="@dimen/_30pxh"
+            android:paddingStart="@dimen/_30pxh"
+            android:paddingTop="@dimen/_17pxv" android:singleLine="true"
+            android:text="@string/lbl_join_group"
+            android:textAllCaps="false" style="@style/btnSolidRounded" tools:text="@string/lbl_join_group"/>
+    </LinearLayout>

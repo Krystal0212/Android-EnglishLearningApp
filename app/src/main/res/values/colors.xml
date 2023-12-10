@@ -40,4 +40,14 @@
     <color name="yellow_600_75">#75ffda2c</color>
     <color name="deep_orange_200">#ffad85</color>
     <color name="cyan_50">#dbf9f8</color>
+
+    <color name="bluegray_400">#74839d</color>
+    <color name="blue_A700">#0061ff</color>
+    <color name="gray_50">#f9fbff</color>
+
+    <color name="light_blue_100">#abe2fb</color>
+    <color name="black_900_3f">#3f000000</color>
+    <color name="amber_A100">#ffe482</color>
+    <color name="gray_901">#1c1c1c</color>
+    <color name="blue_500">#1da2f3</color>
 </resources>
