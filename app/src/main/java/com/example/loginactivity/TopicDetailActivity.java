@@ -20,9 +20,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.loginactivity.adapter.AdapterWordList;
 import com.example.loginactivity.adapter.AdapterWordListTopic;
-import com.example.loginactivity.adapter.FlashCardViewPagerAdapter;
+import com.example.loginactivity.adapter.AdapterWordList;
+import com.example.loginactivity.adapter.FlashCardBasicViewPagerAdapter;
 import com.example.loginactivity.models.Topic;
 import com.example.loginactivity.models.Word;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -51,7 +51,7 @@ public class TopicDetailActivity extends AppCompatActivity {
 
     ArrayList<Word> words = new ArrayList<>();
 
-    FlashCardViewPagerAdapter adapter;
+    FlashCardBasicViewPagerAdapter adapter;
 
     AdapterWordListTopic adapterWordListTopic;
 
@@ -86,7 +86,7 @@ public class TopicDetailActivity extends AppCompatActivity {
         compositePageTransformer.addTransformer(new MarginPageTransformer(40));
         viewPager2.setPageTransformer(compositePageTransformer);
 
-        adapter = new FlashCardViewPagerAdapter(this, words, viewPager2);
+        adapter = new FlashCardBasicViewPagerAdapter(this, words, viewPager2, topic.getTitle());
         viewPager2.setAdapter(adapter);
 
         circleIndicator3.setViewPager(viewPager2);
@@ -115,6 +115,7 @@ public class TopicDetailActivity extends AppCompatActivity {
                 // khong co word nao trong danh sach marked
                 Intent intent = new Intent(this, FlashCardActivity.class);
                 intent.putParcelableArrayListExtra("words", topic.getWord());
+                intent.putExtra("title", topic.getTitle());
                 startActivity(intent);
             } else {
                 //co it nhat 1 word

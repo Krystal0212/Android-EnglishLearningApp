@@ -68,6 +68,7 @@
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintLeft_toLeftOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintVertical_bias="0.448"
                             tools:text="@string/lbl_topic_name" />
 
                         <ImageView
@@ -87,7 +88,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_25pxh"
-                        android:layout_marginTop="@dimen/_5pxv"
+                        android:layout_marginTop="@dimen/_15pxv"
                         android:layout_marginEnd="@dimen/_25pxh"
                         android:gravity="center_horizontal"
                         android:lineSpacingExtra="@dimen/_11pxh"
@@ -117,7 +118,7 @@
                         android:layout_marginStart="@dimen/_25pxh"
                         android:layout_marginTop="@dimen/_25pxv"
                         android:layout_marginEnd="@dimen/_25pxh"
-                        android:layout_marginBottom="@dimen/_18pxv"
+                        android:layout_marginBottom="@dimen/_8pxv"
                         android:orientation="horizontal">
 
                         <LinearLayout

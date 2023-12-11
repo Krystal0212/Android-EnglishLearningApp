@@ -43,7 +43,7 @@
                     android:layout_marginEnd="@dimen/_10pxh"
                     android:layout_width="@dimen/_118pxh"
                     android:scaleType="fitXY"
-                    android:src="@drawable/img_imgwelcome"/>
+                    android:src="@drawable/img_fluffy"/>
             </FrameLayout>
         </androidx.appcompat.widget.Toolbar>
 
@@ -86,6 +86,7 @@
                 android:id="@+id/imageGoogle"
                 android:layout_width="@dimen/_45pxh"
                 android:layout_height="@dimen/_45pxh"
+                android:src="@drawable/img_google"
                 android:layout_marginStart="@dimen/_20pxh"
                 android:scaleType="fitXY"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -143,6 +144,7 @@
             android:drawablePadding="5dp"
             android:background="@drawable/rectangle_bg_white_a700_border_gray_600_radius_5"
             android:textColor="@color/black"
+            android:textSize="12sp"
             tools:ignore="SpeakableTextPresentCheck" />
 
         <EditText
@@ -157,6 +159,8 @@
             android:layout_marginEnd="@dimen/_15pxh"
             android:drawableStart="@drawable/lock"
             android:drawablePadding="5dp"
+            android:textColor="@color/black"
+            android:textSize="12sp"
             android:background="@drawable/rectangle_bg_white_a700_border_gray_600_radius_5"
             tools:ignore="SpeakableTextPresentCheck" />
 

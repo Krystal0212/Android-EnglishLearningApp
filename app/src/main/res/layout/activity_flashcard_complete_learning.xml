@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <LinearLayout android:id="@+id/linearLastFlashCard"
-    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="match_parent"
+    <LinearLayout android:id="@+id/linearFlashcardCompl"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:orientation="vertical" style="@style/groupStylewhite_A700">
+
         <ImageButton
-            android:background="@drawable/rectangle_bg_deep_orange_200_border_black_900_radius_12"
             android:id="@+id/btnArrowleft"
-            android:layout_gravity="start"
+            android:layout_width="@dimen/_24pxh"
             android:layout_height="@dimen/_24pxh"
-            android:layout_marginEnd="@dimen/_10pxh"
+            android:layout_gravity="start"
             android:layout_marginStart="@dimen/_8pxh"
             android:layout_marginTop="@dimen/_17pxv"
-            android:layout_width="@dimen/_24pxh"
+            android:layout_marginEnd="@dimen/_10pxh"
+            android:background="@drawable/rectangle_bg_deep_orange_200_border_black_900_radius_12"
             android:paddingHorizontal="@dimen/_6pxh"
             android:paddingVertical="@dimen/_6pxv"
             android:scaleType="fitCenter"
-            android:src="@drawable/img_arrowleft_black_900" tools:ignore="ContentDescription"/>
+            android:src="@drawable/img_arrowleft_black_900"
+            tools:ignore="ContentDescription,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
         <TextView android:ellipsize="end" android:id="@+id/txtCongrats"
             android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_30pxh"
-            android:layout_marginStart="@dimen/_30pxh"
+            android:layout_marginEnd="@dimen/_25pxh"
+            android:layout_marginStart="@dimen/_25pxh"
             android:layout_marginTop="@dimen/_31pxv"
             android:layout_width="wrap_content"
             android:lineSpacingExtra="@dimen/_9pxh"
@@ -31,35 +33,37 @@
         <TextView android:gravity="center_horizontal"
             android:id="@+id/txtLanguage"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_30pxh"
-            android:layout_marginStart="@dimen/_30pxh"
+            android:layout_marginEnd="@dimen/_25pxh"
+            android:layout_marginStart="@dimen/_25pxh"
             android:layout_marginTop="@dimen/_9pxv"
             android:layout_width="match_parent"
             android:lineSpacingExtra="@dimen/_8pxh"
-            android:text="@string/msg_congratulations"
-            style="@style/txtOpenSansromanregular16" tools:text="@string/msg_congratulations"/>
-        <FrameLayout android:id="@+id/frameStackcuteastronatzero"
+            android:text="@string/msg_congratulations2"
+            style="@style/txtOpenSansromanregular16" tools:text="@string/msg_congratulations2"/>
+        <FrameLayout android:id="@+id/frameStackrectangle2209"
             android:layout_gravity="center_horizontal"
             android:layout_height="@dimen/_317pxv"
-            android:layout_marginEnd="@dimen/_30pxh"
-            android:layout_marginStart="@dimen/_30pxh"
-            android:layout_marginTop="@dimen/_42pxv"
-            android:layout_width="@dimen/_298pxh" style="@style/groupStylecyan_50cornerRadius">
-            <ImageView android:id="@+id/imageCuteastronatZero"
+            android:layout_marginEnd="@dimen/_23pxh"
+            android:layout_marginStart="@dimen/_25pxh"
+            android:layout_marginTop="@dimen/_46pxv" android:layout_width="@dimen/_312pxh">
+            <View
+                android:background="@drawable/rectangle_bg_cyan_50_radius_10"
+                android:id="@+id/viewRectangle2209"
                 android:layout_gravity="center"
-                android:layout_height="@dimen/_282pxh"
-                android:layout_marginBottom="@dimen/_21pxv"
-                android:layout_marginEnd="@dimen/_6pxh"
-                android:layout_marginStart="@dimen/_8pxh"
-                android:layout_marginTop="@dimen/_14pxv"
-                android:layout_width="@dimen/_283pxh"
+                android:layout_height="@dimen/_317pxh"
+                android:layout_marginEnd="@dimen/_9pxh"
+                android:layout_marginStart="@dimen/_5pxh" android:layout_width="@dimen/_298pxh"/>
+            <ImageView android:id="@+id/imageCuteastronatZero"
+                android:layout_gravity="start"
+                android:layout_height="@dimen/_312pxv"
+                android:layout_marginTop="@dimen/_5pxv"
+                android:layout_width="match_parent"
                 android:scaleType="fitXY"
-                imageRes="@{@drawable/img_cuteastronat0}"
-                tools:ignore="ContentDescription" tools:src="@drawable/img_cuteastronat0"/>
+                android:src="@drawable/img_cuteastronat0_312x312"/>
         </FrameLayout>
         <androidx.appcompat.widget.AppCompatButton
             android:ellipsize="end" android:gravity="center"
-            android:id="@+id/btnPlayGameNow"
+            android:id="@+id/btn_back_Topic"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_18pxv"
             android:layout_marginEnd="@dimen/_9pxh"
@@ -71,7 +75,7 @@
             android:paddingEnd="@dimen/_30pxh"
             android:paddingStart="@dimen/_30pxh"
             android:paddingTop="@dimen/_7pxv" android:singleLine="true"
-            android:text="@string/lbl_play_game_now"
+            android:text="Back to Topic"
             android:textAllCaps="false"
-            style="@style/btnSolidRoundedOutline" tools:text="@string/lbl_play_game_now"/>
+            style="@style/btnSolidRoundedOutline_2" tools:text="Back to Topic"/>
     </LinearLayout>

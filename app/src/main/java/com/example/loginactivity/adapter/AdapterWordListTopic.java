@@ -54,7 +54,6 @@ public class AdapterWordListTopic extends RecyclerView.Adapter<AdapterWordListTo
         holder.txt_english.setText(words.get(position).getEnglish());
         holder.txt_vietnamese.setText(words.get(position).getVietnamese());
 
-
         holder.itemView.setOnClickListener(v -> {
             onClickWord();
         });

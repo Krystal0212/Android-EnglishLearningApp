@@ -1,15 +1,12 @@
 package com.example.loginactivity.adapter;
 
 import android.animation.Animator;
-import android.animation.AnimatorInflater;
 import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.ViewPropertyAnimator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,28 +24,29 @@ import com.example.loginactivity.models.Word;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardViewPagerAdapter.FlashCardViewHolder>{
+public class FlashCardLongViewPagerAdapter extends  RecyclerView.Adapter<FlashCardLongViewPagerAdapter.FlashCardViewHolder>{
 
     public ArrayList<Word> words;
     Context context;
     public TextToSpeechHelper textToSpeechHelper;
     private boolean isLastPage = false;
     private boolean isFirstPage = true;
-
+    private String title;
     public ViewPager2 viewPager2;
 
 
-    public FlashCardViewPagerAdapter(Context context, ArrayList<Word> words, ViewPager2 viewPager2) {
+    public FlashCardLongViewPagerAdapter(Context context, ArrayList<Word> words, ViewPager2 viewPager2, String title) {
         this.words = words;
         this.context = context;
         this.viewPager2 = viewPager2;
+        this.title = title;
     }
 
     @NonNull
     @Override
     public FlashCardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-        View view = inflater.inflate(R.layout.activity_middle_flash_card_one, parent, false);
+        View view = inflater.inflate(R.layout.activity_flashcard_second, parent, false);
         return new FlashCardViewHolder(view);
     }
 
@@ -76,6 +74,8 @@ public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardVi
 
         holder.term.setText(word.getEnglish());
         holder.meaning.setText(word.getVietnamese());
+        holder.txt_topic_name_back.setText(title);
+        holder.txt_topic_name_front.setText(title);
 
         if(isFirstPage){
             holder.llPreviousBack.setBackgroundResource(backgroundResourceId);
@@ -149,7 +149,7 @@ public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardVi
     // Phương thức để lấy ViewHolder tại vị trí cụ thể
     public FlashCardViewHolder getViewHolderAtPosition(int position) {
         RecyclerView recyclerView = (RecyclerView) viewPager2.getChildAt(0);
-        FlashCardViewPagerAdapter.FlashCardViewHolder viewHolder = (FlashCardViewPagerAdapter.FlashCardViewHolder) recyclerView.findViewHolderForAdapterPosition(position);
+        FlashCardLongViewPagerAdapter.FlashCardViewHolder viewHolder = (FlashCardLongViewPagerAdapter.FlashCardViewHolder) recyclerView.findViewHolderForAdapterPosition(position);
         if (viewHolder instanceof FlashCardViewHolder) {
             return (FlashCardViewHolder) viewHolder;
         }
@@ -159,7 +159,7 @@ public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardVi
     public class FlashCardViewHolder extends RecyclerView.ViewHolder{
 
         public ViewFlipper flipInterface;
-        public TextView term, meaning;
+        public TextView term, meaning, txt_topic_name_back, txt_topic_name_front;
         public CardView cardFront, cardBack;
         LinearLayout llPreviousFront, llPreviousBack, llNextFront, llNextBack;
 
@@ -178,6 +178,9 @@ public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardVi
             llPreviousBack = itemView.findViewById(R.id.llPreviousBack);
             llNextBack = itemView.findViewById(R.id.llNextBack);
             llNextFront = itemView.findViewById(R.id.llNextFront);
+
+            txt_topic_name_back = itemView.findViewById(R.id.txtTopicNameBack);
+            txt_topic_name_front = itemView.findViewById(R.id.txtTopicNameFront);
         }
 
         // Phương thức kiểm tra và lật thẻ
