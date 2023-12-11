@@ -4,15 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.HomeFragment"
+    android:padding="15dp"
     android:background="@drawable/banner_sample">
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/my_folder_recyclerView"/>
+
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnAddFolder"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/Folders"
-        android:textSize="20sp"
-        android:layout_centerInParent="true"/>
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="5dp"
+        android:src="@drawable/baseline_add_24"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </RelativeLayout>

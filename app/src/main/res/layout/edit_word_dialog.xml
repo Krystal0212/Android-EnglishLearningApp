@@ -34,7 +34,7 @@
         </FrameLayout>
 
         <TextView
-            android:id="@+id/txtEditterminolog"
+            android:id="@+id/txtTitle"
             style="@style/txtRubikWetPaintregular20"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,7 +46,7 @@
             tools:text="@string/msg_edit_terminolog" />
 
     <EditText
-        android:id="@+id/etDescription"
+        android:id="@+id/edt_description"
         style="@style/etSolidOutline_0"
         android:layout_width="@dimen/_260pxh"
         android:layout_height="48dp"
@@ -71,7 +71,7 @@
             android:orientation="horizontal">
 
             <EditText
-                android:id="@+id/etEnglish"
+                android:id="@+id/edt_term"
                 style="@style/etSolidOutline_1"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
@@ -84,7 +84,7 @@
                 tools:ignore="Autofill" />
 
             <EditText
-                android:id="@+id/etVietnamese"
+                android:id="@+id/edt_meaning"
                 style="@style/etSolidOutline_2"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
@@ -122,7 +122,7 @@
                 tools:text="@string/lbl_cancel" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnVietnameseOne"
+                android:id="@+id/btnApply"
                 style="@style/btnSolidRounded_3"
                 android:layout_width="@dimen/_101pxh"
                 android:layout_height="@dimen/_36pxv"

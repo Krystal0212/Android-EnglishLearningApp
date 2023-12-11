@@ -8,9 +8,27 @@
     android:background="@drawable/banner_sample"
     tools:context=".fragment.HomeFragment">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Discover new topic everyday"
+        android:gravity="center"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:id="@+id/discover"
+        android:layout_alignParentTop="true"/>
+
     <!-- TODO: Update blank fragment layout -->
+    <com.google.android.material.search.SearchBar
+        android:layout_width="match_parent"
+        android:layout_below="@+id/discover"
+        android:id="@+id/searchBar"
+        android:layout_height="wrap_content"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:paddingTop="5dp"
+        android:layout_below="@+id/searchBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/my_topic_recyclerView"/>

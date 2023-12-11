@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.loginactivity.adapter.AdapterWordList;
@@ -36,7 +38,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class AddTopicActivity extends AppCompatActivity {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -50,19 +54,24 @@ public class AddTopicActivity extends AppCompatActivity {
     AdapterWordList adapter;
     RecyclerView recyclerView;
     LinearLayout llTopic;
-
     private ProgressDialog progressDialog;
+    private boolean isEditMode = false;
+    private Topic editingTopic;
+
+    TextView activity_title, txtAccess;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_topic_make_new_term);
+        setContentView(R.layout.activity_add_topic);
 
         initUI();
         initListener();
     }
 
     private void initUI() {
+        txtAccess = findViewById(R.id.txtAccess);
+        activity_title = findViewById(R.id.activity_title);
         btnAddWord = findViewById(R.id.btnAddWord);
         edt_title = findViewById(R.id.edt_title);
         recyclerView = findViewById(R.id.addTopic_recyclerView);
@@ -76,6 +85,22 @@ public class AddTopicActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        // Kiểm tra xem có phải là chỉnh sửa không
+        if (getIntent().hasExtra("topic")) {
+            isEditMode = true;
+            editingTopic = getIntent().getParcelableExtra("topic");
+            populateUIWithTopicData(editingTopic);
+        }
+    }
+
+    private void populateUIWithTopicData(Topic editingTopic) {
+        edt_title.setText(editingTopic.getTitle());
+        activity_title.setText("Edit your topic");
+        //khong cho chinh sua access
+        txtAccess.setVisibility(View.GONE);
+        radio.setVisibility(View.GONE);
+        words.addAll(editingTopic.getWord());
+        adapter.notifyDataSetChanged();
     }
 
     private void initListener() {
@@ -94,6 +119,65 @@ public class AddTopicActivity extends AppCompatActivity {
     }
 
     private void onClickSave() {
+        if (isEditMode) {
+            // Cập nhật topic hiện tại
+            updateTopic(editingTopic);
+        } else {
+            // Thêm mới topic
+            createNewTopic();
+        }
+    }
+
+    private void updateTopic(Topic editingTopic) {
+        progressDialog = new ProgressDialog(this);
+
+        progressDialog.setTitle("Updating topic");
+        progressDialog.setMessage("Please wait...");
+        progressDialog.show();
+        //get title
+        String title = edt_title.getText().toString().trim();
+
+        if(title.isEmpty()){
+            progressDialog.dismiss();
+            Toast.makeText(AddTopicActivity.this, "Please enter topic title.", Toast.LENGTH_SHORT).show();
+        } else if(words.size() < 2){
+            progressDialog.dismiss();
+            Toast.makeText(AddTopicActivity.this, "Add at least 2 term to continue.", Toast.LENGTH_SHORT).show();
+        } else if(words.isEmpty()){
+            progressDialog.dismiss();
+            Toast.makeText(AddTopicActivity.this, "You have not added any term yet.", Toast.LENGTH_SHORT).show();
+        }
+        else {
+            // chỉ update 2 trường sau
+            Map<String, Object> topicUpdates = new HashMap<>();
+            topicUpdates.put("title", title);
+            topicUpdates.put("word", words);
+
+            String key = editingTopic.getId();
+            DatabaseReference topicRef = FirebaseDatabase.getInstance().getReference("Topic");
+
+            topicRef.child(key).updateChildren(topicUpdates)
+                    .addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
+                            // Xử lý sau khi cập nhật
+                            editingTopic.setTitle(title);
+                            editingTopic.setWord(words);
+
+                            Intent returnIntent = new Intent();
+                            returnIntent.putExtra("updatedTopic", editingTopic);
+
+                            // Đặt kết quả và kết thúc Activity
+                            setResult(RESULT_OK, returnIntent);
+                            Toast.makeText(AddTopicActivity.this, "Update topic successfully.", Toast.LENGTH_SHORT).show();
+                            finish();
+
+                        }
+                    });
+        }
+    }
+
+    public void createNewTopic(){
         progressDialog = new ProgressDialog(this);
 
         progressDialog.setTitle("Adding topic");

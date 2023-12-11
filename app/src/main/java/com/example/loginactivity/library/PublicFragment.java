@@ -32,7 +32,6 @@ import java.util.ArrayList;
 
 public class PublicFragment extends Fragment {
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    FloatingActionButton btnAddTopic;
     ArrayList<Topic> topics = new ArrayList<>();
 
     AdapterPublicTopic adapter;

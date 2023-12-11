@@ -133,6 +133,11 @@ public class FlashCardViewPagerAdapter extends  RecyclerView.Adapter<FlashCardVi
         }
     }
 
+    public void newList(ArrayList<Word> newList){
+        this.words = newList;
+        notifyDataSetChanged();
+    }
+
     @Override
     public int getItemCount() {
         if(words != null){

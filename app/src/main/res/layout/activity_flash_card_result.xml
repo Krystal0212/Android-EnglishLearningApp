@@ -1,26 +1,64 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<?xml version="1.0" encoding="UTF-8"?>
+<LinearLayout android:id="@+id/linearLastFlashCard"
+    xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
-    tools:context=".FlashCardResult"
-    android:gravity="center"
-    android:orientation="vertical">
+    android:layout_width="match_parent"
+    android:orientation="vertical" style="@style/groupStylewhite_A700">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <TextView android:ellipsize="end" android:id="@+id/txtCongrats"
+        android:layout_gravity="center_horizontal"
         android:layout_height="wrap_content"
-        android:text="Congrats"
-        android:textStyle="bold"
-        android:textSize="20sp" />
-
-
-
-    <Button
+        android:layout_marginEnd="@dimen/_30pxh"
+        android:layout_marginStart="@dimen/_30pxh"
+        android:layout_marginTop="@dimen/_31pxv"
         android:layout_width="wrap_content"
+        android:lineSpacingExtra="@dimen/_9pxh"
+        android:singleLine="true"
+        android:text="@string/lbl_congrats"
+        style="@style/txtOpenSansromanbold24" tools:text="@string/lbl_congrats"/>
+    <TextView android:gravity="center_horizontal"
+        android:id="@+id/txtLanguage"
         android:layout_height="wrap_content"
-        android:text="Back to Topic"
-        android:id="@+id/btn_back_Topic"/>
-
+        android:layout_marginEnd="@dimen/_30pxh"
+        android:layout_marginStart="@dimen/_30pxh"
+        android:layout_marginTop="@dimen/_9pxv"
+        android:layout_width="match_parent"
+        android:lineSpacingExtra="@dimen/_8pxh"
+        android:text="@string/msg_congratulations"
+        style="@style/txtOpenSansromanregular16" tools:text="@string/msg_congratulations"/>
+    <FrameLayout android:id="@+id/frameStackcuteastronatzero"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="@dimen/_317pxv"
+        android:layout_marginEnd="@dimen/_30pxh"
+        android:layout_marginStart="@dimen/_30pxh"
+        android:layout_marginTop="@dimen/_42pxv"
+        android:layout_width="@dimen/_298pxh" style="@style/groupStylecyan_50cornerRadius">
+        <ImageView android:id="@+id/imageCuteastronatZero"
+            android:layout_gravity="center"
+            android:layout_height="@dimen/_282pxh"
+            android:layout_marginBottom="@dimen/_21pxv"
+            android:layout_marginEnd="@dimen/_6pxh"
+            android:layout_marginStart="@dimen/_8pxh"
+            android:layout_marginTop="@dimen/_14pxv"
+            android:layout_width="@dimen/_283pxh"
+            android:scaleType="fitXY"
+            android:src="@drawable/img_cuteastronat0"/>
+    </FrameLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:ellipsize="end" android:gravity="center"
+        android:id="@+id/btn_back_Topic"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/_18pxv"
+        android:layout_marginEnd="@dimen/_9pxh"
+        android:layout_marginStart="@dimen/_8pxh"
+        android:layout_marginTop="@dimen/_56pxv"
+        android:layout_width="match_parent"
+        android:lineSpacingExtra="@dimen/_8pxh"
+        android:paddingBottom="@dimen/_7pxv"
+        android:paddingEnd="@dimen/_30pxh"
+        android:paddingStart="@dimen/_30pxh"
+        android:paddingTop="@dimen/_7pxv" android:singleLine="true"
+        android:text="@string/lbl_play_game_now"
+        android:textAllCaps="false"
+        style="@style/btnSolidRoundedOutline" tools:text="@string/lbl_play_game_now"/>
 </LinearLayout>

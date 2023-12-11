@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/deep_orange_200"
-    android:orientation="vertical"
-    android:padding="12dp">
-
+    android:padding="15dp"
+    android:background="@drawable/smoke_up"
+    android:scaleType="centerCrop"
+    tools:context=".fragment.HomeFragment">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -30,42 +31,24 @@
 
     </LinearLayout>
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/viewPager2"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:paddingStart="60dp"
-        android:paddingEnd="60dp"
-        />
-
-    <me.relex.circleindicator.CircleIndicator3
-        android:id="@+id/circle_indicator_3"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center"
-        android:layout_height="40dp"
-        app:ci_drawable="@drawable/bg_indicator_3" />
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Learn by flash card"
-        android:textColor="@color/black"
-        android:layout_marginTop="20dp"
-        android:id="@+id/btn_FLashcard"/>
-
     <TextView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Terms"
-        android:textColor="@color/black"
+        android:text="Topic Name"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:layout_marginTop="20dp"/>
+        android:textColor="@color/black"
+        android:id="@+id/txt_folder_name"
+        android:layout_alignParentTop="true"
+        android:gravity="center"/>
+
+    <!-- TODO: Update blank fragment layout -->
 
     <androidx.recyclerview.widget.RecyclerView
         android:paddingTop="10dp"
         android:layout_width="match_parent"
+        android:layout_below="@+id/txt_folder_name"
         android:layout_height="wrap_content"
-        android:id="@+id/recyclerView"/>
+        android:id="@+id/my_topic_recyclerView"/>
 
-</LinearLayout>
+</RelativeLayout>

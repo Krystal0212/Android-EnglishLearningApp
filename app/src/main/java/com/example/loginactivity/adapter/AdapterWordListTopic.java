@@ -24,10 +24,13 @@ public class AdapterWordListTopic extends RecyclerView.Adapter<AdapterWordListTo
     public TextToSpeechHelper textToSpeechHelper;
     public ArrayList<Word> markedWords = new ArrayList<>();
 
-    public AdapterWordListTopic(Context context, ArrayList<Word> words) {
+    private RecyclerView recyclerView;
+
+    public AdapterWordListTopic(Context context, ArrayList<Word> words, RecyclerView recyclerView) {
         //constructor
         this.context = context;
         this.words = words;
+        this.recyclerView = recyclerView;
     }
 
     @NonNull
@@ -44,6 +47,9 @@ public class AdapterWordListTopic extends RecyclerView.Adapter<AdapterWordListTo
         if(word == null){
             return;
         }
+        holder.markerChecked = markedWords.contains(word);
+        holder.setMarkerIcon(holder.markerChecked);
+
 
         holder.txt_english.setText(words.get(position).getEnglish());
         holder.txt_vietnamese.setText(words.get(position).getVietnamese());
@@ -67,6 +73,7 @@ public class AdapterWordListTopic extends RecyclerView.Adapter<AdapterWordListTo
         });
 
         holder.marker.setOnClickListener(v -> {
+            holder.markerChecked = !holder.markerChecked;
             if(holder.markerChecked){
                 //marker đang được check
                 holder.marker.setImageResource(R.drawable.baseline_star_24);
@@ -80,8 +87,13 @@ public class AdapterWordListTopic extends RecyclerView.Adapter<AdapterWordListTo
                     }
                 }
             }
-            holder.markerChecked = !holder.markerChecked; // đảo state
+            holder.setMarkerIcon(holder.markerChecked);
         });
+    }
+
+    public void uncheckAllMarkers() {
+        markedWords.clear();
+        notifyDataSetChanged();
     }
 
     private void onClickWord() {
@@ -93,8 +105,8 @@ public class AdapterWordListTopic extends RecyclerView.Adapter<AdapterWordListTo
         return words.size();
     }
 
-    public void newWordList(ArrayList<Word> newList) {
-        words = newList;
+    public void newList(ArrayList<Word> newList){
+        this.words = newList;
         notifyDataSetChanged();
     }
 
@@ -109,6 +121,14 @@ public class AdapterWordListTopic extends RecyclerView.Adapter<AdapterWordListTo
             txt_vietnamese = itemView.findViewById(R.id.txt_meaning);
             soundIcon = itemView.findViewById(R.id.soundIcon);
             marker = itemView.findViewById(R.id.marker);
+        }
+
+        public void setMarkerIcon(boolean isChecked) {
+            if (isChecked) {
+                marker.setImageResource(R.drawable.baseline_star_24);
+            } else {
+                marker.setImageResource(R.drawable.baseline_star_border_24);
+            }
         }
     }
 }

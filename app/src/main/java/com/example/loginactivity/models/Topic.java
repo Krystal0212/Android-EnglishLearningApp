@@ -17,8 +17,6 @@ public class Topic implements Parcelable {
     String ownerAvtUrl;
     ArrayList<Participant> participant;
     ArrayList<Word> word;
-    HashMap<String, Boolean> belongToFolder;
-
     public Topic(String access, String createDate, String id, String title, String owner, String ownerAvtUrl, ArrayList<Participant> participant, ArrayList<Word> word) {
         this.access = access;
         this.createDate = createDate;
@@ -28,9 +26,6 @@ public class Topic implements Parcelable {
         this.participant = participant;
         this.word = word;
         this.ownerAvtUrl = ownerAvtUrl;
-        HashMap<String,Boolean> belong = new HashMap<>();
-        belong.put("temp_folder", false);
-        this.belongToFolder = belong;
     }
 
     protected Topic(Parcel in) {
@@ -124,13 +119,6 @@ public class Topic implements Parcelable {
         this.word = word;
     }
 
-    public HashMap<String, Boolean> getBelongToFolder() {
-        return belongToFolder;
-    }
-
-    public void setBelongToFolder(HashMap<String, Boolean> belongToFolder) {
-        this.belongToFolder = belongToFolder;
-    }
 
     @Override
     public int describeContents() {
