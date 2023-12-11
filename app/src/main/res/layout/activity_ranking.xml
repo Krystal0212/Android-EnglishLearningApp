@@ -50,10 +50,10 @@
 
                 <ImageView
                     android:id="@+id/imageCharmIcon"
-                    android:layout_width="@dimen/_18pxh"
-                    android:layout_height="@dimen/_13pxh"
+                    android:layout_width="@dimen/_30pxh"
+                    android:layout_height="@dimen/_18pxh"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginStart="@dimen/_135pxh"
+                    android:layout_marginStart="@dimen/_129pxh"
                     android:layout_marginEnd="@dimen/_129pxh"
                     android:scaleType="fitXY"
                     android:src="@drawable/img_charmicon"
@@ -64,7 +64,6 @@
                     android:id="@+id/linearRowavatar"
                     android:layout_width="match_parent"
                     android:layout_height="190dp"
-                    android:layout_marginTop="@dimen/_4pxv"
                     android:gravity="center"
                     android:orientation="horizontal">
 
@@ -102,12 +101,9 @@
                                 style="@style/txtSolidRoundedOutline"
                                 android:layout_width="@dimen/_15pxh"
                                 android:layout_height="@dimen/_15pxh"
-                                android:layout_alignBottom="@+id/viewAvatar"
-                                android:layout_alignParentBottom="true"
-                                android:layout_gravity="center"
-                                android:layout_marginStart="@dimen/_46pxh"
-                                android:layout_marginTop="@dimen/_15pxh"
+                                android:layout_marginStart="@dimen/_56pxh"
                                 android:layout_marginEnd="@dimen/_15pxh"
+                                android:layout_marginTop="@dimen/_70pxh"
                                 android:gravity="center"
                                 android:rotation="-15.38"
                                 android:text="@string/lbl_3"
@@ -118,9 +114,9 @@
 
                     <FrameLayout
                         android:id="@+id/frameStackavatarOne"
-                        android:layout_width="@dimen/_106pxh"
-                        android:layout_height="@dimen/_106pxv"
-                        android:layout_marginBottom="@dimen/_20pxh">
+                        android:layout_width="@dimen/_115pxh"
+                        android:layout_height="@dimen/_80pxv"
+                        android:layout_marginBottom="@dimen/_30pxh">
 
                         <RelativeLayout
                             android:layout_width="wrap_content"
@@ -129,7 +125,7 @@
 
                             <ImageView
                                 android:id="@+id/imageTopOne"
-                                android:layout_width="@dimen/_106pxh"
+                                android:layout_width="@dimen/_120pxh"
                                 android:layout_height="@dimen/_89pxh"
                                 android:layout_gravity="start"
                                 android:scaleType="fitXY"
@@ -150,8 +146,8 @@
                                 android:layout_width="@dimen/_15pxh"
                                 android:layout_height="@dimen/_15pxh"
                                 android:layout_alignBottom="@+id/imageTopOne"
-                                android:layout_marginStart="@dimen/_37pxh"
-                                android:layout_marginEnd="@dimen/_37pxh"
+                                android:layout_marginStart="@dimen/_49pxh"
+                                android:layout_marginEnd="@dimen/_49pxh"
                                 android:gravity="center"
                                 android:text="@string/lbl_1"
                                 tools:text="@string/lbl_1" />
@@ -162,7 +158,7 @@
 
                     <FrameLayout
                         android:id="@+id/frameStackavatarTwo"
-                        android:layout_width="@dimen/_90pxh"
+                        android:layout_width="@dimen/_110pxh"
                         android:layout_height="@dimen/_90pxv"
                         android:layout_marginTop="@dimen/_17pxv"
                         android:layout_marginBottom="@dimen/_27pxv">
@@ -198,9 +194,9 @@
                             android:layout_width="@dimen/_15pxh"
                             android:layout_height="@dimen/_15pxh"
                             android:layout_gravity="bottom|start"
-                            android:layout_marginStart="@dimen/_27pxh"
+                            android:layout_marginStart="@dimen/_35pxh"
                             android:layout_marginEnd="@dimen/_13pxh"
-                            android:layout_marginBottom="@dimen/_8pxv"
+                            android:layout_marginBottom="@dimen/_15pxv"
                             android:gravity="center"
                             android:rotation="11.18"
                             android:singleLine="true"
