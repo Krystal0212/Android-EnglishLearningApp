@@ -59,8 +59,7 @@
                 android:layout_marginTop="@dimen/_5pxv"
                 android:layout_width="match_parent"
                 android:scaleType="fitXY"
-                imageRes="@{@drawable/img_cuteastronat0_312x312}"
-                tools:ignore="ContentDescription" tools:src="@drawable/img_cuteastronat0_312x312"/>
+                android:src="@drawable/img_cuteastronat0_312x312"/>
         </FrameLayout>
         <androidx.appcompat.widget.AppCompatButton
             android:ellipsize="end" android:gravity="center"

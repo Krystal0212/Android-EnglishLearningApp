@@ -69,7 +69,7 @@ public class TopicDetailActivity extends AppCompatActivity {
         compositePageTransformer.addTransformer(new MarginPageTransformer(40));
         viewPager2.setPageTransformer(compositePageTransformer);
 
-        adapter = new FlashCardBasicViewPagerAdapter(this, words, viewPager2);
+        adapter = new FlashCardBasicViewPagerAdapter(this, words, viewPager2, topic.getTitle());
         viewPager2.setAdapter(adapter);
 
         circleIndicator3.setViewPager(viewPager2);
@@ -90,6 +90,7 @@ public class TopicDetailActivity extends AppCompatActivity {
                 // khong co word nao trong danh sach marked
                 Intent intent = new Intent(this, FlashCardActivity.class);
                 intent.putParcelableArrayListExtra("words", topic.getWord());
+                intent.putExtra("title", topic.getTitle());
                 startActivity(intent);
             } else {
                 //co it nhat 1 word

@@ -38,6 +38,7 @@ public class FlashCardActivity extends AppCompatActivity {
 
     Button btn_complete;
     ImageView btn_back;
+    String title;
     public TextToSpeechHelper textToSpeechHelper;
     private boolean isLastPage = false;
     private boolean isFirstPage = true;
@@ -86,6 +87,7 @@ public class FlashCardActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         words = intent.getParcelableArrayListExtra("words");
+        title = intent.getStringExtra("title");
 
         //Setting viewpager2
         viewPager2.setOffscreenPageLimit(3);
@@ -95,8 +97,9 @@ public class FlashCardActivity extends AppCompatActivity {
         CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
         compositePageTransformer.addTransformer(new MarginPageTransformer(40));
         viewPager2.setPageTransformer(compositePageTransformer);
+
         //viet su kien thay doi status
-        adapter = new FlashCardLongViewPagerAdapter(this, words, viewPager2);
+        adapter = new FlashCardLongViewPagerAdapter(this, words, viewPager2, title);
         viewPager2.setAdapter(adapter);
 
         circleIndicator3.setViewPager(viewPager2);

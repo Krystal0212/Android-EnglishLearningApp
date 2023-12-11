@@ -33,12 +33,14 @@ public class FlashCardBasicViewPagerAdapter extends  RecyclerView.Adapter<FlashC
     private boolean isFirstPage = true;
 
     public ViewPager2 viewPager2;
+    private String title;
 
 
-    public FlashCardBasicViewPagerAdapter(Context context, ArrayList<Word> words, ViewPager2 viewPager2) {
+    public FlashCardBasicViewPagerAdapter(Context context, ArrayList<Word> words, ViewPager2 viewPager2, String title) {
         this.words = words;
         this.context = context;
         this.viewPager2 = viewPager2;
+        this.title = title;
     }
 
     @NonNull
@@ -73,6 +75,8 @@ public class FlashCardBasicViewPagerAdapter extends  RecyclerView.Adapter<FlashC
 
         holder.term.setText(word.getEnglish());
         holder.meaning.setText(word.getVietnamese());
+        holder.txt_topic_name_back.setText(title);
+        holder.txt_topic_name_front.setText(title);
 
         if(isFirstPage){
             holder.llPreviousBack.setBackgroundResource(backgroundResourceId);
@@ -151,9 +155,10 @@ public class FlashCardBasicViewPagerAdapter extends  RecyclerView.Adapter<FlashC
     public class FlashCardViewHolder extends RecyclerView.ViewHolder{
 
         public ViewFlipper flipInterface;
-        public TextView term, meaning;
+        public TextView term, meaning, txt_topic_name_back, txt_topic_name_front;
         public CardView cardFront, cardBack;
         LinearLayout llPreviousFront, llPreviousBack, llNextFront, llNextBack;
+
 
         public ImageView soundFront, soundBack;
         public boolean isFlipping = false; // Biến theo dõi trạng thái lật thẻ
@@ -170,6 +175,9 @@ public class FlashCardBasicViewPagerAdapter extends  RecyclerView.Adapter<FlashC
             llPreviousBack = itemView.findViewById(R.id.llPreviousBack);
             llNextBack = itemView.findViewById(R.id.llNextBack);
             llNextFront = itemView.findViewById(R.id.llNextFront);
+
+            txt_topic_name_back = itemView.findViewById(R.id.txtTopicNameBack);
+            txt_topic_name_front = itemView.findViewById(R.id.txtTopicNameFront);
         }
 
         // Phương thức kiểm tra và lật thẻ
