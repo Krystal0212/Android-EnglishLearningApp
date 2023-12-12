@@ -15,7 +15,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.loginactivity.AddTopicActivity;
 import com.example.loginactivity.R;
 import com.example.loginactivity.adapter.AdapterMyTopic;
-import com.example.loginactivity.adapter.AdapterWordList;
 import com.example.loginactivity.models.Participant;
 import com.example.loginactivity.models.Topic;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -28,7 +27,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 
 public class SetFragment extends Fragment {

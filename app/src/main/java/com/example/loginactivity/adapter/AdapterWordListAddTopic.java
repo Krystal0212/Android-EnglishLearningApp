@@ -23,11 +23,11 @@ import com.example.loginactivity.models.Word;
 
 import java.util.ArrayList;
 
-public class AdapterWordList extends RecyclerView.Adapter<AdapterWordList.MyViewHolder> {
+public class AdapterWordListAddTopic extends RecyclerView.Adapter<AdapterWordListAddTopic.MyViewHolder> {
     Context context;
     public ArrayList<Word> words;
 
-    public AdapterWordList(Context context, ArrayList<Word> words) {
+    public AdapterWordListAddTopic(Context context, ArrayList<Word> words) {
         //constructor
         this.context = context;
         this.words = words;

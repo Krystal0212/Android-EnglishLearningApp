@@ -57,7 +57,7 @@ public class LibraryFragment extends Fragment {
         new TabLayoutMediator(tabLayout, viewPager2, (tab, position) -> {
             switch (position){
                 case 0:
-                    tab.setText("Study sets");
+                    tab.setText("My sets");
                     break;
 
                 case 1:

@@ -82,7 +82,7 @@ public class ProfileFragment extends Fragment {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("User");
         DatabaseReference topicRef = database.getReference("Topic");
-
+        DatabaseReference folderRef = database.getReference("Folder");
 
         if(mUri != null){
             storageReference.putFile(mUri)
@@ -116,7 +116,24 @@ public class ProfileFragment extends Fragment {
                                                                     @Override
                                                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                                         for(DataSnapshot snap : snapshot.getChildren()){
-                                                                            snap.child("ownerAvtUrl").getRef().setValue(uri.toString());
+                                                                            snap.child("ownerAvtUrl").getRef().setValue(uri.toString()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                                @Override
+                                                                                public void onSuccess(Void unused) {
+                                                                                    folderRef.orderByChild("owner").equalTo(user.getDisplayName()).addListenerForSingleValueEvent(new ValueEventListener() {
+                                                                                        @Override
+                                                                                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                                            for(DataSnapshot snap : snapshot.getChildren()){
+                                                                                                snap.child("ownerAvtUrl").getRef().setValue(uri.toString());
+                                                                                            }
+                                                                                        }
+
+                                                                                        @Override
+                                                                                        public void onCancelled(@NonNull DatabaseError error) {
+
+                                                                                        }
+                                                                                    });
+                                                                                }
+                                                                            });
                                                                         }
                                                                     }
 

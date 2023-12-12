@@ -62,11 +62,11 @@ public class AdapterPublicTopic extends RecyclerView.Adapter<AdapterPublicTopic.
 
 
         holder.itemView.setOnClickListener(v -> {
-            onClickWord(topics.get(position));
+            onClickTopic(topics.get(position));
         });
     }
 
-    private void onClickWord(Topic clickedTopic) {
+    private void onClickTopic(Topic clickedTopic) {
         ArrayList<Participant> participants = new ArrayList<>();
         participants = clickedTopic.getParticipant();
         Boolean isParticipant = false;

@@ -33,7 +33,7 @@ public class FlashCardBasicViewPagerAdapter extends  RecyclerView.Adapter<FlashC
     private boolean isFirstPage = true;
 
     public ViewPager2 viewPager2;
-    private String title;
+    public String title;
 
 
     public FlashCardBasicViewPagerAdapter(Context context, ArrayList<Word> words, ViewPager2 viewPager2, String title) {

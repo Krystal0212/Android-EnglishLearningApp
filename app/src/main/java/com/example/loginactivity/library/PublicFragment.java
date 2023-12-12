@@ -86,7 +86,7 @@ public class PublicFragment extends Fragment {
                 Topic topic = snapshot.getValue(Topic.class);
 
                 for(int i = 0; i < topics.size(); i++){
-                    if(topic.getId() == topics.get(i).getId()){
+                    if(topic.getId().equals(topics.get(i).getId())){
                         topics.set(i, topic);
                     }
                 }

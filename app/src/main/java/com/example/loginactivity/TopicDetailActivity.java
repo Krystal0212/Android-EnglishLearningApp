@@ -1,5 +1,6 @@
 package com.example.loginactivity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,22 +17,23 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.loginactivity.adapter.AdapterWordListTopic;
-import com.example.loginactivity.adapter.AdapterWordList;
 import com.example.loginactivity.adapter.FlashCardBasicViewPagerAdapter;
+import com.example.loginactivity.models.Folder;
 import com.example.loginactivity.models.Topic;
 import com.example.loginactivity.models.Word;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -172,6 +174,10 @@ public class TopicDetailActivity extends AppCompatActivity {
             txt_delete_topic.setVisibility(View.GONE);
             txt_edit_topic.setVisibility(View.GONE);
         }
+        txt_add_to_folder.setOnClickListener(v -> {
+            bottomSheetDialog.dismiss();
+            onClickAddFolder();
+        });
 
         txt_delete_topic.setOnClickListener(v -> {
             bottomSheetDialog.dismiss();
@@ -182,6 +188,12 @@ public class TopicDetailActivity extends AppCompatActivity {
             bottomSheetDialog.dismiss();
             onClickEditTopic();
         });
+    }
+
+    private void onClickAddFolder() {
+        Intent intent = new Intent(this, FolderPickerActivity.class);
+        intent.putExtra("topic", topic);
+        startActivity(intent);
     }
 
     private void onClickEditTopic() {
@@ -203,6 +215,7 @@ public class TopicDetailActivity extends AppCompatActivity {
 
     private void updateAdapters(Topic updatedTopic) {
         this.topic = updatedTopic;
+        adapter.title = updatedTopic.getTitle();
         // không dùng this.words = updatedTopic.getWord() vì nó sẽ thay đổi tham chiếu, dẫn đến việc không
         // update được list trên RecyclerView
         words.clear();
@@ -229,13 +242,32 @@ public class TopicDetailActivity extends AppCompatActivity {
         btnApply.setOnClickListener(view -> {
             String currentTopicID = topic.getId();
             DatabaseReference topicRef = FirebaseDatabase.getInstance().getReference("Topic/" + currentTopicID);
+            DatabaseReference folderRef = FirebaseDatabase.getInstance().getReference("Folder");
 
-            topicRef.removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void unused) {
-                    onBackPressed();
-                    finish();
-                }
+            // Xóa topic từ cơ sở dữ liệu
+            topicRef.removeValue().addOnSuccessListener(unused -> {
+                // Xóa topic ID từ tất cả các folder liên quan
+                folderRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        for (DataSnapshot folderSnapshot : dataSnapshot.getChildren()) {
+                            Folder folder = folderSnapshot.getValue(Folder.class);
+                            if (folder != null && folder.getTopics() != null && folder.getTopics().containsKey(currentTopicID)) {
+                                folder.getTopics().remove(currentTopicID);
+                                folderRef.child(folderSnapshot.getKey()).setValue(folder);
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                        // Xử lý lỗi
+                    }
+                });
+
+                // Đóng dialog và quay lại màn hình trước
+                onBackPressed();
+                finish();
             });
         });
 

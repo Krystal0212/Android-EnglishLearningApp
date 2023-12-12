@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -331,7 +332,27 @@ public class UpdateProfileActivity extends AppCompatActivity {
                                                                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                                                                             for(DataSnapshot snap : snapshot.getChildren()){
                                                                                 //name mới trên authen
-                                                                                snap.child("owner").getRef().setValue(user.getDisplayName());
+                                                                                snap.child("owner").getRef().setValue(user.getDisplayName()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                                                    @Override
+                                                                                    public void onSuccess(Void unused) {
+                                                                                        DatabaseReference folderRef = FirebaseDatabase.getInstance().getReference("Folder");
+                                                                                        // cap nhat table folder
+                                                                                        folderRef.orderByChild("owner").equalTo(currentName).addListenerForSingleValueEvent(new ValueEventListener() {
+                                                                                            @Override
+                                                                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                                                for(DataSnapshot snap : snapshot.getChildren()){
+                                                                                                    snap.child("owner").getRef().setValue(user.getDisplayName());
+                                                                                                }
+                                                                                            }
+
+                                                                                            @Override
+                                                                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                                                                            }
+                                                                                        });
+
+                                                                                    }
+                                                                                });
                                                                             }
                                                                         }
 

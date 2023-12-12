@@ -23,7 +23,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.loginactivity.adapter.AdapterWordList;
+import com.example.loginactivity.adapter.AdapterWordListAddTopic;
 import com.example.loginactivity.models.Participant;
 import com.example.loginactivity.models.Topic;
 import com.example.loginactivity.models.Word;
@@ -51,7 +51,7 @@ public class AddTopicActivity extends AppCompatActivity {
     EditText edt_title;
     ArrayList<Participant> participant = new ArrayList<>();
     ArrayList<Word> words = new ArrayList<>();
-    AdapterWordList adapter;
+    AdapterWordListAddTopic adapter;
     RecyclerView recyclerView;
     LinearLayout llTopic;
     private ProgressDialog progressDialog;
@@ -81,7 +81,7 @@ public class AddTopicActivity extends AppCompatActivity {
         llTopic = findViewById(R.id.linearMakeNewTopic);
 
         btnAddWord.setImageResource(R.drawable.img_add);
-        adapter = new AdapterWordList(this, words);
+        adapter = new AdapterWordListAddTopic(this, words);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
@@ -95,10 +95,11 @@ public class AddTopicActivity extends AppCompatActivity {
 
     private void populateUIWithTopicData(Topic editingTopic) {
         edt_title.setText(editingTopic.getTitle());
-        activity_title.setText("Edit your topic");
+        activity_title.setText("Edit topic " + editingTopic.getTitle());
         //khong cho chinh sua access
         txtAccess.setVisibility(View.GONE);
         radio.setVisibility(View.GONE);
+
         words.addAll(editingTopic.getWord());
         adapter.notifyDataSetChanged();
     }

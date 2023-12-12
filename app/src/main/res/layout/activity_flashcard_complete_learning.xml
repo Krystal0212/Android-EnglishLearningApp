@@ -5,20 +5,6 @@
         android:layout_width="match_parent"
         android:orientation="vertical" style="@style/groupStylewhite_A700">
 
-        <ImageButton
-            android:id="@+id/btnArrowleft"
-            android:layout_width="@dimen/_24pxh"
-            android:layout_height="@dimen/_24pxh"
-            android:layout_gravity="start"
-            android:layout_marginStart="@dimen/_8pxh"
-            android:layout_marginTop="@dimen/_17pxv"
-            android:layout_marginEnd="@dimen/_10pxh"
-            android:background="@drawable/rectangle_bg_deep_orange_200_border_black_900_radius_12"
-            android:paddingHorizontal="@dimen/_6pxh"
-            android:paddingVertical="@dimen/_6pxv"
-            android:scaleType="fitCenter"
-            android:src="@drawable/img_arrowleft_black_900"
-            tools:ignore="ContentDescription,TouchTargetSizeCheck,SpeakableTextPresentCheck" />
         <TextView android:ellipsize="end" android:id="@+id/txtCongrats"
             android:layout_gravity="center_horizontal"
             android:layout_height="wrap_content"

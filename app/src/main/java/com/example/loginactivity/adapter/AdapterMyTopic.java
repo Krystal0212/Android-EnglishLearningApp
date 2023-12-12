@@ -48,11 +48,11 @@ public class AdapterMyTopic extends RecyclerView.Adapter<AdapterMyTopic.MyViewHo
 
 
         holder.itemView.setOnClickListener(v -> {
-            onClickWord(topics.get(position));
+            onClickTopic(topics.get(position));
         });
     }
 
-    private void onClickWord(Topic clickedTopic) {
+    private void onClickTopic(Topic clickedTopic) {
         Intent intent = new Intent(context, TopicDetailActivity.class);
         intent.putExtra("topic", clickedTopic);
         context.startActivity(intent);

@@ -1,7 +1,7 @@
 package com.example.loginactivity.adapter;
 
 import android.content.Context;
-import android.content.Intent;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,20 +11,17 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.loginactivity.FolderDetailActivity;
 import com.example.loginactivity.R;
-import com.example.loginactivity.TopicDetailActivity;
 import com.example.loginactivity.models.Folder;
-import com.example.loginactivity.models.Topic;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class AdapterMyFolder extends RecyclerView.Adapter<AdapterMyFolder.MyViewHolder>{
+public class AdapterFolderPicker extends RecyclerView.Adapter<AdapterFolderPicker.MyViewHolder>{
     Context context;
     ArrayList<Folder> folders;
 
-    public AdapterMyFolder(Context context, ArrayList<Folder> folders) {
+    public AdapterFolderPicker(Context context, ArrayList<Folder> folders) {
         //constructor
         this.context = context;
         this.folders = folders;
@@ -32,15 +29,16 @@ public class AdapterMyFolder extends RecyclerView.Adapter<AdapterMyFolder.MyView
 
     @NonNull
     @Override
-    public AdapterMyFolder.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AdapterFolderPicker.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View view = inflater.inflate(R.layout.my_folder_item, parent, false);
-        return new AdapterMyFolder.MyViewHolder(view);
+        return new AdapterFolderPicker.MyViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AdapterMyFolder.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AdapterFolderPicker.MyViewHolder holder, int position) {
         Folder folder = folders.get(position);
+
         holder.txt_name.setText(folder.getName());
         holder.txt_owner_name.setText(folder.getOwner());
         if(folders.get(position).getTopics() != null){
@@ -53,15 +51,23 @@ public class AdapterMyFolder extends RecyclerView.Adapter<AdapterMyFolder.MyView
 
 
         holder.itemView.setOnClickListener(v -> {
-            onClickFolder(folder);
+            // Cập nhật trạng thái được chọn
+            for (Folder f : folders) {
+                f.setSelected(false);
+            }
+            folder.setSelected(true);
+            notifyDataSetChanged(); // Thông báo thay đổi dữ liệu để cập nhật UI
         });
+
+        // Cập nhật giao diện dựa trên trạng thái được chọn
+        if (folder.isSelected()) {
+            holder.itemView.setBackgroundResource(R.drawable.background_item_selected);
+        } else {
+            holder.itemView.setBackgroundResource(R.drawable.background_item);
+        }
     }
 
-    private void onClickFolder(Folder clickedFolder) {
-        Intent intent = new Intent(context, FolderDetailActivity.class);
-        intent.putExtra("folder", clickedFolder);
-        context.startActivity(intent);
-    }
+
     @Override
     public int getItemCount() {
         //count

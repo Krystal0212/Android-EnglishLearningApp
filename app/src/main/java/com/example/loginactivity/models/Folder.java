@@ -13,6 +13,8 @@ public class Folder implements Parcelable {
     String id;
     String ownerAvtUrl;
     HashMap<String, Boolean> topics;
+    private boolean isSelected = false;
+
     public Folder(){
 
     }
@@ -32,7 +34,13 @@ public class Folder implements Parcelable {
         ownerAvtUrl = in.readString();
         topics = in.readHashMap(ClassLoader.getSystemClassLoader()); // Thêm dòng này để giải nén topics
     }
+    public boolean isSelected() {
+        return isSelected;
+    }
 
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
     public static final Creator<Folder> CREATOR = new Creator<Folder>() {
         @Override
         public Folder createFromParcel(Parcel in) {
