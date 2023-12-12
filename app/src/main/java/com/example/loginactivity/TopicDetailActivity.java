@@ -2,6 +2,8 @@ package com.example.loginactivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager2.widget.CompositePageTransformer;
@@ -9,16 +11,25 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import android.app.Dialog;
+import android.content.ContentValues;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.provider.Settings;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.loginactivity.adapter.AdapterWordListTopic;
 import com.example.loginactivity.adapter.FlashCardBasicViewPagerAdapter;
@@ -34,13 +45,25 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.opencsv.CSVWriter;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.List;
 
 import me.relex.circleindicator.CircleIndicator3;
+import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
+
 
 public class TopicDetailActivity extends AppCompatActivity {
     private static final int EDIT_TOPIC_REQUEST_CODE = 10;
+    private static final int PERMISSION_REQUEST_CODE = 100;
     public ViewPager2 viewPager2;
     CircleIndicator3 circleIndicator3;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -169,6 +192,7 @@ public class TopicDetailActivity extends AppCompatActivity {
         TextView txt_add_to_folder = viewDialog.findViewById(R.id.txt_add_to_folder);
         TextView txt_edit_topic = viewDialog.findViewById(R.id.txt_edit_topic);
         TextView txt_delete_topic = viewDialog.findViewById(R.id.txt_delete_topic);
+        TextView txt_export_word_list = viewDialog.findViewById(R.id.txt_export_word_list);
 
         if(!user.getDisplayName().equals(owner)){
             txt_delete_topic.setVisibility(View.GONE);
@@ -184,10 +208,89 @@ public class TopicDetailActivity extends AppCompatActivity {
             onClickDeleteTopic();
         });
 
-            txt_edit_topic.setOnClickListener(v -> {
+        txt_edit_topic.setOnClickListener(v -> {
             bottomSheetDialog.dismiss();
             onClickEditTopic();
         });
+
+        txt_export_word_list.setOnClickListener(v -> {
+            bottomSheetDialog.dismiss();
+            try {
+                checkAndRequestPermissionsThenExport();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
+    }
+
+    private void checkAndRequestPermissionsThenExport() throws IOException {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            if (ContextCompat.checkSelfPermission(this, WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+            } else {
+                exportWordListToCSV();
+            }
+        } else {
+            exportWordListToCSV();
+        }
+    }
+
+    // Phương thức xử lý kết quả yêu cầu quyền
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == PERMISSION_REQUEST_CODE && grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            try {
+                exportWordListToCSV();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        } else {
+            Toast.makeText(this, "Permission denied to write to storage", Toast.LENGTH_SHORT).show();
+        }
+    }
+    private void exportWordListToCSV() throws IOException {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            // Đối với các thiết bị chạy Android 9 (Pie) trở xuống, cần quyền WRITE_EXTERNAL_STORAGE để ghi vào bộ nhớ ngoại vi
+            if (ContextCompat.checkSelfPermission(this, WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                File documentsFolder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "MyAppFolder");
+                if (!documentsFolder.exists()) documentsFolder.mkdirs();
+                File csvFile = new File(documentsFolder, topic.getTitle() + ".csv");
+                writeCsvFile(csvFile);
+            } else {
+                // Yêu cầu quyền nếu chưa có
+                ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
+            }
+        } else {
+            // Đối với Android 10 (Q) trở lên, không cần quyền WRITE_EXTERNAL_STORAGE để ghi vào MediaStore
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, topic.getTitle() + ".csv");
+            contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "text/csv");
+            contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOCUMENTS);
+
+            Uri uri = getContentResolver().insert(MediaStore.Files.getContentUri("external"), contentValues);
+            try {
+                if (uri != null) {
+                    writeCsvFile(getContentResolver().openOutputStream(uri));
+                }
+            } catch (Exception e) {
+                Toast.makeText(this, "Error during export: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void writeCsvFile(OutputStream outputStream) throws IOException {
+        try (CSVWriter writer = new CSVWriter(new OutputStreamWriter(outputStream))) {
+            for (Word word : words) {
+                String[] entries = new String[]{word.getEnglish(), word.getVietnamese(), word.getDescription()};
+                writer.writeNext(entries);
+            }
+            Toast.makeText(this, "Exported to Documents", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    private void writeCsvFile(File file) throws IOException {
+        writeCsvFile(new FileOutputStream(file));
     }
 
     private void onClickAddFolder() {

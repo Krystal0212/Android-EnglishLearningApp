@@ -5,12 +5,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.OpenableColumns;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -34,7 +38,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.opencsv.CSVReader;
+import com.opencsv.exceptions.CsvValidationException;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -43,6 +52,7 @@ import java.util.Locale;
 import java.util.Map;
 
 public class AddTopicActivity extends AppCompatActivity {
+    private static final int CSV_FILE_PICK_REQUEST_CODE = 101;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     FloatingActionButton btnAddWord;
     RadioGroup radio;
@@ -58,7 +68,7 @@ public class AddTopicActivity extends AppCompatActivity {
     private boolean isEditMode = false;
     private Topic editingTopic;
 
-    TextView activity_title, txtAccess;
+    TextView activity_title, txtAccess, btn_import;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +80,7 @@ public class AddTopicActivity extends AppCompatActivity {
     }
 
     private void initUI() {
+        btn_import = findViewById(R.id.btn_import);
         txtAccess = findViewById(R.id.txtAccess);
         activity_title = findViewById(R.id.activity_title);
         btnAddWord = findViewById(R.id.btnAddWord);
@@ -80,7 +91,6 @@ public class AddTopicActivity extends AppCompatActivity {
         radio = findViewById(R.id.access);
         llTopic = findViewById(R.id.linearMakeNewTopic);
 
-        btnAddWord.setImageResource(R.drawable.img_add);
         adapter = new AdapterWordListAddTopic(this, words);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -117,6 +127,88 @@ public class AddTopicActivity extends AppCompatActivity {
             onBackPressed();
             finish();
         });
+        btn_import.setOnClickListener(v -> {
+            onClickImportWordList();
+        });
+    }
+
+    private void onClickImportWordList() {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.setType("*/*");
+        startActivityForResult(intent, CSV_FILE_PICK_REQUEST_CODE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == CSV_FILE_PICK_REQUEST_CODE && resultCode == RESULT_OK && data != null) {
+            Uri csvFileUri = data.getData();
+            String fileName = getFileName(csvFileUri);
+            if (!fileName.endsWith(".csv")) {
+                Toast.makeText(this, "Please select a CSV file.", Toast.LENGTH_SHORT).show();
+            } else {
+                importCsvData(csvFileUri);
+            }
+        } else {
+            Toast.makeText(this, "File selection canceled", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @SuppressLint("Range")
+    private String getFileName(Uri uri) {
+        String result = null;
+        if (uri.getScheme().equals("content")) {
+            try (Cursor cursor = getContentResolver().query(uri, null, null, null, null)) {
+                if (cursor != null && cursor.moveToFirst()) {
+                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                }
+            }
+        }
+        if (result == null) {
+            result = uri.getPath();
+            int cut = result.lastIndexOf('/');
+            if (cut != -1) {
+                result = result.substring(cut + 1);
+            }
+        }
+        return result;
+    }
+
+    private void importCsvData(Uri csvFileUri) {
+        int wordsAddedCount = 0; // Biến để theo dõi số lượng từ được thêm vào
+
+        try (InputStream inputStream = getContentResolver().openInputStream(csvFileUri);
+             CSVReader reader = new CSVReader(new InputStreamReader(inputStream))) {
+            String[] nextLine;
+            while ((nextLine = reader.readNext()) != null) {
+                // Đảm bảo mỗi dòng có ít nhất 3 cột (English, Vietnamese, Description)
+                if (nextLine.length >= 3) {
+                    Word newWord = new Word(nextLine[0], nextLine[1], nextLine[2]);
+                    // Kiểm tra và thêm từ nếu nó chưa tồn tại
+                    if (addWordIfNotExists(newWord)) {
+                        wordsAddedCount++; // Tăng số đếm nếu từ mới được thêm vào
+                    }
+                }
+            }
+            adapter.notifyDataSetChanged();
+
+            // Hiển thị thông báo với số lượng từ đã được thêm vào
+            Toast.makeText(this, wordsAddedCount + " new words added to the list.", Toast.LENGTH_LONG).show();
+        } catch (IOException | CsvValidationException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Error during import: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private boolean addWordIfNotExists(Word newWord) {
+        for (Word word : words) {
+            if (word.getEnglish().equalsIgnoreCase(newWord.getEnglish())) {
+                return false; // Nếu từ đã tồn tại, trả về false và không thêm vào danh sách
+            }
+        }
+        words.add(newWord); // Thêm từ mới vào danh sách nếu nó chưa tồn tại và trả về true
+        return true;
     }
 
     private void onClickSave() {
@@ -141,9 +233,9 @@ public class AddTopicActivity extends AppCompatActivity {
         if(title.isEmpty()){
             progressDialog.dismiss();
             Toast.makeText(AddTopicActivity.this, "Please enter topic title.", Toast.LENGTH_SHORT).show();
-        } else if(words.size() < 2){
+        } else if(words.size() < 4){
             progressDialog.dismiss();
-            Toast.makeText(AddTopicActivity.this, "Add at least 2 term to continue.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddTopicActivity.this, "Add at least 4 term to continue.", Toast.LENGTH_SHORT).show();
         } else if(words.isEmpty()){
             progressDialog.dismiss();
             Toast.makeText(AddTopicActivity.this, "You have not added any term yet.", Toast.LENGTH_SHORT).show();
@@ -199,9 +291,9 @@ public class AddTopicActivity extends AppCompatActivity {
         } else if (r == null){
             progressDialog.dismiss();
             Toast.makeText(AddTopicActivity.this, "Please choose topic access.", Toast.LENGTH_SHORT).show();
-        } else if(words.size() < 2){
+        } else if(words.size() < 4){
             progressDialog.dismiss();
-            Toast.makeText(AddTopicActivity.this, "Add at least 2 term to continue.", Toast.LENGTH_SHORT).show();
+            Toast.makeText(AddTopicActivity.this, "Add at least 4 term to continue.", Toast.LENGTH_SHORT).show();
         } else if(words.isEmpty()){
             progressDialog.dismiss();
             Toast.makeText(AddTopicActivity.this, "You have not added any term yet.", Toast.LENGTH_SHORT).show();
@@ -274,6 +366,7 @@ public class AddTopicActivity extends AppCompatActivity {
                 if(flag == false){
                     dialog.dismiss();
                     words.add(newWord);
+                    Toast.makeText(AddTopicActivity.this, "Add word successfully.", Toast.LENGTH_SHORT).show();
                     adapter.notifyDataSetChanged();
                 }
                 else {
