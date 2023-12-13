@@ -94,4 +94,17 @@
     <string name="lbl_third_name">Third Name</string>
     <string name="lbl_change_password">Change Password</string>
     <string name="lbl_username2">username</string>
+
+    <string name="lbl_your_points">Your Points</string>
+    <string name="lbl_game">Game</string>
+    <string name="lbl_1000_pts">1000 pts.</string>
+    <string name="lbl_s_t">Sư tử</string>
+    <string name="lbl_l_f_nt">/ˈɛlɪfənt/</string>
+    <string name="lbl_vocabulary_quiz">Vocabulary Quiz</string>
+    <string name="lbl_g_u">Gấu</string>
+    <string name="lbl_h_u">Hươu</string>
+    <string name="lbl_vocabulary">Vocabulary</string>
+    <string name="lbl_elephant">Elephant</string>
+    <string name="lbl_con_voi">Con voi</string>
+    <string name="lbl_level_3">Level 3</string>
 </resources>

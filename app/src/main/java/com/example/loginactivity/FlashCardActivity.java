@@ -105,8 +105,6 @@ public class FlashCardActivity extends AppCompatActivity {
         circleIndicator3.setViewPager(viewPager2);
         viewPager2.setPageTransformer(new ZoomOutPageTransformer());
 
-
-
     }
 
     private void initListerner() {

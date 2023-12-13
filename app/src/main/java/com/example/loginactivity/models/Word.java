@@ -17,7 +17,11 @@ public class Word implements Parcelable {
     }
 
     public Word (){
-
+    }
+    public Word (Word word){
+        english = word.getEnglish();
+        vietnamese = word.getVietnamese();
+        description = word.getDescription();
     }
 
     protected Word(Parcel in) {

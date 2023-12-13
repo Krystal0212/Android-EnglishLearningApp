@@ -45,9 +45,9 @@ public class TopicDetailActivity extends AppCompatActivity {
     CircleIndicator3 circleIndicator3;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-    Button btn_Flashcard;
+    Button btn_Flashcard, btn_test;
 
-    ImageView btn_back, btn_more;
+    ImageView btn_back, btn_more ;
 
     Topic topic;
 
@@ -73,6 +73,7 @@ public class TopicDetailActivity extends AppCompatActivity {
         btn_Flashcard = findViewById(R.id.btn_FLashcard);
         btn_back = findViewById(R.id.btn_back);
         btn_more = findViewById(R.id.btn_more);
+        btn_test = findViewById(R.id.btn_test);
         Intent intent = getIntent();
         topic = intent.getParcelableExtra("topic");
         words = topic.getWord();
@@ -110,6 +111,7 @@ public class TopicDetailActivity extends AppCompatActivity {
             onBackPressed();
             finish();
         });
+
 
         btn_Flashcard.setOnClickListener(v -> {
             ArrayList<Word> markedWords = adapterWordListTopic.markedWords;
@@ -152,6 +154,16 @@ public class TopicDetailActivity extends AppCompatActivity {
                 dialog.show();
             }
 
+        });
+
+        btn_test.setOnClickListener(v -> {
+            ArrayList<Word> markedWords = adapterWordListTopic.markedWords;
+            if (markedWords.isEmpty()) {
+                // khong co word nao trong danh sach marked
+                Intent intent = new Intent(this, TestVocabularyActivity.class);
+                intent.putParcelableArrayListExtra("words", topic.getWord());
+                startActivity(intent);
+            }
         });
     }
 

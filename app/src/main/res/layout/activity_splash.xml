@@ -11,17 +11,10 @@
     android:background="@color/white">
 
     <pl.droidsonroids.gif.GifImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="600dp"
+        android:layout_height="400dp"
 
-        android:src="@drawable/intro"
-        android:layout_gravity="center"/>
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/app_name"
-        android:textSize="20sp"
-        android:layout_marginTop="20dp"
-        android:textColor="@color/black"/>
+        android:layout_gravity="center"
+        android:src="@drawable/intro" />
 
 </LinearLayout>

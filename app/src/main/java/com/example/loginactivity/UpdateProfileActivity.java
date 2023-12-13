@@ -12,13 +12,17 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import androidx.fragment.app.Fragment;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import com.bumptech.glide.Glide;
 import com.example.loginactivity.models.Topic;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -39,14 +43,16 @@ import com.google.firebase.storage.StorageReference;
 public class UpdateProfileActivity extends AppCompatActivity {
     TextView edtName, edtMail;
     Button btnBack;
-    CardView displayName_card, mail_card, password_card;
-    Uri mUri;
+    CardView displayName_card, mail_card;
+    LinearLayout password_card;
+    Uri mUri, avatarUrl;
+    ImageView imgAvatar;
 
     StorageReference storageReference;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_profile_update);
+        setContentView(R.layout.activity_profile);
 
         initUI();
         initListener();
@@ -57,9 +63,10 @@ public class UpdateProfileActivity extends AppCompatActivity {
     private void initUI() {
         edtName = findViewById(R.id.edt_name);
         edtMail = findViewById(R.id.edt_mail);
-        btnBack = findViewById(R.id.btn_back);
-        displayName_card = findViewById(R.id.diplayName_card);
-        mail_card = findViewById(R.id.mail_card);
+        btnBack = findViewById(R.id.btn_backToProfile);
+        imgAvatar = findViewById(R.id.imageAvatar);
+//        displayName_card = findViewById(R.id.diplayName_card);
+//        mail_card = findViewById(R.id.mail_card);
         password_card = findViewById(R.id.password_card);
     }
 
@@ -72,13 +79,13 @@ public class UpdateProfileActivity extends AppCompatActivity {
             }
         });
 
-        displayName_card.setOnClickListener(new View.OnClickListener() {
+        edtName.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onClickUpdateDisplayName();
             }
         });
-        mail_card.setOnClickListener(new View.OnClickListener() {
+        edtMail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onClickReAuthenticateForEmail();
@@ -437,6 +444,9 @@ public class UpdateProfileActivity extends AppCompatActivity {
             String email = user.getEmail();
             edtName.setText(name);
             edtMail.setText(email);
+            Intent intent = getIntent();
+            avatarUrl = Uri.parse(intent.getStringExtra("avatarURL"));
+            Glide.with(this).load(avatarUrl).error(R.drawable.ic_avatar_default).into(imgAvatar);
         }
     }
 }

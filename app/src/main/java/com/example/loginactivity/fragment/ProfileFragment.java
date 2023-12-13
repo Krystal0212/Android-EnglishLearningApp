@@ -50,8 +50,9 @@ public class ProfileFragment extends Fragment {
     TextView txtName, txtEmail;
     ImageView imgAvatar;
     Button btnSignout, btnUpdate;
-    Uri mUri;
+    Uri mUri, avatarUrl;
     StorageReference storageReference;
+
 
     private ProgressDialog progressDialog;
 
@@ -199,6 +200,7 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(), UpdateProfileActivity.class);
+                intent.putExtra("avatarURL",avatarUrl.toString());
                 startActivity(intent);
             }
         });
@@ -258,6 +260,7 @@ public class ProfileFragment extends Fragment {
                         String name = user.getDisplayName();
                         String email = user.getEmail();
                         Uri photoUrl = user.getPhotoUrl();
+                        avatarUrl = photoUrl;
                         txtName.setText(name);
                         txtEmail.setText(email);
                         if(isAdded()){

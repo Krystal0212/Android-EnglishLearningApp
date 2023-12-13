@@ -92,6 +92,11 @@
         <item name="android:textColor">@color/black_900</item>
         <item name="android:background">@drawable/rectangle_bg_white_a700_border_indigo_800_radius_3</item>
     </style>
+    <style name="etSolidRoundedOutline_10">
+        <item name="android:textSize">@dimen/_16pxh</item>
+        <item name="android:textColor">@color/black_900</item>
+        <item name="android:background">@drawable/rectangle_bg_white_a700_border_indigo_800_radius_3</item>
+    </style>
     <style name="txtSalsaregular10">
         <item name="android:textSize">@dimen/_10pxh</item>
         <item name="android:textColor">@color/gray_700</item>
@@ -382,8 +387,14 @@
         <item name="android:fontFamily">@font/open_sans</item>
         <item name="android:textFontWeight" tools:targetApi="p">600</item>
     </style>
+    <style name="txtOpenSansromansemibold48">
+        <item name="android:textSize">@dimen/_32pxh</item>
+        <item name="android:textColor">@color/black_900</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textFontWeight" tools:targetApi="p">600</item>
+    </style>
     <style name="txtOpenSansromansemibold12">
-        <item name="android:textSize">@dimen/_12pxh</item>
+        <item name="android:textSize">@dimen/_18pxh</item>
         <item name="android:textColor">@color/black_900</item>
         <item name="android:fontFamily">@font/open_sans</item>
         <item name="android:textFontWeight" tools:targetApi="p">600</item>
@@ -423,4 +434,36 @@
         <item name="android:textFontWeight" tools:targetApi="p">400</item>
         <item name="android:background">@drawable/rectangle_bg_white_a700_border_blue_500_radius_10_385</item>
     </style>
+
+
+    <style name="groupStylecyan_1">
+        <item name="android:background">@drawable/rectangle_bg_cyan_50_border_black_900_radius_10</item>
+    </style>
+    <style name="txtOpenSansromansemibold12_1">
+        <item name="android:textSize">@dimen/_12pxh</item>
+        <item name="android:textColor">@color/bluegray_400</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textFontWeight" tools:targetApi="p">600</item>
+    </style>
+    <style name="txtOpenSansromanregular18">
+        <item name="android:textSize">@dimen/_22pxh</item>
+        <item name="android:textColor">@color/black_900</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textFontWeight" tools:targetApi="p">400</item>
+    </style>
+    <style name="btnSolidRoundedOutline_Right">
+        <item name="android:textSize">@dimen/_20pxh</item>
+        <item name="android:textColor">@color/black_900</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textFontWeight" tools:targetApi="p">600</item>
+        <item name="android:background">@drawable/rectangle_bg_blue_500_border_black_900_radius_10</item>
+    </style>
+    <style name="btnSolidRoundedOutline_Wrong">
+        <item name="android:textSize">@dimen/_20pxh</item>
+        <item name="android:textColor">@color/black_900</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textFontWeight" tools:targetApi="p">600</item>
+        <item name="android:background">@drawable/rectangle_bg_red_500_border_black_900_radius_10</item>
+    </style>
+
 </resources>

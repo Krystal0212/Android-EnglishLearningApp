@@ -67,6 +67,7 @@ public class FlashCardBasicViewPagerAdapter extends  RecyclerView.Adapter<FlashC
         int backgroundResourceId2 = attributes2.getResourceId(0, 0);
 
         attributes.recycle();
+        attributes2.recycle();
 
         if(word == null){
             return;
