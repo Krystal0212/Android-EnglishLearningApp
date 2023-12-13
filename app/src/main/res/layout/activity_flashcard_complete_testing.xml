@@ -30,7 +30,7 @@
             android:text="@string/lbl_congrats"
             style="@style/txtOpenSansromanbold24" tools:text="@string/lbl_congrats"/>
         <TextView android:gravity="center_horizontal"
-            android:id="@+id/txtResult"
+            android:id="@+id/txtSentenceRight"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_30pxh"
             android:layout_marginStart="@dimen/_30pxh"
@@ -38,11 +38,11 @@
             android:layout_width="match_parent"
             android:textStyle="bold"
             android:lineSpacingExtra="@dimen/_8pxh"
-            android:text="Your point is 1500 !!!"
+            android:text="You got no point for this attemp "
             style="@style/txtOpenSansromanregular17"/>
 
     <TextView
-        android:id="@+id/txtSentenceRight"
+        android:id="@+id/txtResult"
         style="@style/txtOpenSansromanregular19"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,7 +51,7 @@
         android:layout_marginEnd="@dimen/_30pxh"
         android:gravity="center_horizontal"
         android:lineSpacingExtra="@dimen/_8pxh"
-        android:text="3/4"
+        android:text="Completed 0/4"
         android:textStyle="bold" />
 
     <FrameLayout android:id="@+id/frameStackcuteastronatzero"

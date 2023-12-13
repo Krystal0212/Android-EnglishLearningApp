@@ -39,10 +39,10 @@ public class TestResultActivity extends AppCompatActivity {
         incorrectlyAnsweredQuestions = intent.getParcelableArrayListExtra("incorrectlyAnsweredQuestions");
         questions = intent.getParcelableArrayListExtra("questions");
 
-        if (!(incorrectlyAnsweredQuestions.isEmpty() || questions.isEmpty() )) {
+        if (incorrectlyAnsweredQuestions.size() >= 0) {
             int rightNumber = questions.size() - incorrectlyAnsweredQuestions.size();
             txtPoint.setText("Your point is " + rightNumber * point + " !!!");
-            txtResult.setText(rightNumber + "/" + questions.size());
+            txtResult.setText("Completed " + rightNumber + "/" + questions.size());
         }
     }
 

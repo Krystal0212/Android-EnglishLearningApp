@@ -30,7 +30,7 @@ public class TestVocabularyActivity extends AppCompatActivity {
     ArrayList<Word> words = new ArrayList<>();
     ArrayList<Word> answeredQuestions;
     ViewPager2 viewPager2;
-    ArrayList<Question> questions;
+    ArrayList<Question> questions = new ArrayList<>();
     TextView status;
     ArrayList<Question> incorrectlyAnsweredQuestions = new ArrayList<>();
 
@@ -102,7 +102,6 @@ public class TestVocabularyActivity extends AppCompatActivity {
     }
 
     public void createAndSetQuestions(){
-        ArrayList<Question> questions = new ArrayList<>();
 
         for(Word word : words){
             String[] otherVietnameseWords = getThreeDifferentWords(word.getVietnamese());

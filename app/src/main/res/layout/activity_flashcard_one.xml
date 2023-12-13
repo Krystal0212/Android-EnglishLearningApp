@@ -86,15 +86,15 @@
                         android:id="@+id/txt_term"
                         style="@style/txtOpenSansromansemibold28"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="80dp"
                         android:layout_marginStart="@dimen/_25pxh"
                         android:layout_marginTop="@dimen/_15pxv"
                         android:layout_marginEnd="@dimen/_25pxh"
                         android:gravity="center_horizontal"
                         android:lineSpacingExtra="@dimen/_11pxh"
-                        android:singleLine="true"
-                        android:text="@string/lbl_hippopotamus"
-                        tools:text="@string/lbl_hippopotamus" />
+                        android:textSize="25sp"
+                        android:singleLine="false"
+                        android:text="@string/lbl_hippopotamus" />
 
                     <TextView
                         android:id="@+id/txt_description"

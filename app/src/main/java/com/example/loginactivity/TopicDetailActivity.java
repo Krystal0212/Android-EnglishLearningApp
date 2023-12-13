@@ -265,7 +265,7 @@ public class TopicDetailActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
             // Đối với các thiết bị chạy Android 9 (Pie) trở xuống, cần quyền WRITE_EXTERNAL_STORAGE để ghi vào bộ nhớ ngoại vi
             if (ContextCompat.checkSelfPermission(this, WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
-                File documentsFolder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "MyAppFolder");
+                File documentsFolder = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "Quizzme");
                 if (!documentsFolder.exists()) documentsFolder.mkdirs();
                 File csvFile = new File(documentsFolder, topic.getTitle() + ".csv");
                 writeCsvFile(csvFile);

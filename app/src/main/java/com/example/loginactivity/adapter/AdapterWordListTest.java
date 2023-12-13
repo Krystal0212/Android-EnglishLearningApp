@@ -214,7 +214,6 @@ public class AdapterWordListTest extends RecyclerView.Adapter<AdapterWordListTes
         public TextView term, description;
         public LinearLayout frameTest;
         public ImageView sound;
-
         public AppCompatButton button1, button2, button3, button4;
 
         public WordListViewHolder(@NonNull View itemView) {
