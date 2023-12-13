@@ -66,16 +66,29 @@
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:id="@+id/btn_import"
+            android:background="@drawable/background_item"
+            android:drawableStart="@drawable/baseline_import_export_24"
+            android:padding="8dp"
+            android:text="Import word list"
+            android:textColor="@color/black"
+            android:textStyle="bold" />
+
         <ImageView
             android:id="@+id/imageLandscape"
             android:layout_width="@dimen/_328pxh"
             android:layout_height="@dimen/_130pxh"
             android:layout_gravity="center_horizontal"
             android:layout_marginStart="@dimen/_14pxh"
-            android:layout_marginTop="@dimen/_22pxv"
+            android:layout_marginTop="@dimen/_18pxv"
             android:layout_marginEnd="@dimen/_14pxh"
             android:scaleType="fitXY"
             android:src="@drawable/img_landscape" />
+
 
         <EditText
             android:id="@+id/edt_title"
@@ -171,6 +184,5 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
-        android:src="@drawable/baseline_add_24"
-        tools:ignore="SpeakableTextPresentCheck" />
+        android:src="@drawable/baseline_add_24" />
 </RelativeLayout>

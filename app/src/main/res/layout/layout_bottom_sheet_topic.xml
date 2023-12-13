@@ -46,6 +46,19 @@
             android:textSize="20sp"
             android:drawableStart="@drawable/baseline_delete_24"
             android:drawablePadding="10dp"/>
+
+        <TextView
+            android:paddingTop="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Export word list"
+            android:textColor="@color/black"
+            android:id="@+id/txt_export_word_list"
+            android:layout_below="@+id/txt_delete_topic"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:drawableStart="@drawable/export_icon"
+            android:drawablePadding="10dp"/>
     </RelativeLayout>
 
     <LinearLayout
