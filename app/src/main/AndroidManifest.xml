@@ -72,6 +72,9 @@
         <activity
             android:name=".TestVocabularyActivity"
             android:exported="true" />
+        <activity
+            android:name=".TestResultActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

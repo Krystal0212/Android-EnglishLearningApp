@@ -23,17 +23,17 @@ import com.example.loginactivity.models.Question;
 import java.util.ArrayList;
 import java.util.Locale;
 
-public class AdapterWordListTest extends  RecyclerView.Adapter<AdapterWordListTest.WordListViewHolder> {
+public class AdapterWordListTest extends RecyclerView.Adapter<AdapterWordListTest.WordListViewHolder> {
 
     Context context;
     ArrayList<Question> questions;
     public TextToSpeechHelper textToSpeechEnglishHelper, textToSpeechVietnameseHelper;
     ViewPager2 viewPager2;
-    private boolean isLastPage = false;
-
     private OnAnswerClickListener onAnswerClickListener;
 
     private Handler mHandler = new Handler();
+
+    ArrayList<Question> incorrectlyAnsweredQuestions = new ArrayList<>();
 
     public interface OnAnswerClickListener {
         void onAnswerClick(boolean isClicked);
@@ -60,9 +60,8 @@ public class AdapterWordListTest extends  RecyclerView.Adapter<AdapterWordListTe
     @Override
     public void onBindViewHolder(@NonNull WordListViewHolder holder, int position) {
         Question question = questions.get(position);
-        isLastPage = (position == getItemCount() - 1);
 
-        if(question == null){
+        if (question == null) {
             return;
         }
 
@@ -82,7 +81,7 @@ public class AdapterWordListTest extends  RecyclerView.Adapter<AdapterWordListTe
 
         AppCompatButton rightButton = null;
 
-        switch(rightPosition){
+        switch (rightPosition) {
             case 0:
                 rightButton = holder.button1;
                 break;
@@ -100,20 +99,24 @@ public class AdapterWordListTest extends  RecyclerView.Adapter<AdapterWordListTe
         };
 
         AppCompatButton finalRightButton = rightButton;
-        holder.button1.setOnClickListener(v->{
-            checkAnswer(holder.button1, finalRightButton, question.getEnglish());
+        holder.button1.setOnClickListener(v -> {
+            checkAnswer(holder.button1, finalRightButton, question);
+            disableAllButtons(holder);
         });
 
-        holder.button2.setOnClickListener(v->{
-            checkAnswer(holder.button2, finalRightButton, question.getEnglish());
+        holder.button2.setOnClickListener(v -> {
+            checkAnswer(holder.button2, finalRightButton, question);
+            disableAllButtons(holder);
         });
 
-        holder.button3.setOnClickListener(v->{
-            checkAnswer(holder.button3, finalRightButton, question.getEnglish());
+        holder.button3.setOnClickListener(v -> {
+            checkAnswer(holder.button3, finalRightButton, question);
+            disableAllButtons(holder);
         });
 
-        holder.button4.setOnClickListener(v->{
-            checkAnswer(holder.button4, finalRightButton, question.getEnglish());
+        holder.button4.setOnClickListener(v -> {
+            checkAnswer(holder.button4, finalRightButton, question);
+            disableAllButtons(holder);
         });
 
         holder.sound.setOnClickListener(view -> {
@@ -122,7 +125,9 @@ public class AdapterWordListTest extends  RecyclerView.Adapter<AdapterWordListTe
         });
     }
 
-    private void checkAnswer(AppCompatButton buttonChoosen, AppCompatButton rightButton, String english){
+    private void checkAnswer(AppCompatButton buttonChoosen, AppCompatButton rightButton, Question question) {
+
+
         int styleResourceId = R.style.btnSolidRoundedOutline_Right;
         TypedArray attributes = context.obtainStyledAttributes(styleResourceId, new int[]{android.R.attr.background});
         int rightResourceId = attributes.getResourceId(0, 0);
@@ -134,53 +139,84 @@ public class AdapterWordListTest extends  RecyclerView.Adapter<AdapterWordListTe
         attributes.recycle();
         attributes2.recycle();
 
-        if(buttonChoosen.getText().equals(rightButton.getText())){
+        if (buttonChoosen.getText().equals(rightButton.getText())) {
             buttonChoosen.setBackgroundResource(rightResourceId);
 
             textToSpeechEnglishHelper.setLanguage(Locale.ENGLISH);
-            textToSpeechEnglishHelper.speak("Right, "+english);
-            textToSpeechVietnameseHelper.setLanguage(new Locale("vi", "VN"));
-            textToSpeechVietnameseHelper.speak((String) rightButton.getText());
+            textToSpeechEnglishHelper.speak("Right");
+            mHandler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    textToSpeechEnglishHelper.speak(question.getEnglish());
+                    textToSpeechVietnameseHelper.setLanguage(new Locale("vi", "VN"));
+                    textToSpeechVietnameseHelper.speak((String) rightButton.getText());
+                }
+            }, 1000);
 
             if (onAnswerClickListener != null) {
                 onAnswerClickListener.onAnswerClick(true);
             }
-        }else {
+        } else {
             buttonChoosen.setBackgroundResource(wrongResourceId);
 
             rightButton.setBackgroundResource(rightResourceId);
 
             textToSpeechEnglishHelper.setLanguage(Locale.ENGLISH);
             textToSpeechEnglishHelper.speak("Wrong");
-        mHandler.postDelayed(new Runnable() {
+            mHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    textToSpeechEnglishHelper.speak(english);
+                    textToSpeechEnglishHelper.speak(question.getEnglish());
+                    textToSpeechVietnameseHelper.setLanguage(new Locale("vi", "VN"));
+                    textToSpeechVietnameseHelper.speak((String) rightButton.getText());
                 }
             }, 1000);
 
-                            textToSpeechVietnameseHelper.setLanguage(new Locale("vi", "VN"));
-            textToSpeechVietnameseHelper.speak((String) rightButton.getText());
+            incorrectlyAnsweredQuestions.add(question);
+
             if (onAnswerClickListener != null) {
                 onAnswerClickListener.onAnswerClick(true);
             }
         }
     }
 
+    public Question getCurrentQuestion(int position) {
+        if (position >= 0 && position < questions.size()) {
+            return questions.get(position);
+        }
+        return null;
+    }
+
+    public void disableAllButtons(WordListViewHolder holder) {
+        holder.button1.setEnabled(false);
+        holder.button2.setEnabled(false);
+        holder.button3.setEnabled(false);
+        holder.button4.setEnabled(false);
+    }
+
     @Override
     public int getItemCount() {
-        if(questions != null){
+        if (questions != null) {
             return questions.size();
         }
         return 0;
     }
 
-    public class WordListViewHolder extends RecyclerView.ViewHolder{
+    public ArrayList<Question> getIncorrectlyAnsweredQuestions() {
+        return incorrectlyAnsweredQuestions;
+    }
+
+    public void setIncorrectlyAnsweredQuestions(ArrayList<Question> incorrectlyAnsweredQuestions) {
+        this.incorrectlyAnsweredQuestions = incorrectlyAnsweredQuestions;
+    }
+
+    public class WordListViewHolder extends RecyclerView.ViewHolder {
         public TextView term, description;
         public LinearLayout frameTest;
         public ImageView sound;
 
         public AppCompatButton button1, button2, button3, button4;
+
         public WordListViewHolder(@NonNull View itemView) {
             super(itemView);
             term = itemView.findViewById(R.id.txtTerm);
@@ -192,6 +228,8 @@ public class AdapterWordListTest extends  RecyclerView.Adapter<AdapterWordListTe
             button4 = itemView.findViewById(R.id.btn4);
             sound = itemView.findViewById(R.id.imgSound);
         }
+
+
     }
 
 }

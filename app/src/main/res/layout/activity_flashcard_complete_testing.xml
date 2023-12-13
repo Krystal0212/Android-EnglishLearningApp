@@ -30,16 +30,31 @@
             android:text="@string/lbl_congrats"
             style="@style/txtOpenSansromanbold24" tools:text="@string/lbl_congrats"/>
         <TextView android:gravity="center_horizontal"
-            android:id="@+id/txtLanguage"
+            android:id="@+id/txtResult"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_30pxh"
             android:layout_marginStart="@dimen/_30pxh"
             android:layout_marginTop="@dimen/_9pxv"
             android:layout_width="match_parent"
+            android:textStyle="bold"
             android:lineSpacingExtra="@dimen/_8pxh"
-            android:text="@string/msg_congratulations"
-            style="@style/txtOpenSansromanregular16" tools:text="@string/msg_congratulations"/>
-        <FrameLayout android:id="@+id/frameStackcuteastronatzero"
+            android:text="Your point is 1500 !!!"
+            style="@style/txtOpenSansromanregular17"/>
+
+    <TextView
+        android:id="@+id/txtSentenceRight"
+        style="@style/txtOpenSansromanregular19"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_30pxh"
+        android:layout_marginTop="@dimen/_9pxv"
+        android:layout_marginEnd="@dimen/_30pxh"
+        android:gravity="center_horizontal"
+        android:lineSpacingExtra="@dimen/_8pxh"
+        android:text="3/4"
+        android:textStyle="bold" />
+
+    <FrameLayout android:id="@+id/frameStackcuteastronatzero"
             android:layout_gravity="center_horizontal"
             android:layout_height="@dimen/_317pxv"
             android:layout_marginEnd="@dimen/_30pxh"
@@ -59,7 +74,7 @@
         </FrameLayout>
         <androidx.appcompat.widget.AppCompatButton
             android:ellipsize="end" android:gravity="center"
-            android:id="@+id/btnPlayGameNow"
+            android:id="@+id/btn_back_Topic"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_18pxv"
             android:layout_marginEnd="@dimen/_9pxh"

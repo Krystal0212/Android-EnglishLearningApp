@@ -6,8 +6,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
-public class FlashCardResult extends AppCompatActivity {
+import com.example.loginactivity.models.Question;
 
+import java.util.ArrayList;
+
+public class FlashCardResult extends AppCompatActivity {
+    ArrayList<Question> incorrectlyAnsweredQuestions = new ArrayList<>();
     Button btn_Topic;
     @Override
     protected void onCreate(Bundle savedInstanceState) {

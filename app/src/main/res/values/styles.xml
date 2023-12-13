@@ -302,6 +302,18 @@
         <item name="android:fontFamily">@font/open_sans</item>
         <item name="android:textFontWeight" tools:targetApi="p">400</item>
     </style>
+    <style name="txtOpenSansromanregular17">
+        <item name="android:textSize">@dimen/_25pxh</item>
+        <item name="android:textColor">@color/blue</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textFontWeight" tools:targetApi="p">400</item>
+    </style>
+    <style name="txtOpenSansromanregular19">
+        <item name="android:textSize">@dimen/_28pxh</item>
+        <item name="android:textColor">@color/red_500</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textFontWeight" tools:targetApi="p">400</item>
+    </style>
     <style name="groupStylecyan_50cornerRadius">
         <item name="android:background">@drawable/rectangle_bg_cyan_50_radius_10</item>
     </style>
