@@ -163,14 +163,14 @@ public class TopicDetailActivity extends AppCompatActivity {
                 btn_all.setOnClickListener(view -> {
                     dialog.dismiss();
                     Intent intent = new Intent(this, FlashCardActivity.class);
-                    intent.putExtra("words", topic.getWord());
+                    intent.putParcelableArrayListExtra("words", topic.getWord());
                     startActivity(intent);
                 });
 
                 btn_marked.setOnClickListener(view -> {
                     dialog.dismiss();
                     Intent intent = new Intent(this, FlashCardActivity.class);
-                    intent.putExtra("words", markedWords);
+                    intent.putParcelableArrayListExtra("words", markedWords);
                     startActivity(intent);
                 });
 
@@ -185,7 +185,46 @@ public class TopicDetailActivity extends AppCompatActivity {
                 // khong co word nao trong danh sach marked
                 Intent intent = new Intent(this, TestVocabularyActivity.class);
                 intent.putParcelableArrayListExtra("words", topic.getWord());
+                intent.putExtra("topic", topic);
                 startActivity(intent);
+            } else {
+                //co it nhat 1
+                // tien hanh hỏi
+                final Dialog dialog = new Dialog(TopicDetailActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.flashcard_mode_dialog);
+                Window window = dialog.getWindow();
+                window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+                window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                TextView txt_message = dialog.findViewById(R.id.txt_message);
+                txt_message.setText("Learn all words or learn your " + markedWords.size() + " marked words ?");
+
+                Button btn_all = dialog.findViewById(R.id.btn_all);
+                Button btn_marked = dialog.findViewById(R.id.btn_marked);
+
+                btn_all.setOnClickListener(view -> {
+                    dialog.dismiss();
+                    Intent intent = new Intent(this, TestVocabularyActivity.class);
+                    intent.putParcelableArrayListExtra("words", topic.getWord());
+                    intent.putExtra("topic", topic);
+                    startActivity(intent);
+                });
+
+                btn_marked.setOnClickListener(view -> {
+                    if(markedWords.size() < 4) {
+                        dialog.dismiss();
+                        Toast.makeText(TopicDetailActivity.this, "You can only do this test with 4 marked words or above!", Toast.LENGTH_LONG).show();
+                    } else {
+                        dialog.dismiss();
+                        Intent intent = new Intent(this, TestVocabularyActivity.class);
+                        intent.putParcelableArrayListExtra("words", markedWords);
+                        intent.putExtra("topic", topic);
+                        startActivity(intent);
+                    }
+                });
+
+                dialog.show();
             }
         });
     }

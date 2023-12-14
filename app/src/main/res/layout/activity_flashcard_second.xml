@@ -85,7 +85,7 @@
                         android:id="@+id/txt_term"
                         style="@style/txtOpenSansromansemibold28"
                         android:layout_width="match_parent"
-                        android:layout_height="80dp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_25pxh"
                         android:layout_marginTop="@dimen/_105pxv"
                         android:layout_marginEnd="@dimen/_25pxh"

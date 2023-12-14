@@ -6,7 +6,11 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 public class Participant implements Parcelable {
+
+
     String userID;
+    int multipleChoicesResult;
+    int fillWordResult;
 
     public Participant(String userID) {
         this.userID = userID;
@@ -14,9 +18,16 @@ public class Participant implements Parcelable {
     public Participant (){
 
     }
+    public Participant(String userID, int multipleChoicesResult, int fillWordResult) {
+        this.userID = userID;
+        this.multipleChoicesResult = multipleChoicesResult;
+        this.fillWordResult = fillWordResult;
+    }
 
     protected Participant(Parcel in) {
         userID = in.readString();
+        multipleChoicesResult = in.readInt();
+        fillWordResult = in.readInt();
     }
 
     public static final Creator<Participant> CREATOR = new Creator<Participant>() {
@@ -38,6 +49,21 @@ public class Participant implements Parcelable {
     public void setUserID(String userID) {
         this.userID = userID;
     }
+    public int getMultipleChoicesResult() {
+        return multipleChoicesResult;
+    }
+
+    public void setMultipleChoicesResult(int multipleChoicesResult) {
+        this.multipleChoicesResult = multipleChoicesResult;
+    }
+
+    public int getFillWordResult() {
+        return fillWordResult;
+    }
+
+    public void setFillWordResult(int fillWordResult) {
+        this.fillWordResult = fillWordResult;
+    }
 
     @Override
     public int describeContents() {
@@ -47,5 +73,7 @@ public class Participant implements Parcelable {
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeString(userID);
+        dest.writeInt(multipleChoicesResult);
+        dest.writeInt(fillWordResult);
     }
 }
