@@ -194,8 +194,6 @@ public class TopicDetailActivity extends AppCompatActivity {
         });
 
         btn_test.setOnClickListener(v -> {
-
-
             final Dialog dialog = new Dialog(TopicDetailActivity.this);
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
             dialog.setContentView(R.layout.test_mode_dialog);
@@ -230,7 +228,6 @@ public class TopicDetailActivity extends AppCompatActivity {
                 // khong co word nao trong danh sach marked
                 txt_message.setText("Choose modes for your test");
 
-
                 btn_marked.setVisibility(View.GONE);
                 btn_all.setVisibility(View.GONE);
                 btn_test.setOnClickListener(i ->{
@@ -251,6 +248,7 @@ public class TopicDetailActivity extends AppCompatActivity {
 
                     Intent intent = new Intent(this, TestVocabularyActivity.class);
                     intent.putParcelableArrayListExtra("words", words);
+                    intent.putExtra("topic",topic);
                     intent.putExtra("test_mode",testMode);
                     startActivity(intent);
                 });
@@ -281,6 +279,7 @@ public class TopicDetailActivity extends AppCompatActivity {
 
                         Intent intent = new Intent(this, TestVocabularyActivity.class);
                         intent.putExtra("words", words);
+                        intent.putExtra("topic",topic);
                         intent.putExtra("test_mode",testMode);
                         startActivity(intent);
                     } else {
@@ -307,6 +306,7 @@ public class TopicDetailActivity extends AppCompatActivity {
                         }
 
                         Intent intent = new Intent(this, TestVocabularyActivity.class);
+                        intent.putExtra("topic",topic);
                         intent.putExtra("words", words);
                         intent.putExtra("marked_words", markedWords);
                         intent.putExtra("test_mode",testMode);

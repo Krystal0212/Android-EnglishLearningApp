@@ -52,11 +52,11 @@
 
     <string name="lbl_hippopotamus">Hippopotamus</string>
     <string name="lbl_congrats">Congrats!</string>
-    <string name="lbl_previous">Previous</string>
+    <string name="lbl_previous">Swipe Previous</string>
     <string name="lbl_h_p_p_t_m_s">/hɪpəˈpɒtəməs/</string>
     <string name="lbl_play_game_now">Back to Topic</string>
     <string name="lbl_con_s_t">Con sư tử</string>
-    <string name="lbl_next">Next</string>
+    <string name="lbl_next">Swipe Next</string>
     <string name="lbl_la_n">/ˈlaɪən/</string>
     <string name="lbl_h_m">Hà Mã</string>
     <string name="lbl_topic_name">Topic Name</string>
