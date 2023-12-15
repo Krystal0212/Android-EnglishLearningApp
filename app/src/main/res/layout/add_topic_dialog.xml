@@ -5,15 +5,17 @@
     android:background="@drawable/bg_white_corner_16"
     android:layout_margin="16dp"
     android:orientation="vertical">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Message"
         android:padding="12dp"
         android:textSize="20dp"
+        style="@style/txtRubikWetPaintregular20"
         android:id="@+id/txtTitle"
-        android:textColor="@color/black"
-        android:background="@drawable/bg_blue_corner_top_leftright_16"
+        android:textColor="@color/white"
+        android:background="@color/light_blue_500"
         android:gravity="center" />
 
     <LinearLayout
@@ -28,7 +30,8 @@
             android:layout_height="wrap_content"
             android:text="This is a new topic, do you want to add this to your set ?"
             android:gravity="center"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="@color/black_900" />
 
 
         <LinearLayout
@@ -44,8 +47,8 @@
                 android:textSize="14sp"
                 android:layout_marginRight="10dp"
                 android:id="@+id/btnCancel"
-                android:textColor="@color/black"
-                android:background="@drawable/bg_gray_corner_16"/>
+                android:textColor="@color/white"
+                android:background="@color/gray_400"/>
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -53,11 +56,10 @@
                 android:textSize="14sp"
                 android:id="@+id/btnApply"
                 android:text="Yes"
-                android:textColor="@color/black"
-                android:background="@drawable/bg_blue_corner_16"/>
+                android:textColor="@color/white"
+                android:background="@color/green_600"/>
         </LinearLayout>
 
     </LinearLayout>
-
 
 </LinearLayout>

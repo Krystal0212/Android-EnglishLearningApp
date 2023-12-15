@@ -23,7 +23,7 @@
                 android:id="@+id/cardFront"
                 android:background="@color/white"
                 android:backgroundTint="@color/white"
-                android:layout_width="333dp"
+                android:layout_width="350dp"
                 android:layout_height="540dp"
                 android:layout_gravity="center"
                 android:layoutDirection="ltr">
@@ -104,16 +104,15 @@
                         android:layout_marginStart="@dimen/_25pxh"
                         android:layout_marginTop="@dimen/_3pxv"
                         android:layout_marginEnd="@dimen/_25pxh"
-                        android:text="@string/lbl_h_p_p_t_m_s"
-                        tools:text="@string/lbl_h_p_p_t_m_s" />
+                        android:text=""/>
 
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
-                        android:layout_marginStart="@dimen/_25pxh"
+                        android:layout_marginStart="@dimen/_15pxh"
                         android:layout_marginTop="@dimen/_125pxv"
-                        android:layout_marginEnd="@dimen/_25pxh"
+                        android:layout_marginEnd="@dimen/_15pxh"
                         android:layout_marginBottom="@dimen/_18pxv"
                         android:orientation="horizontal">
 
@@ -122,74 +121,54 @@
                             style="@style/groupStyleyellow_600cornerRadius"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_weight="0.59"
-                            android:orientation="horizontal">
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/_5pxh"
+                            android:paddingBottom="@dimen/_5pxh"
+                            android:paddingEnd="@dimen/_5pxh"
+                            android:gravity="center">
 
                             <ImageView
-                                android:id="@+id/imageArrowleft"
-                                android:layout_width="@dimen/_6pxh"
-                                android:layout_height="@dimen/_9pxh"
-                                android:layout_marginStart="@dimen/_7pxh"
-                                android:layout_marginTop="@dimen/_10pxv"
-                                android:layout_marginBottom="@dimen/_9pxv"
-                                android:scaleType="fitXY"
-                                android:src="@drawable/img_arrowleft"
-                                tools:ignore="ContentDescription"
-                                tools:src="@drawable/img_arrowleft" />
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_1pxh"
+                                android:layout_marginStart="@dimen/_2pxh"
+                                android:src="@drawable/img_arrowleft" />
 
                             <TextView
-                                android:id="@+id/txtPrevious"
-                                style="@style/txtOpenSansromansemibold16"
-                                android:layout_width="0dp"
+                                style="@style/txtOpenSansromansemibold16_3"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_6pxh"
-                                android:layout_marginTop="@dimen/_4pxv"
-                                android:layout_marginEnd="@dimen/_6pxh"
-                                android:layout_marginBottom="@dimen/_3pxv"
-                                android:layout_weight="0.92"
-                                android:ellipsize="end"
-                                android:lineSpacingExtra="@dimen/_6pxh"
-                                android:singleLine="true"
-                                android:text="@string/lbl_previous"
-                                tools:text="@string/lbl_previous" />
+                                android:layout_marginStart="@dimen/_5pxh"
+                                android:text="@string/lbl_previous" />
                         </LinearLayout>
-
+                        <LinearLayout
+                            android:layout_weight="0.25"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"/>
                         <LinearLayout
                             android:id="@+id/llNextFront"
                             style="@style/groupStyleyellow_600cornerRadius"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/_78pxh"
-                            android:layout_weight="0.41"
-                            android:orientation="horizontal">
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/_5pxh"
+                            android:paddingBottom="@dimen/_5pxh">
 
                             <TextView
-                                android:id="@+id/txtNext"
-                                style="@style/txtOpenSansromansemibold16"
-                                android:layout_width="0dp"
+                                style="@style/txtOpenSansromansemibold16_3"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginStart="@dimen/_8pxh"
-                                android:layout_marginTop="@dimen/_3pxv"
-                                android:layout_marginBottom="@dimen/_4pxv"
-                                android:layout_weight="0.86"
-                                android:ellipsize="end"
-                                android:lineSpacingExtra="@dimen/_6pxh"
-                                android:singleLine="true"
-                                android:text="@string/lbl_next"
-                                tools:text="@string/lbl_next" />
+                                android:text="@string/lbl_next" />
 
                             <ImageView
-                                android:id="@+id/imageArrowright"
-                                android:layout_width="@dimen/_6pxh"
-                                android:layout_height="@dimen/_9pxh"
-                                android:layout_marginStart="@dimen/_4pxh"
-                                android:layout_marginTop="@dimen/_10pxv"
-                                android:layout_marginEnd="@dimen/_7pxh"
-                                android:layout_marginBottom="@dimen/_9pxv"
-                                android:scaleType="fitXY"
-                                android:src="@drawable/img_arrowright"
-                                tools:ignore="ContentDescription"
-                                tools:src="@drawable/img_arrowright" />
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/_5pxh"
+                                android:layout_marginTop="@dimen/_1pxh"
+                                android:src="@drawable/img_arrowright" />
                         </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>

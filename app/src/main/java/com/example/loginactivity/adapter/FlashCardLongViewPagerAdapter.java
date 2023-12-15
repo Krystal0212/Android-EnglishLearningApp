@@ -73,6 +73,7 @@ public class FlashCardLongViewPagerAdapter extends  RecyclerView.Adapter<FlashCa
         textToSpeechHelper = new TextToSpeechHelper(context);
 
         holder.term.setText(word.getEnglish());
+        holder.description.setText(word.getDescription());
         holder.meaning.setText(word.getVietnamese());
         holder.txt_topic_name_back.setText(title);
         holder.txt_topic_name_front.setText(title);
@@ -159,7 +160,7 @@ public class FlashCardLongViewPagerAdapter extends  RecyclerView.Adapter<FlashCa
     public class FlashCardViewHolder extends RecyclerView.ViewHolder{
 
         public ViewFlipper flipInterface;
-        public TextView term, meaning, txt_topic_name_back, txt_topic_name_front;
+        public TextView term, meaning, txt_topic_name_back, txt_topic_name_front, description;
         public CardView cardFront, cardBack;
         LinearLayout llPreviousFront, llPreviousBack, llNextFront, llNextBack;
 
@@ -169,6 +170,7 @@ public class FlashCardLongViewPagerAdapter extends  RecyclerView.Adapter<FlashCa
             super(itemView);
             term = itemView.findViewById(R.id.txt_term);
             meaning = itemView.findViewById(R.id.txt_meaning);
+            description = itemView.findViewById(R.id.txt_description);
             flipInterface = itemView.findViewById(R.id.flashCard);
             cardBack = itemView.findViewById(R.id.cardBack);
             cardFront = itemView.findViewById(R.id.cardFront);

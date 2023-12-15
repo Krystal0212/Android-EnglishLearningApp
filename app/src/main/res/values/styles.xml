@@ -292,6 +292,12 @@
         <item name="android:fontFamily">@font/open_sans</item>
         <item name="android:textFontWeight" tools:targetApi="p">600</item>
     </style>
+    <style name="txtOpenSansromansemibold16_3">
+        <item name="android:textSize">@dimen/_14pxh</item>
+        <item name="android:textColor">@color/black_900</item>
+        <item name="android:fontFamily">@font/open_sans</item>
+        <item name="android:textFontWeight" tools:targetApi="p">600</item>
+    </style>
     <style name="groupStylewhite_A700cornerRadius_0">
         <item name="android:background">@drawable/rectangle_bg_white_a700_border_yellow_600_radius_8</item>
     </style>
