@@ -116,6 +116,7 @@
                 android:layout_marginTop="@dimen/_15pxv"
                 android:layout_width="wrap_content"
                 android:singleLine="true"
+
                 android:text="@string/msg_confirm_passwor"
                 style="@style/txtRobotoRegular15_2" tools:text="@string/msg_confirm_passwor"/>
 

@@ -11,6 +11,7 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.ContentValues;
 import android.content.Intent;
@@ -38,7 +39,10 @@ import android.widget.Toast;
 import com.example.loginactivity.adapter.AdapterWordListTopic;
 import com.example.loginactivity.adapter.FlashCardBasicViewPagerAdapter;
 import com.example.loginactivity.models.Folder;
+import com.example.loginactivity.models.Participant;
+import com.example.loginactivity.models.ParticipantScore;
 import com.example.loginactivity.models.Topic;
+import com.example.loginactivity.models.User;
 import com.example.loginactivity.models.Word;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -50,6 +54,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.opencsv.CSVWriter;
+import com.squareup.picasso.Picasso;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -73,9 +78,10 @@ public class TopicDetailActivity extends AppCompatActivity {
     CircleIndicator3 circleIndicator3;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
+    ArrayList<ParticipantScore> participantScores = new ArrayList<>();
     Button btn_Flashcard, btn_test, btn_fill_word;
 
-    ImageView btn_back, btn_more ;
+    ImageView btn_back, btn_more, btn_leaderboard ;
 
     Topic topic;
 
@@ -95,9 +101,11 @@ public class TopicDetailActivity extends AppCompatActivity {
 
         initUI();
         initListener();
+        retrieveLeaderboardData();
     }
 
     private void initUI() {
+        btn_leaderboard = findViewById(R.id.btn_leaderboard);
         btn_fill_word = findViewById(R.id.btn_fill_word);
         btn_Flashcard = findViewById(R.id.btn_FLashcard);
         btn_back = findViewById(R.id.btn_back);
@@ -317,6 +325,49 @@ public class TopicDetailActivity extends AppCompatActivity {
         btn_fill_word.setOnClickListener(v -> {
             openMenuFillWord();
         });
+
+        btn_leaderboard.setOnClickListener(v -> {
+            updateLeaderBoardDialog();
+        });
+    }
+
+    private void updateLeaderBoardDialog() {
+        final Dialog resultDialog = new Dialog(this, R.style.DialogNoBorders);
+        resultDialog.setContentView(R.layout.layout_leaderboard_dialog);
+
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams();
+        lp.copyFrom(resultDialog.getWindow().getAttributes());
+        lp.width = WindowManager.LayoutParams.MATCH_PARENT;
+        lp.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+        resultDialog.getWindow().setAttributes(lp);
+
+        ImageView viewAvatarFirst = resultDialog.findViewById(R.id.viewAvatarFirst);
+        ImageView viewAvatarSecond = resultDialog.findViewById(R.id.viewAvatarSecond);
+        ImageView viewAvatarThird = resultDialog.findViewById(R.id.viewAvatarThird);
+
+        TextView txtFirst = resultDialog.findViewById(R.id.txtFirst);
+        TextView txtSecond = resultDialog.findViewById(R.id.txtSecond);
+        TextView txtThird = resultDialog.findViewById(R.id.txtThird);
+
+        ParticipantScore firstPlace = participantScores.get(0);
+        txtFirst.setText(firstPlace.userName + " - " + firstPlace.totalScore + " point");
+        Picasso.get().load(firstPlace.userImage).into(viewAvatarFirst);
+
+
+        if (participantScores.size() > 1) {
+            ParticipantScore secondPlace = participantScores.get(1);
+            txtSecond.setText(secondPlace.userName + " - " + secondPlace.totalScore + " point");
+            Picasso.get().load(secondPlace.userImage).into(viewAvatarSecond);
+        }
+
+        if (participantScores.size() > 2) {
+            ParticipantScore thirdPlace = participantScores.get(2);
+            txtThird.setText(thirdPlace.userName + " - " + thirdPlace.totalScore + " point");
+            Picasso.get().load(thirdPlace.userImage).into(viewAvatarThird);
+        }
+
+        resultDialog.show();
     }
 
     private void openMenuFillWord() {
@@ -475,7 +526,6 @@ public class TopicDetailActivity extends AppCompatActivity {
                 ActivityCompat.requestPermissions(this, new String[]{WRITE_EXTERNAL_STORAGE}, PERMISSION_REQUEST_CODE);
             }
         } else {
-            // Đối với Android 10 (Q) trở lên, không cần quyền WRITE_EXTERNAL_STORAGE để ghi vào MediaStore
             ContentValues contentValues = new ContentValues();
             contentValues.put(MediaStore.MediaColumns.DISPLAY_NAME, topic.getTitle() + ".csv");
             contentValues.put(MediaStore.MediaColumns.MIME_TYPE, "text/csv");
@@ -560,9 +610,7 @@ public class TopicDetailActivity extends AppCompatActivity {
             DatabaseReference topicRef = FirebaseDatabase.getInstance().getReference("Topic/" + currentTopicID);
             DatabaseReference folderRef = FirebaseDatabase.getInstance().getReference("Folder");
 
-            // Xóa topic từ cơ sở dữ liệu
             topicRef.removeValue().addOnSuccessListener(unused -> {
-                // Xóa topic ID từ tất cả các folder liên quan
                 folderRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -577,16 +625,57 @@ public class TopicDetailActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-                        // Xử lý lỗi
                     }
                 });
 
-                // Đóng dialog và quay lại màn hình trước
                 onBackPressed();
                 finish();
             });
         });
 
         dialog.show();
+    }
+
+    private void retrieveLeaderboardData() {
+        DatabaseReference topicRef = FirebaseDatabase.getInstance().getReference("Topic").child(topic.getId()).child("participant");
+
+        topicRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for (DataSnapshot participantSnapshot : dataSnapshot.getChildren()) {
+                    Participant participant = participantSnapshot.getValue(Participant.class);
+                    if (participant != null) {
+                        int totalScore = participant.getFillWordResult() + participant.getMultipleChoicesResult();
+                        participantScores.add(new ParticipantScore(participant.getUserID(), totalScore));
+                    }
+                }
+
+                Collections.sort(participantScores, (p1, p2) -> p2.totalScore - p1.totalScore);
+                List<ParticipantScore> topThreeParticipants = participantScores.subList(0, Math.min(participantScores.size(), 3));
+
+                for (ParticipantScore participantScore : topThreeParticipants) {
+                    DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("User").child(participantScore.userID);
+                    userRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            User user = snapshot.getValue(User.class);
+                            if (user != null) {
+                                participantScore.userName = user.getDisplayName();
+                                participantScore.userImage = user.getAvtUrl();
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+            }
+        });
     }
 }

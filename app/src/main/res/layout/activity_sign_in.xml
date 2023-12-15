@@ -154,6 +154,7 @@
             android:layout_gravity="center_horizontal"
             android:paddingStart="@dimen/_8pxh"
             android:paddingEnd="@dimen/_8pxh"
+            android:inputType="textPassword"
             android:layout_marginStart="@dimen/_15pxh"
             android:layout_marginTop="@dimen/_7pxv"
             android:layout_marginEnd="@dimen/_15pxh"

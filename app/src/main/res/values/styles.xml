@@ -11,6 +11,12 @@
         <item name="android:windowBackground">@drawable/rounded_corner</item>
         <item name="android:windowMinWidthMajor">120%</item> <!-- Chiếm 80% chiều ngang màn hình -->
     </style>
+    <style name="DialogNoBorders" parent="Theme.AppCompat.Dialog">
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+    </style>
     <style name="btnSolidRounded">
         <item name="android:textSize">@dimen/_32pxh</item>
         <item name="android:textColor">@color/white_A700</item>

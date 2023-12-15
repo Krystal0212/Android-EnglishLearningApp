@@ -86,12 +86,12 @@
     <string name="lbl_2">2</string>
     <string name="lbl_3">3</string>
     <string name="lbl_display_name">Display name</string>
-    <string name="lbl_first_name">First Name</string>
-    <string name="lbl_second_name">Second Name</string>
+    <string name="lbl_first_name">No data</string>
+    <string name="lbl_second_name">No data</string>
     <string name="lbl_username">Username</string>
     <string name="lbl_my_profile"> My profile</string>
     <string name="lbl_a_gmail_com">a@gmail.com</string>
-    <string name="lbl_third_name">Third Name</string>
+    <string name="lbl_third_name">No data</string>
     <string name="lbl_change_password">Change Password</string>
     <string name="lbl_username2">username</string>
 
