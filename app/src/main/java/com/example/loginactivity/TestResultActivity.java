@@ -40,7 +40,7 @@ public class TestResultActivity extends AppCompatActivity {
         questions = intent.getParcelableArrayListExtra("questions");
 
         if (incorrectlyAnsweredQuestions.size() == questions.size()) {
-            // ko lam gi ca, de layout lo
+            txtResult.setText("Completed 0/" + questions.size());
 
         } else if (incorrectlyAnsweredQuestions.size() >= 0){
             int rightNumber = questions.size() - incorrectlyAnsweredQuestions.size();

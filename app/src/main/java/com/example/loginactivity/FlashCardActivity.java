@@ -147,25 +147,6 @@ public class FlashCardActivity extends AppCompatActivity {
 
         viewPager2.registerOnPageChangeCallback(UpdatePage);
 
-        viewPager2.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        initialX = event.getX();
-                        return true;
-                    case MotionEvent.ACTION_UP:
-                        finalX = event.getX();
-                        if (isLastPage && (finalX > initialX)) {
-                            // Người dùng vuốt sang phải ở trang cuối cùng
-                            Intent intent = new Intent(FlashCardActivity.this, FlashCardResult.class);
-                            startActivity(intent);
-                        }
-                        break;
-                }
-                return false;
-            }
-        });
 
         ViewPager2.OnPageChangeCallback onPageChangeCallback = new ViewPager2.OnPageChangeCallback() {
             @Override
