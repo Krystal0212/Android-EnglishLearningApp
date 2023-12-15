@@ -167,14 +167,14 @@ public class TopicDetailActivity extends AppCompatActivity {
                 btn_all.setOnClickListener(view -> {
                     dialog.dismiss();
                     Intent intent = new Intent(this, FlashCardActivity.class);
-                    intent.putExtra("words", topic.getWord());
+                    intent.putParcelableArrayListExtra("words", topic.getWord());
                     startActivity(intent);
                 });
 
                 btn_marked.setOnClickListener(view -> {
                     dialog.dismiss();
                     Intent intent = new Intent(this, FlashCardActivity.class);
-                    intent.putExtra("words", markedWords);
+                    intent.putParcelableArrayListExtra("words", markedWords);
                     startActivity(intent);
                 });
 

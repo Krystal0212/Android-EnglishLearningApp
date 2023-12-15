@@ -31,6 +31,13 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/baseline_leaderboard_24"
+            android:layout_marginRight="5dp"
+            android:id="@+id/btn_leaderboard"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:src="@drawable/baseline_more_horiz_24"
             android:id="@+id/btn_more"/>
 
@@ -60,10 +67,19 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Test Vocabulary"
+        android:text="Test by multiple choices"
         android:textColor="@color/black"
         android:layout_marginTop="20dp"
         android:id="@+id/btn_test"/>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Test by typing words"
+        android:background="@drawable/custom_input"
+        android:textColor="@color/black"
+        android:layout_marginTop="20dp"
+        android:id="@+id/btn_fill_word"/>
 
     <TextView
         android:layout_width="wrap_content"

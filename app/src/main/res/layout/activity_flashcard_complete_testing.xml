@@ -5,31 +5,23 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:orientation="vertical" style="@style/groupStylewhite_A700">
-        <ImageButton
-            android:background="@drawable/rectangle_bg_deep_orange_200_border_black_900_radius_12"
-            android:id="@+id/btnArrowleft"
-            android:layout_gravity="start"
-            android:layout_height="@dimen/_24pxh"
-            android:layout_marginEnd="@dimen/_10pxh"
-            android:layout_marginStart="@dimen/_8pxh"
-            android:layout_marginTop="@dimen/_17pxv"
-            android:layout_width="@dimen/_24pxh"
-            android:paddingHorizontal="@dimen/_6pxh"
-            android:paddingVertical="@dimen/_6pxv"
-            android:scaleType="fitCenter"
-            android:src="@drawable/img_arrowleft_black_900" tools:ignore="ContentDescription"/>
-        <TextView android:ellipsize="end" android:id="@+id/txtCongrats"
-            android:layout_gravity="center_horizontal"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_30pxh"
-            android:layout_marginStart="@dimen/_30pxh"
-            android:layout_marginTop="@dimen/_31pxv"
-            android:layout_width="wrap_content"
-            android:lineSpacingExtra="@dimen/_9pxh"
-            android:singleLine="true"
-            android:text="@string/lbl_congrats"
-            style="@style/txtOpenSansromanbold24" tools:text="@string/lbl_congrats"/>
-        <TextView android:gravity="center_horizontal"
+
+    <TextView
+        android:id="@+id/txtCongrats"
+        style="@style/txtOpenSansromanbold24"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="@dimen/_30pxh"
+        android:layout_marginTop="@dimen/_31pxv"
+        android:layout_marginEnd="@dimen/_30pxh"
+        android:ellipsize="end"
+        android:lineSpacingExtra="@dimen/_9pxh"
+        android:singleLine="true"
+        android:text="@string/lbl_congrats"
+        tools:text="@string/lbl_congrats" />
+
+    <TextView android:gravity="center_horizontal"
             android:id="@+id/txtSentenceRight"
             android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_30pxh"
@@ -37,8 +29,9 @@
             android:layout_marginTop="@dimen/_9pxv"
             android:layout_width="match_parent"
             android:textStyle="bold"
+            android:textSize="25sp"
             android:lineSpacingExtra="@dimen/_8pxh"
-            android:text="You got no point for this attemp "
+            android:text="Life is not easy, right ?"
             style="@style/txtOpenSansromanregular17"/>
 
     <TextView
