@@ -20,7 +20,7 @@
             android:layout_marginStart="@dimen/_29pxh"
             android:layout_marginEnd="@dimen/_29pxh">
 
-            <ImageView
+            <pl.droidsonroids.gif.GifImageView
                 android:id="@+id/imageWaitingCat"
                 android:layout_width="@dimen/_133pxh"
                 android:layout_height="@dimen/_131pxh"

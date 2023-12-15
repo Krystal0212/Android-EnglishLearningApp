@@ -5,6 +5,7 @@
     android:background="@drawable/bg_white_corner_16"
     android:layout_margin="16dp"
     android:orientation="vertical">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -12,8 +13,9 @@
         android:padding="12dp"
         android:textSize="20dp"
         android:id="@+id/txtTitle"
-        android:textColor="@color/black"
-        android:background="@drawable/bg_blue_corner_top_leftright_16"
+        android:textColor="@color/white"
+        android:background="@color/light_blue_500"
+        style="@style/txtRubikWetPaintregular20"
         android:gravity="center" />
 
     <LinearLayout
@@ -29,7 +31,8 @@
             android:text="Text"
             android:id="@+id/txt_message"
             android:gravity="center"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:textColor="@color/black_900" />
 
 
         <LinearLayout
@@ -37,6 +40,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -45,8 +49,9 @@
                 android:textSize="14sp"
                 android:layout_marginRight="10dp"
                 android:id="@+id/btn_all"
-                android:textColor="@color/black"
-                android:background="@drawable/bg_green_corner_16"/>
+                android:textColor="@color/white"
+                android:background="@color/green_600"/>
+
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -54,11 +59,10 @@
                 android:textSize="14sp"
                 android:id="@+id/btn_marked"
                 android:text="Learn Marked"
-                android:textColor="@color/black"
-                android:background="@drawable/bg_blue_corner_16"/>
+                android:textColor="@color/white"
+                android:background="@color/deep_orange_A100"/>
         </LinearLayout>
 
     </LinearLayout>
-
 
 </LinearLayout>

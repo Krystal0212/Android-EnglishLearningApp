@@ -41,6 +41,8 @@ public class TestVocabularyActivity extends AppCompatActivity {
     AdapterWordListTest adapter;
     ProgressBar progressBar;
     ArrayList<Word> words = new ArrayList<>();
+
+    ArrayList<Word> marked_words = new ArrayList<>();
     ArrayList<Word> answeredQuestions;
     ViewPager2 viewPager2;
     ArrayList<Question> questions = new ArrayList<>();
@@ -192,7 +194,7 @@ public class TestVocabularyActivity extends AppCompatActivity {
         viewPager2.setPageTransformer(new ZoomOutPageTransformer());
     }
 
-    private String[] getThreeDifferentWords(String currentWord) {
+    private String[] getThreeDifferentWords(Word currentWord) {
         String[] otherWords = new String[3];
 
         ArrayList<String> allWords = new ArrayList<>();

@@ -5,15 +5,17 @@
     android:background="@drawable/bg_white_corner_16"
     android:layout_margin="16dp"
     android:orientation="vertical">
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Type new information"
+        style="@style/txtRubikWetPaintregular20"
         android:padding="12dp"
         android:textSize="20dp"
         android:id="@+id/txtTitle"
-        android:textColor="@color/black"
-        android:background="@drawable/bg_blue_corner_top_leftright_16"
+        android:textColor="@color/white"
+        android:background="@color/light_blue_500"
         android:gravity="center" />
 
     <LinearLayout
@@ -27,14 +29,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/edt_new_information"
-            android:background="@drawable/custom_input"/>
-
+            android:background="@drawable/custom_input"
+            android:textColor="@color/black_900"/>
 
         <LinearLayout
             android:paddingTop="12dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal">
+
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -43,8 +46,9 @@
                 android:textSize="14sp"
                 android:layout_marginRight="10dp"
                 android:id="@+id/btnCancel"
-                android:textColor="@color/black"
-                android:background="@drawable/bg_gray_corner_16"/>
+                android:textColor="@color/white"
+                android:background="@color/gray_400"/>
+
             <androidx.appcompat.widget.AppCompatButton
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -52,11 +56,10 @@
                 android:textSize="14sp"
                 android:id="@+id/btnApply"
                 android:text="Apply"
-                android:textColor="@color/black"
-                android:background="@drawable/bg_blue_corner_16"/>
+                android:textColor="@color/white"
+                android:background="@color/green_600"/>
         </LinearLayout>
 
     </LinearLayout>
-
 
 </LinearLayout>
