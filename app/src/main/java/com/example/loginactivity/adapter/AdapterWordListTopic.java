@@ -23,7 +23,6 @@ public class AdapterWordListTopic extends RecyclerView.Adapter<AdapterWordListTo
     ArrayList<Word> words;
     public TextToSpeechHelper textToSpeechHelper;
     public ArrayList<Word> markedWords = new ArrayList<>();
-
     private RecyclerView recyclerView;
 
     public AdapterWordListTopic(Context context, ArrayList<Word> words, RecyclerView recyclerView) {

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Các view khác của bạn -->
+    <LinearLayout android:id="@+id/llTheme"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_gravity="center"
+        android:layout_height="match_parent"
+        android:layout_marginBottom="@dimen/_27pxv"
+        android:layout_marginEnd="@dimen/_9pxh"
+        android:layout_marginStart="@dimen/_8pxh"
+        android:layout_marginTop="@dimen/_80pxv"
+        android:layout_width="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/llTheme2"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent" android:orientation="horizontal">
+            <ImageButton
+                android:background="@drawable/rectangle_bg_deep_orange_200_border_black_900_radius_12"
+                android:id="@+id/btnBack"
+                android:layout_height="@dimen/_24pxh"
+                android:layout_gravity="center_vertical"
+                android:layout_width="@dimen/_24pxh"
+                android:paddingHorizontal="@dimen/_6pxh"
+                android:paddingVertical="@dimen/_6pxv"
+                android:scaleType="fitCenter"
+                android:src="@drawable/img_arrowleft_black_900" tools:ignore="ContentDescription"/>
+            <TextView android:ellipsize="end"
+                android:id="@+id/txtVocabularyQuiz"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.89"
+                android:layout_width="0dp"
+                android:lineSpacingExtra="@dimen/_9pxh"
+                android:singleLine="true"
+                android:text="Fill in the blank Test"
+                android:gravity="center"
+                style="@style/txtOpenSansromansemibold24" tools:text="Fill in the blank Test"/>
+        </LinearLayout>
+        <ProgressBar android:id="@+id/progressBarComponent"
+            android:indeterminate="false"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_4pxv"
+            android:layout_width="match_parent" android:max="100"
+            android:minHeight="@dimen/_11pxv" android:progress="48"
+            android:progressDrawable="@drawable/layer_list_bg_gray_401_border_gray_901_radius_tl_6_tr_6_bl_5_br_6"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"/>
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12/20"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center_horizontal" />
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/viewPager2"
+            android:layout_width="@dimen/_336pxh"
+            android:layout_height="@dimen/_600pxv"
+            android:layout_marginTop="@dimen/_10pxh"
+            android:layout_marginBottom="@dimen/_10pxh"
+            android:layout_gravity="center_horizontal">
+        </androidx.viewpager2.widget.ViewPager2>
+
+    </LinearLayout>
+
+</ScrollView>

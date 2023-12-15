@@ -28,6 +28,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -72,7 +73,7 @@ public class TopicDetailActivity extends AppCompatActivity {
     CircleIndicator3 circleIndicator3;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
-    Button btn_Flashcard, btn_test;
+    Button btn_Flashcard, btn_test, btn_fill_word;
 
     ImageView btn_back, btn_more ;
 
@@ -97,6 +98,7 @@ public class TopicDetailActivity extends AppCompatActivity {
     }
 
     private void initUI() {
+        btn_fill_word = findViewById(R.id.btn_fill_word);
         btn_Flashcard = findViewById(R.id.btn_FLashcard);
         btn_back = findViewById(R.id.btn_back);
         btn_more = findViewById(R.id.btn_more);
@@ -311,6 +313,82 @@ public class TopicDetailActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+
+        btn_fill_word.setOnClickListener(v -> {
+            openMenuFillWord();
+        });
+    }
+
+    private void openMenuFillWord() {
+        View viewDialog = getLayoutInflater().inflate(R.layout.layout_bottom_sheet_fill_words, null);
+
+        final BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(this);
+        bottomSheetDialog.setContentView(viewDialog);
+        bottomSheetDialog.show();
+
+        Button btn_cancel = viewDialog.findViewById(R.id.btn_cancel);
+        Button btn_apply = viewDialog.findViewById(R.id.btn_Apply);
+        btn_cancel.setOnClickListener(v -> bottomSheetDialog.dismiss());
+
+        boolean shuffle_status = false, feedback_status = false , swap_status = false;
+        SwitchCompat switch_shuffle = viewDialog.findViewById(R.id.switch_shuffle);
+        SwitchCompat switch_feedback = viewDialog.findViewById(R.id.switch_feedback);
+        SwitchCompat switch_swap = viewDialog.findViewById(R.id.switch_swap);
+
+        btn_apply.setOnClickListener(v -> {
+            ArrayList<Word> markedWords = adapterWordListTopic.markedWords;
+            if(markedWords.isEmpty()) {
+                // khong co word nao trong danh sach marked
+                Intent intent = new Intent(this, FillWordsTestActivity.class);
+                intent.putExtra("shuffle", switch_shuffle.isChecked());
+                intent.putExtra("feedback", switch_feedback.isChecked());
+                intent.putExtra("swap", switch_swap.isChecked());
+                intent.putExtra("topic", topic);
+                intent.putParcelableArrayListExtra("words", topic.getWord());
+                intent.putExtra("title", topic.getTitle());
+                startActivity(intent);
+            } else {
+                //co it nhat 1 word
+                // tien hanh hỏi
+                final Dialog dialog = new Dialog(TopicDetailActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.flashcard_mode_dialog);
+                Window window = dialog.getWindow();
+                window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+                window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                TextView txt_message = dialog.findViewById(R.id.txt_message);
+                txt_message.setText("Learn all words or learn your " + markedWords.size() + " marked words ?");
+
+                Button btn_all = dialog.findViewById(R.id.btn_all);
+                Button btn_marked = dialog.findViewById(R.id.btn_marked);
+
+                btn_all.setOnClickListener(view -> {
+                    dialog.dismiss();
+                    Intent intent = new Intent(this, FillWordsTestActivity.class);
+                    intent.putExtra("shuffle", switch_shuffle.isChecked());
+                    intent.putExtra("feedback", switch_feedback.isChecked());
+                    intent.putExtra("swap", switch_swap.isChecked());
+                    intent.putExtra("topic", topic);
+                    intent.putParcelableArrayListExtra("words", topic.getWord());
+                    startActivity(intent);
+                });
+
+                btn_marked.setOnClickListener(view -> {
+                    dialog.dismiss();
+                    Intent intent = new Intent(this, FillWordsTestActivity.class);
+                    intent.putExtra("shuffle", switch_shuffle.isChecked());
+                    intent.putExtra("feedback", switch_feedback.isChecked());
+                    intent.putExtra("swap", switch_swap.isChecked());
+                    intent.putExtra("topic", topic);
+                    intent.putParcelableArrayListExtra("words", markedWords);
+                    startActivity(intent);
+                });
+
+                dialog.show();
+            }
+        });
+
     }
 
     private void clickOpenBottomSheet() {

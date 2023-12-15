@@ -6,6 +6,11 @@
         <item name="android:fontFamily">@font/rubik_bubbles</item>
         <item name="android:textFontWeight" tools:targetApi="p">400</item>
     </style>
+    <style name="RoundedDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@drawable/rounded_corner</item>
+        <item name="android:windowMinWidthMajor">120%</item> <!-- Chiếm 80% chiều ngang màn hình -->
+    </style>
     <style name="btnSolidRounded">
         <item name="android:textSize">@dimen/_32pxh</item>
         <item name="android:textColor">@color/white_A700</item>

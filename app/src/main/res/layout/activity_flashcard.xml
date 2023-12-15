@@ -44,6 +44,7 @@
             android:textSize="20sp"
             android:textStyle="bold"
             android:thumb="@drawable/switch_thumb_selector"
+            app:track="@drawable/switch_track_selector"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

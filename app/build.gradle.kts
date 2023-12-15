@@ -83,5 +83,5 @@ dependencies {
     implementation ("androidx.viewpager2:viewpager2:1.0.0")
     implementation ("androidx.recyclerview:recyclerview:1.2.1")
     implementation ("com.opencsv:opencsv:5.0")
-
+    implementation ("com.intuit.sdp:sdp-android:1.0.6")
 }
