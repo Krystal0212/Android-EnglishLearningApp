@@ -6,7 +6,6 @@ import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -30,6 +29,9 @@ public class AdapterWordListTest extends RecyclerView.Adapter<AdapterWordListTes
     public TextToSpeechHelper textToSpeechEnglishHelper, textToSpeechVietnameseHelper;
     ViewPager2 viewPager2;
     private OnAnswerClickListener onAnswerClickListener;
+
+    private Boolean isEnglishMode = false;
+    private Boolean isVietnameseMode = false;
 
     private Handler mHandler = new Handler();
 
@@ -68,9 +70,28 @@ public class AdapterWordListTest extends RecyclerView.Adapter<AdapterWordListTes
         textToSpeechEnglishHelper = new TextToSpeechHelper(context);
         textToSpeechVietnameseHelper = new TextToSpeechHelper(context);
 
-        holder.term.setText(question.getEnglish());
+        if (question.getTestMode().equals("english")) {
+            isEnglishMode = true;
+        } else if (question.getTestMode().equals("vietnamese")) {
+            isVietnameseMode = true;
+        }
+
+        if (isEnglishMode) {
+            holder.questionTerm.setText(question.getEnglish());
+
+            holder.sound.setOnClickListener(view -> {
+                textToSpeechEnglishHelper.setLanguage(Locale.ENGLISH);
+                textToSpeechEnglishHelper.speak(question.getEnglish());
+            });
+        } else if (isVietnameseMode) {
+            holder.questionTerm.setText(question.getVietnamese());
+
+            holder.sound.setOnClickListener(view -> {
+                textToSpeechEnglishHelper.setLanguage(new Locale("vi", "VN"));
+                textToSpeechEnglishHelper.speak(question.getVietnamese());
+            });
+        }
         holder.description.setText(question.getDescription());
-        String rightAnswer = question.getVietnamese();
 
         String[] options = question.getAnswerOptions();
         int rightPosition = question.getRightAnswerPosition();
@@ -96,7 +117,8 @@ public class AdapterWordListTest extends RecyclerView.Adapter<AdapterWordListTes
                 break;
             default:
                 break;
-        };
+        }
+        ;
 
         AppCompatButton finalRightButton = rightButton;
         holder.button1.setOnClickListener(v -> {
@@ -119,10 +141,7 @@ public class AdapterWordListTest extends RecyclerView.Adapter<AdapterWordListTes
             disableAllButtons(holder);
         });
 
-        holder.sound.setOnClickListener(view -> {
-            textToSpeechEnglishHelper.setLanguage(Locale.ENGLISH);
-            textToSpeechEnglishHelper.speak(question.getEnglish());
-        });
+
     }
 
     private void checkAnswer(AppCompatButton buttonChoosen, AppCompatButton rightButton, Question question) {
@@ -149,7 +168,7 @@ public class AdapterWordListTest extends RecyclerView.Adapter<AdapterWordListTes
                 public void run() {
                     textToSpeechEnglishHelper.speak(question.getEnglish());
                     textToSpeechVietnameseHelper.setLanguage(new Locale("vi", "VN"));
-                    textToSpeechVietnameseHelper.speak((String) rightButton.getText());
+                    textToSpeechVietnameseHelper.speak(question.getVietnamese());
                 }
             }, 1000);
 
@@ -168,7 +187,7 @@ public class AdapterWordListTest extends RecyclerView.Adapter<AdapterWordListTes
                 public void run() {
                     textToSpeechEnglishHelper.speak(question.getEnglish());
                     textToSpeechVietnameseHelper.setLanguage(new Locale("vi", "VN"));
-                    textToSpeechVietnameseHelper.speak((String) rightButton.getText());
+                    textToSpeechVietnameseHelper.speak(question.getVietnamese());
                 }
             }, 1000);
 
@@ -178,13 +197,6 @@ public class AdapterWordListTest extends RecyclerView.Adapter<AdapterWordListTes
                 onAnswerClickListener.onAnswerClick(true);
             }
         }
-    }
-
-    public Question getCurrentQuestion(int position) {
-        if (position >= 0 && position < questions.size()) {
-            return questions.get(position);
-        }
-        return null;
     }
 
     public void disableAllButtons(WordListViewHolder holder) {
@@ -206,19 +218,15 @@ public class AdapterWordListTest extends RecyclerView.Adapter<AdapterWordListTes
         return incorrectlyAnsweredQuestions;
     }
 
-    public void setIncorrectlyAnsweredQuestions(ArrayList<Question> incorrectlyAnsweredQuestions) {
-        this.incorrectlyAnsweredQuestions = incorrectlyAnsweredQuestions;
-    }
-
     public class WordListViewHolder extends RecyclerView.ViewHolder {
-        public TextView term, description;
+        public TextView questionTerm, description;
         public LinearLayout frameTest;
         public ImageView sound;
         public AppCompatButton button1, button2, button3, button4;
 
         public WordListViewHolder(@NonNull View itemView) {
             super(itemView);
-            term = itemView.findViewById(R.id.txtTerm);
+            questionTerm = itemView.findViewById(R.id.txtQuestionTitle);
             description = itemView.findViewById(R.id.txtDescription);
             frameTest = itemView.findViewById(R.id.frameTest);
             button1 = itemView.findViewById(R.id.btn1);

@@ -2,6 +2,7 @@ package com.example.loginactivity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -28,6 +29,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -54,6 +57,7 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import me.relex.circleindicator.CircleIndicator3;
@@ -180,12 +184,131 @@ public class TopicDetailActivity extends AppCompatActivity {
         });
 
         btn_test.setOnClickListener(v -> {
+
+
+            final Dialog dialog = new Dialog(TopicDetailActivity.this);
+            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+            dialog.setContentView(R.layout.test_mode_dialog);
+            Window window = dialog.getWindow();
+            window.setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+            window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+            TextView txt_message = dialog.findViewById(R.id.txt_message);
+
+            RadioButton radio_eng_viet = dialog.findViewById(R.id.radio_eng_viet);
+            RadioButton radio_viet_eng = dialog.findViewById(R.id.radio_viet_eng);
+            SwitchCompat switch_shuffle = dialog.findViewById(R.id.switch_shuffle);
+            RadioGroup radioGroup = dialog.findViewById(R.id.radio_group);
+
+            Button btn_all = dialog.findViewById(R.id.btn_all);
+            Button btn_marked = dialog.findViewById(R.id.btn_marked);
+            Button btn_test = dialog.findViewById(R.id.btn_take);
+
+            ArrayList<Word> words = topic.getWord();
             ArrayList<Word> markedWords = adapterWordListTopic.markedWords;
+
+            radio_eng_viet.setOnClickListener(i ->{
+                radio_viet_eng.setTextColor(ContextCompat.getColor(this, R.color.gray_700));
+                radio_eng_viet.setTextColor(ContextCompat.getColor(this, R.color.black));
+            });
+            radio_viet_eng.setOnClickListener(i->{
+                radio_viet_eng.setTextColor(ContextCompat.getColor(this, R.color.black));
+                radio_eng_viet.setTextColor(ContextCompat.getColor(this, R.color.gray_700));
+            });
+
             if (markedWords.isEmpty()) {
                 // khong co word nao trong danh sach marked
-                Intent intent = new Intent(this, TestVocabularyActivity.class);
-                intent.putParcelableArrayListExtra("words", topic.getWord());
-                startActivity(intent);
+                txt_message.setText("Choose modes for your test");
+
+
+                btn_marked.setVisibility(View.GONE);
+                btn_all.setVisibility(View.GONE);
+                btn_test.setOnClickListener(i ->{
+                    dialog.dismiss();
+
+                    String testMode = null;
+                    if(radio_eng_viet.isChecked()){
+                        testMode = "english";
+                    }
+                    else if (radio_viet_eng.isChecked()){
+                        testMode = "vietnamese";
+                    }
+
+                    if (switch_shuffle.isChecked()) {
+                        // Shuffle the array
+                        Collections.shuffle(words);
+                    }
+
+                    Intent intent = new Intent(this, TestVocabularyActivity.class);
+                    intent.putParcelableArrayListExtra("words", words);
+                    intent.putExtra("test_mode",testMode);
+                    startActivity(intent);
+                });
+                dialog.show();
+            }
+            else {
+                // co it nhat 1 word tien hanh hỏi
+                txt_message.setText("Test all words or test your " + markedWords.size() + " marked words ?");
+
+                btn_test.setVisibility(View.GONE);
+
+                btn_all.setOnClickListener(view -> {
+
+                    if (radioGroup.getCheckedRadioButtonId() != -1) {
+                        dialog.dismiss();
+
+                        String testMode = null;
+                        if(radio_eng_viet.isChecked()){
+                            testMode = "english";
+                           }
+                        else if (radio_viet_eng.isChecked()){
+                            testMode = "vietnamese"; }
+
+                        if (switch_shuffle.isChecked()) {
+                            // Shuffle the array
+                            Collections.shuffle(words);
+                        }
+
+                        Intent intent = new Intent(this, TestVocabularyActivity.class);
+                        intent.putExtra("words", words);
+                        intent.putExtra("test_mode",testMode);
+                        startActivity(intent);
+                    } else {
+                        // Notify the user to choose a test mode
+                        Toast.makeText(this, "Please choose a test mode", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+                btn_marked.setOnClickListener(view -> {
+                    if (radioGroup.getCheckedRadioButtonId() != -1) {
+                        dialog.dismiss();
+
+                        String testMode = null;
+                        if(radio_eng_viet.isChecked()){
+                            testMode = "english";
+                        }
+                        else if (radio_viet_eng.isChecked()){
+                            testMode = "vietnamese";
+                        }
+
+                        if (switch_shuffle.isChecked()) {
+                            // Shuffle the array
+                            Collections.shuffle(markedWords);
+                        }
+
+                        Intent intent = new Intent(this, TestVocabularyActivity.class);
+                        intent.putExtra("words", words);
+                        intent.putExtra("marked_words", markedWords);
+                        intent.putExtra("test_mode",testMode);
+                        startActivity(intent);
+                    } else {
+                        // Notify the user to choose a test mode
+                        Toast.makeText(this, "Please choose a test mode", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+                dialog.show();
             }
         });
     }

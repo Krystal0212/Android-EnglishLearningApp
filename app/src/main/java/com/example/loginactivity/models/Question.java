@@ -11,12 +11,22 @@ public class Question extends Word implements Parcelable {
     private String secondOtherWord;
     private String thirdOtherWord;
     private int rightAnswerPosition;
+    private String testMode;
 
-    public Question(Word word, String[] otherWords) {
+    public String getTestMode() {
+        return testMode;
+    }
+
+    public void setTestMode(String testMode) {
+        this.testMode = testMode;
+    }
+
+    public Question(Word word, String[] otherWords, String testMode) {
         super(word);
         this.firstOtherWord = otherWords[0];
         this.secondOtherWord = otherWords[1];
         this.thirdOtherWord = otherWords[2];
+        this.testMode = testMode;
     }
 
     public String getThirdOtherWord() {
@@ -45,7 +55,12 @@ public class Question extends Word implements Parcelable {
 
     public String[] getAnswerOptions() {
         List<String> options = new ArrayList<>();
-        String rightAnswer = getVietnamese();
+
+        String rightAnswer = getEnglish();
+        if(testMode.equals("english")){
+            rightAnswer = getVietnamese();
+        }
+
         options.add(rightAnswer);
 
         options.add(firstOtherWord);

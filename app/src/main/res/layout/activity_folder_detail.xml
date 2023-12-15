@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="15dp"
-    android:background="@drawable/smoke_up"
+    android:background="@drawable/img_frog4"
     android:scaleType="centerCrop"
     tools:context=".fragment.HomeFragment">
     <LinearLayout

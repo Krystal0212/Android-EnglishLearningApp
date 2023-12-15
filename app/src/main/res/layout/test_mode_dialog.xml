@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_subtle_corner_16"
+    android:layout_margin="16dp"
+    android:orientation="vertical"
+    android:elevation="4dp"> <!-- Added shadow -->
+
+    <TextView
+        android:id="@+id/txtTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_header_corner_top_16"
+        android:fontFamily="@font/opensansromanbold"
+        android:gravity="center"
+        android:padding="12dp"
+        android:text="Message"
+        android:textColor="@color/black_900_75"
+        android:textSize="18sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp"> <!-- Updated padding -->
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Text"
+                android:id="@+id/txt_message"
+                android:gravity="center"
+                android:textSize="20sp"
+                />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/_15pxh"
+                android:layout_marginEnd="@dimen/_15pxh">
+                <TextView
+                    android:layout_weight="1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:text="@string/shuffle_mode"
+                    android:textColor="@color/black_900"
+                    android:textSize="20sp"/>
+
+
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/switch_shuffle"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center"
+                    android:padding="8dp"
+                    android:layout_weight="1"/>
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Choose your text mode "
+                android:layout_marginStart="@dimen/_15pxh"
+                android:layout_marginEnd="@dimen/_15pxh"
+                android:textColor="@color/black_900"
+                android:textSize="20sp"/>
+        </LinearLayout>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center_horizontal"
+            android:padding="8dp"
+            android:id="@+id/radio_group">
+
+            <RadioButton
+                android:id="@+id/radio_eng_viet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="English -> Vietnamese"
+                android:textColor="@color/gray_700"
+                android:textSize="20sp" />
+
+            <RadioButton
+                android:id="@+id/radio_viet_eng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/gray_700"
+                android:text="Vietnamese -> English" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:paddingTop="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Test all"
+                android:textSize="14sp"
+                android:layout_marginRight="8dp"
+                android:id="@+id/btn_all"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_button_rounded"
+                android:elevation="2dp" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textSize="14sp"
+                android:id="@+id/btn_marked"
+                android:text="Test Marked"
+                android:textColor="@color/white"
+                android:background="@drawable/bg_button_rounded"
+                android:elevation="2dp" />
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Test"
+            android:id="@+id/btn_take"
+            android:layout_marginTop="8dp"
+            android:textColor="@color/white"
+            android:background="@drawable/bg_button_rounded"
+            android:elevation="2dp" />
+    </LinearLayout>
+</LinearLayout>

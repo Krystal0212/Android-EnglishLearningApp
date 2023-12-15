@@ -14,7 +14,6 @@ import java.util.ArrayList;
 public class TestResultActivity extends AppCompatActivity {
     ArrayList<Question> incorrectlyAnsweredQuestions = new ArrayList<>();
     ArrayList<Question> questions = new ArrayList<>();
-
     Button btn_Topic;
     TextView txtResult, txtPoint;
     private static int point = 500;

@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:padding="15dp"
-    android:background="@drawable/banner_sample"
+    android:background="@drawable/img_frog2"
     tools:context=".fragment.HomeFragment">
 
     <TextView

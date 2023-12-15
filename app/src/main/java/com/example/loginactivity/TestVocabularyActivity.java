@@ -28,12 +28,13 @@ public class TestVocabularyActivity extends AppCompatActivity {
     AdapterWordListTest adapter;
     ProgressBar progressBar;
     ArrayList<Word> words = new ArrayList<>();
+    ArrayList<Word> marked_words = new ArrayList<>();
     ArrayList<Word> answeredQuestions;
     ViewPager2 viewPager2;
     ArrayList<Question> questions = new ArrayList<>();
     TextView status;
     ArrayList<Question> incorrectlyAnsweredQuestions = new ArrayList<>();
-
+    String testMode;
 
     private boolean isLastPage = false;
     private boolean isFirstPage = true;
@@ -43,11 +44,11 @@ public class TestVocabularyActivity extends AppCompatActivity {
         @Override
         public void run() {
             // chuyển trang
-            if(viewPager2.getCurrentItem() == words.size() - 1){
+            if (viewPager2.getCurrentItem() == words.size() - 1) {
                 Intent intent = new Intent(TestVocabularyActivity.this, TestResultActivity.class);
                 incorrectlyAnsweredQuestions = adapter.getIncorrectlyAnsweredQuestions();
                 intent.putParcelableArrayListExtra("incorrectlyAnsweredQuestions", incorrectlyAnsweredQuestions);
-                intent.putParcelableArrayListExtra("questions",questions);
+                intent.putParcelableArrayListExtra("questions", questions);
                 startActivity(intent);
                 finish();
 
@@ -56,6 +57,7 @@ public class TestVocabularyActivity extends AppCompatActivity {
             }
         }
     };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,9 +67,11 @@ public class TestVocabularyActivity extends AppCompatActivity {
         createAndSetQuestions();
     }
 
-    public void initSetUp(){
+    public void initSetUp() {
         Intent intent = getIntent();
         words = intent.getParcelableArrayListExtra("words");
+        marked_words = intent.getParcelableArrayListExtra("marked_words");
+        testMode = intent.getStringExtra("test_mode");
 
         viewPager2 = findViewById(R.id.viewPager2);
         btn_back = findViewById(R.id.btnBack);
@@ -87,6 +91,7 @@ public class TestVocabularyActivity extends AppCompatActivity {
             public void onPageScrollStateChanged(int state) {
                 super.onPageScrollStateChanged(state);
             }
+
             @Override
             public void onPageSelected(int position) {
                 super.onPageSelected(position);
@@ -94,18 +99,27 @@ public class TestVocabularyActivity extends AppCompatActivity {
                 status.setText(page);
 
                 int ratio = Math.round(1 * 100 / (float) adapter.getItemCount());
-                    progressBar.setProgress(progressBar.getProgress()+ratio);
+                progressBar.setProgress(progressBar.getProgress() + ratio);
             }
         };
 
         viewPager2.registerOnPageChangeCallback(UpdatePage);
     }
 
-    public void createAndSetQuestions(){
+    public void createAndSetQuestions() {
 
-        for(Word word : words){
-            String[] otherVietnameseWords = getThreeDifferentWords(word.getVietnamese());
-            questions.add(new Question(word, otherVietnameseWords));
+        if (marked_words != null) {
+//            if (marked_words.size() <= 4){
+                for (Word word : marked_words) {
+                    String[] otherWords = getThreeDifferentWords(word);
+                    questions.add(new Question(word, otherWords, testMode));
+                }
+//            }
+        } else {
+            for (Word word : words) {
+                String[] otherWords = getThreeDifferentWords(word);
+                questions.add(new Question(word, otherWords, testMode));
+            }
         }
 
         adapter = new AdapterWordListTest(this, questions, viewPager2);
@@ -127,21 +141,29 @@ public class TestVocabularyActivity extends AppCompatActivity {
         viewPager2.setPageTransformer(new ZoomOutPageTransformer());
     }
 
-    private String[] getThreeDifferentWords(String currentWord) {
+    private String[] getThreeDifferentWords(Word currentWord) {
         String[] otherWords = new String[3];
 
-        ArrayList<String> allVietnameseWords = new ArrayList<>();
+        ArrayList<String> allWords = new ArrayList<>();
 
-        for(Word word : words){
-            allVietnameseWords.add(word.getVietnamese());
+        for (Word word : words) {
+            if (testMode.equals("vietnamese")) {
+                allWords.add(word.getEnglish());
+            } else if (testMode.equals("english")) {
+                allWords.add(word.getVietnamese());
+            }
         }
 
-        allVietnameseWords.remove(currentWord);
+        if (testMode.equals("vietnamese")) {
+            allWords.remove(currentWord.getEnglish());
+        } else if (testMode.equals("english")) {
+            allWords.remove(currentWord.getVietnamese());
+        }
 
-        Collections.shuffle(allVietnameseWords);
+        Collections.shuffle(allWords);
 
         for (int i = 0; i < 3; i++) {
-            otherWords[i] = allVietnameseWords.get(i);
+            otherWords[i] = allWords.get(i);
         }
 
         return otherWords;

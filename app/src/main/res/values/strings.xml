@@ -107,4 +107,5 @@
     <string name="lbl_elephant">Elephant</string>
     <string name="lbl_con_voi">Con voi</string>
     <string name="lbl_level_3">Level 3</string>
+    <string name="shuffle_mode">Shuffle Mode</string>
 </resources>
