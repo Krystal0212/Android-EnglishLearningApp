@@ -56,19 +56,29 @@
         android:layout_height="40dp"
         app:ci_drawable="@drawable/bg_indicator_3" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Learn by flash card"
+        android:textAlignment="textStart"
         android:textColor="@color/black"
+        android:background="@drawable/background_item_2"
         android:layout_marginTop="20dp"
+        android:padding="12dp"
+        android:drawableStart="@drawable/flash_card_ic"
+        android:drawablePadding="15dp"
         android:id="@+id/btn_FLashcard"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Test by multiple choices"
         android:textColor="@color/black"
+        android:drawableStart="@drawable/multiple_choices_ic"
+        android:textAlignment="textStart"
+        android:drawablePadding="15dp"
+        android:padding="12dp"
+        android:background="@drawable/background_item_2"
         android:layout_marginTop="20dp"
         android:id="@+id/btn_test"/>
 
@@ -77,9 +87,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:background="@drawable/custom_button_blue"
+        android:drawablePadding="15dp"
+        android:padding="12dp"
+        android:drawableStart="@drawable/fill_word_ic"
+        android:textAlignment="textStart"
+        android:background="@drawable/background_item_2"
         android:text="Test by typing words"
-        android:textColor="@color/white" />
+        android:textColor="@color/black" />
 
     <TextView
         android:layout_width="wrap_content"

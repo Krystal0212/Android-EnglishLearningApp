@@ -1,23 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:gravity="center_horizontal"
-    android:id="@+id/linearRanking"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    android:orientation="vertical" style="@style/groupStylewhite_A700">
+
 
     <LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/linearTop3"
         style="@style/groupStylelight_blue_100cornerRadius"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_450pxh"
-        android:layout_marginStart="@dimen/_8pxh"
-        android:layout_marginTop="@dimen/_104pxv"
-        android:layout_marginEnd="@dimen/_9pxh"
-        android:layout_marginBottom="@dimen/_20pxv"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
@@ -149,8 +140,8 @@
                                 android:layout_width="@dimen/_15pxh"
                                 android:layout_height="@dimen/_15pxh"
                                 android:layout_alignBottom="@+id/imageTopOne"
-                                android:layout_marginStart="@dimen/_49pxh"
-                                android:layout_marginEnd="@dimen/_49pxh"
+                                android:layout_marginStart="@dimen/_45pxh"
+                                android:layout_marginEnd="@dimen/_45pxh"
                                 android:gravity="center"
                                 android:text="@string/lbl_1"
                                 tools:text="@string/lbl_1" />
@@ -177,8 +168,8 @@
                                 android:layout_height="@dimen/_84pxh"
                                 android:layout_gravity="start"
                                 android:scaleType="fitXY"
-                                android:src="@drawable/img_landscape"
                                 android:layout_marginStart="1dp"
+                                android:src="@drawable/img_top2"
                                 tools:ignore="ContentDescription"
                                 tools:src="@drawable/img_top2" />
 
@@ -371,4 +362,3 @@
 
 
     </LinearLayout>
-</LinearLayout>

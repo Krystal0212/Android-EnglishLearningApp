@@ -23,6 +23,7 @@ import com.example.loginactivity.TestResultActivity;
 import com.example.loginactivity.TestVocabularyActivity;
 import com.example.loginactivity.TextToSpeechHelper;
 import com.example.loginactivity.models.Participant;
+import com.example.loginactivity.models.RecentActivity;
 import com.example.loginactivity.models.TestResultFillWords;
 import com.example.loginactivity.models.Topic;
 import com.example.loginactivity.models.Word;
@@ -173,7 +174,9 @@ public class AdapterFillWords extends RecyclerView.Adapter<AdapterFillWords.Word
     public void updateScoreToFirebase(){
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String currentTopicID = topic.getId();
+        long currentTime = System.currentTimeMillis();
         DatabaseReference topicRef = FirebaseDatabase.getInstance().getReference("Topic");
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
         DatabaseReference participantsRef = topicRef.child(currentTopicID).child("participant");
         participantsRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -182,6 +185,7 @@ public class AdapterFillWords extends RecyclerView.Adapter<AdapterFillWords.Word
                     Participant participant = childSnapshot.getValue(Participant.class);
                     if (participant != null && participant.getUserID().equals(user.getUid())) {
                         int currentScore = participant.getFillWordResult();
+                        int currentMultipleChoicesScore = participant.getMultipleChoicesResult();
                         int newScore = totalScore;
                         // so sanh voi diem hien tai tren firebase
                         if (newScore > currentScore) {
@@ -193,6 +197,7 @@ public class AdapterFillWords extends RecyclerView.Adapter<AdapterFillWords.Word
                                         intent.putParcelableArrayListExtra("testResults", testResults);
                                         intent.putExtra("totalScore", totalScore);
                                         context.startActivity(intent);
+                                        userRef.child("recentActivity").setValue(new RecentActivity(topic.getTitle(), topic.getOwner(), currentTime, newScore + currentMultipleChoicesScore));
                                         ((Activity) context).finish();
                                     });
                         } else {

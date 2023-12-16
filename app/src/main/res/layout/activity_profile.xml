@@ -17,7 +17,7 @@
                 android:orientation="horizontal">
                 <ImageButton
                     android:background="@drawable/rectangle_bg_deep_orange_200_border_black_900_radius_12"
-                    android:id="@+id/btnArrowleft"
+                    android:id="@+id/btnBack"
                     android:layout_height="@dimen/_35pxh"
                     android:layout_width="@dimen/_35pxh"
                     app:layout_constraintTop_toTopOf="parent"

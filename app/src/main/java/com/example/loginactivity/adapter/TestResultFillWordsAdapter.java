@@ -55,9 +55,9 @@ public class TestResultFillWordsAdapter extends RecyclerView.Adapter<TestResultF
         }
 
         void bind(TestResultFillWords result) {
-            txtQuestion.setText(result.getWord().getEnglish()); // or getVietnamese based on your need
+            txtQuestion.setText(result.getWord().getEnglish());
             txtUserAnswer.setText(result.getUserAnswer());
-            txtCorrectAnswer.setText(result.getWord().getVietnamese()); // or getEnglish
+            txtCorrectAnswer.setText(result.getWord().getVietnamese());
             imgResult.setImageResource(result.isCorrect() ? R.drawable.green_checkmark_line_icon : R.drawable.red_x_line_icon);
         }
     }

@@ -18,6 +18,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.loginactivity.adapter.AdapterWordListTest;
 import com.example.loginactivity.models.Participant;
 import com.example.loginactivity.models.Question;
+import com.example.loginactivity.models.RecentActivity;
 import com.example.loginactivity.models.Topic;
 import com.example.loginactivity.models.Word;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -62,10 +63,12 @@ public class TestVocabularyActivity extends AppCompatActivity {
             if(viewPager2.getCurrentItem() == words.size() - 1){
                 topic = getIntent().getParcelableExtra("topic");
                 String currentTopicID = topic.getId();
+                long currentTime = System.currentTimeMillis();
                 incorrectlyAnsweredQuestions = adapter.getIncorrectlyAnsweredQuestions();
                 int rightNumber = questions.size() - incorrectlyAnsweredQuestions.size();
 
                 DatabaseReference topicRef = FirebaseDatabase.getInstance().getReference("Topic");
+                DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("User").child(user.getUid());
                 DatabaseReference participantsRef = topicRef.child(currentTopicID).child("participant");
                 participantsRef.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
@@ -74,6 +77,7 @@ public class TestVocabularyActivity extends AppCompatActivity {
                             Participant participant = childSnapshot.getValue(Participant.class);
                             if (participant != null && participant.getUserID().equals(user.getUid())) {
                                 int currentScore = participant.getMultipleChoicesResult();
+                                int currentFillWordScore = participant.getFillWordResult();
                                 int newScore = rightNumber * 500;
                                 // so sanh voi diem hien tai tren firebase
                                 if (newScore > currentScore) {
@@ -84,6 +88,7 @@ public class TestVocabularyActivity extends AppCompatActivity {
                                                 intent.putParcelableArrayListExtra("incorrectlyAnsweredQuestions", incorrectlyAnsweredQuestions);
                                                 intent.putParcelableArrayListExtra("questions",questions);
                                                 startActivity(intent);
+                                                userRef.child("recentActivity").setValue(new RecentActivity(topic.getTitle(), topic.getOwner(), currentTime, newScore + currentFillWordScore));
                                                 finish();
                                             });
                                 } else {
