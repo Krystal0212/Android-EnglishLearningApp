@@ -529,7 +529,7 @@
     <style name="txtRobotoregular15_4">
         <item name="android:textSize">@dimen/_15pxh</item>
         <item name="android:textColor">@color/black_900</item>
-        <item name="android:fontFamily">@font/roboto</item>
+        <item name="android:fontFamily">@font/salsa</item>
         <item name="android:textFontWeight" tools:targetApi="p">400</item>
     </style>
     <style name="btnSolid">
