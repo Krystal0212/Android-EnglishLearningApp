@@ -12,6 +12,7 @@
         android:orientation="vertical" style="@style/groupStylewhite_A700">
 
         <ViewFlipper
+            android:orientation="horizontal"
             android:id="@+id/flashCard"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -130,6 +131,7 @@
                             android:layout_weight="1"
                             android:orientation="horizontal"
                             android:paddingTop="@dimen/_5pxh"
+                            android:paddingEnd="@dimen/_5pxh"
                             android:paddingBottom="@dimen/_5pxh"
                             android:gravity="center">
 
@@ -147,7 +149,7 @@
                                 android:text="@string/lbl_previous" />
                         </LinearLayout>
                         <LinearLayout
-                            android:layout_weight="0.25"
+                            android:layout_weight="0.1"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"/>
                         <LinearLayout
@@ -240,6 +242,7 @@
                         android:layout_marginEnd="@dimen/_40pxh"
                         android:layout_marginStart="@dimen/_40pxh"
                         android:layout_marginTop="@dimen/_15pxv"
+                        android:layout_marginBottom="@dimen/_24pxh"
                         android:layout_width="wrap_content"
                         android:lineSpacingExtra="@dimen/_11pxh"
                         android:singleLine="true"
@@ -249,17 +252,23 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_gravity="bottom"
-                        android:layout_marginStart="@dimen/_25pxh"
-                        android:layout_marginTop="@dimen/_35pxv"
-                        android:layout_marginEnd="@dimen/_25pxh"
+                        android:layout_marginStart="@dimen/_15pxh"
+                        android:layout_marginTop="@dimen/_25pxv"
+                        android:layout_marginEnd="@dimen/_15pxh"
                         android:layout_marginBottom="@dimen/_8pxv"
                         android:orientation="horizontal">
+
                         <LinearLayout
                             android:id="@+id/llPreviousBack"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="0.59"
+                            style="@style/groupStyleyellow_600cornerRadius"
                             android:layout_width="0dp"
-                            android:orientation="horizontal" style="@style/groupStyleyellow_600cornerRadius">
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/_5pxh"
+                            android:paddingBottom="@dimen/_5pxh"
+                            android:gravity="center">
+
                             <ImageView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -274,6 +283,10 @@
                                 android:text="@string/lbl_previous" />
                         </LinearLayout>
                         <LinearLayout
+                            android:layout_weight="0.15"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"/>
+                        <LinearLayout
                             android:id="@+id/llNextBack"
                             style="@style/groupStyleyellow_600cornerRadius"
                             android:layout_width="0dp"
@@ -283,6 +296,7 @@
                             android:orientation="horizontal"
                             android:paddingTop="@dimen/_5pxh"
                             android:paddingBottom="@dimen/_5pxh">
+
                             <TextView
                                 style="@style/txtOpenSansromansemibold16_3"
                                 android:layout_width="wrap_content"

@@ -69,7 +69,7 @@
 
                     <FrameLayout
                         android:id="@+id/frameStackavatar"
-                        android:layout_width="@dimen/_110pxh"
+                        android:layout_width="@dimen/_116pxh"
                         android:layout_height="@dimen/_110pxh"
                         android:layout_marginTop="@dimen/_5pxh">
 
@@ -81,7 +81,7 @@
                             <ImageView
                                 android:id="@+id/imageTopThree"
                                 android:layout_width="@dimen/_110pxh"
-                                android:layout_height="@dimen/_93pxh"
+                                android:layout_height="@dimen/_92pxh"
                                 android:layout_gravity="start"
                                 android:scaleType="fitXY"
                                 android:src="@drawable/img_top3"
@@ -93,8 +93,9 @@
                                 android:layout_width="@dimen/_55pxh"
                                 android:layout_height="@dimen/_55pxh"
                                 android:layout_centerInParent="true"
-                                android:background="@drawable/img_landscape"
-                                android:rotation="-15.38" />
+                                android:paddingTop="2dp"
+                                android:rotation="-15.38"
+                                android:src="@drawable/img_landscape" />
 
                             <TextView
                                 android:id="@+id/txtThirdText"
@@ -114,19 +115,20 @@
 
                     <FrameLayout
                         android:id="@+id/frameStackavatarOne"
-                        android:layout_width="@dimen/_115pxh"
+                        android:layout_width="wrap_content"
                         android:layout_height="@dimen/_90pxv"
-                        android:layout_marginBottom="@dimen/_30pxh">
+                        android:layout_marginBottom="@dimen/_30pxh"
+                        android:layout_marginEnd="5dp">
 
                         <RelativeLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="@dimen/_105pxh"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/_10pxv">
 
                             <ImageView
                                 android:id="@+id/imageTopOne"
-                                android:layout_width="@dimen/_120pxh"
-                                android:layout_height="@dimen/_100pxh"
+                                android:layout_width="@dimen/_105pxh"
+                                android:layout_height="@dimen/_77pxh"
                                 android:layout_gravity="start"
                                 android:scaleType="fitXY"
                                 android:src="@drawable/img_top1"
@@ -138,7 +140,8 @@
                                 android:layout_width="@dimen/_60pxh"
                                 android:layout_height="@dimen/_60pxh"
                                 android:layout_centerInParent="true"
-                                android:background="@drawable/img_landscape" />
+                                android:layout_marginTop="21dp"
+                                android:src="@drawable/img_landscape" />
 
                             <TextView
                                 android:id="@+id/txtFirstBox"
@@ -164,28 +167,29 @@
                         android:layout_marginBottom="@dimen/_27pxv">
 
                         <RelativeLayout
-                            android:layout_width="wrap_content"
+                            android:layout_width="@dimen/_106pxh"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/_10pxv">
 
                             <ImageView
                                 android:id="@+id/imageTopTwo"
-                                android:layout_width="@dimen/_108pxh"
-                                android:layout_height="@dimen/_90pxh"
+                                android:layout_width="@dimen/_105pxh"
+                                android:layout_height="@dimen/_84pxh"
                                 android:layout_gravity="start"
                                 android:scaleType="fitXY"
-                                android:src="@drawable/img_top2"
+                                android:src="@drawable/img_landscape"
+                                android:layout_marginStart="1dp"
                                 tools:ignore="ContentDescription"
                                 tools:src="@drawable/img_top2" />
 
                             <de.hdodenhof.circleimageview.CircleImageView
                                 android:id="@+id/viewAvatarSecond"
-                                android:layout_width="@dimen/_60pxh"
-                                android:layout_height="@dimen/_60pxh"
+                                android:layout_width="@dimen/_56pxh"
+                                android:layout_height="@dimen/_56pxh"
                                 android:layout_centerInParent="true"
                                 android:layout_gravity="center"
-                                android:background="@color/white"
-                                android:rotation="11.18" />
+                                android:rotation="11.18"
+                                android:src="@drawable/img_landscape" />
                         </RelativeLayout>
 
                         <TextView
