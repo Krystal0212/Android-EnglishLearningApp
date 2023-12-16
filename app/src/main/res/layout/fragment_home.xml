@@ -1,11 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <FrameLayout
+<ScrollView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/frameHome"
-        android:layout_height="match_parent"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        tools:context=".fragment.HomeFragment"
+        android:id="@+id/frameHome"
         style="@style/groupStylewhite_A700">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    tools:context=".fragment.HomeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Welcome to  "
+            android:fontFamily="@font/salsa"
+            android:textSize="20sp"
+            android:textColor="@color/gray_700"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Quizzme"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:fontFamily="@font/salsaregular"
+            android:textSize="30dp"/>
+    </LinearLayout>
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:layout_marginTop="500dp"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@color/white"
+        android:backgroundTint="@color/white"
+        android:id="@+id/viewPager2"/>
+
+
+    <me.relex.circleindicator.CircleIndicator3
+        android:id="@+id/circle_indicator_3"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_below="@id/viewPager2"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"
+        app:ci_drawable="@drawable/bg_indicator_3" />
+</LinearLayout>
+
         <View android:background="@color/white_A701"
             android:id="@+id/viewThemeBackground"
             android:layout_gravity="center"
@@ -289,4 +345,4 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
-</FrameLayout>
+</ScrollView>
