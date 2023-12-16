@@ -25,7 +25,6 @@ public class MyLibraryViewPagerAdapter extends FragmentStateAdapter {
                 return new PublicFragment();
             case 2:
                 return new FolderFragment();
-
             default:
                 return new SetFragment();
         }
@@ -33,7 +32,7 @@ public class MyLibraryViewPagerAdapter extends FragmentStateAdapter {
 
     @Override
     public int getItemCount() {
-        return 4;
+        return 3;
     }
 
 }

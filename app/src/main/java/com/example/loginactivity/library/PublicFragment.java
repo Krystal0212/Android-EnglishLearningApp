@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,6 +40,8 @@ public class PublicFragment extends Fragment {
     View mView;
     RecyclerView recyclerView;
 
+    SearchView searchView;
+
     public PublicFragment() {
         // Required empty public constructor
     }
@@ -56,15 +59,45 @@ public class PublicFragment extends Fragment {
     }
 
     private void initListener() {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                searchTopic(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                searchTopic(newText);
+                return false;
+            }
+        });
     }
 
     private void initUI() {
         recyclerView = mView.findViewById((R.id.my_topic_recyclerView));
-
+        searchView = mView.findViewById(R.id.searchView);
         adapter = new AdapterPublicTopic(getActivity(), topics);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        searchView.setQueryHint("Search for topic here");
+        // Cấu hình SearchView để luôn mở rộng
+        searchView.setIconifiedByDefault(false);
+        searchView.setFocusable(true);
+        searchView.setIconified(false);
+        searchView.requestFocusFromTouch();
+    }
 
+    private void searchTopic(String searchText) {
+        ArrayList<Topic> filteredTopics = new ArrayList<>();
+        for (Topic topic : topics) {
+            if (topic.getTitle().toLowerCase().contains(searchText.toLowerCase()) ||
+                    topic.getOwner().toLowerCase().contains(searchText.toLowerCase())) {
+                filteredTopics.add(topic);
+            }
+        }
+        adapter.newTopicList(filteredTopics);
+        adapter.notifyDataSetChanged();
     }
 
     private void setUpTopicList() {

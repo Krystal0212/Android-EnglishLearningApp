@@ -101,7 +101,6 @@ public class TopicDetailActivity extends AppCompatActivity {
 
         initUI();
         initListener();
-        retrieveLeaderboardData();
     }
 
     private void initUI() {
@@ -327,11 +326,12 @@ public class TopicDetailActivity extends AppCompatActivity {
         });
 
         btn_leaderboard.setOnClickListener(v -> {
-            updateLeaderBoardDialog();
+            retrieveLeaderboardData();
         });
     }
 
     private void updateLeaderBoardDialog() {
+
         final Dialog resultDialog = new Dialog(this, R.style.DialogNoBorders);
         resultDialog.setContentView(R.layout.layout_leaderboard_dialog);
 
@@ -366,6 +366,10 @@ public class TopicDetailActivity extends AppCompatActivity {
             txtThird.setText(thirdPlace.userName + " - " + thirdPlace.totalScore + " point");
             Picasso.get().load(thirdPlace.userImage).into(viewAvatarThird);
         }
+
+        resultDialog.setOnDismissListener(dialog -> {
+            participantScores.clear();
+        });
 
         resultDialog.show();
     }
@@ -637,6 +641,7 @@ public class TopicDetailActivity extends AppCompatActivity {
     }
 
     private void retrieveLeaderboardData() {
+        final int[] count = {0};
         DatabaseReference topicRef = FirebaseDatabase.getInstance().getReference("Topic").child(topic.getId()).child("participant");
 
         topicRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -662,6 +667,10 @@ public class TopicDetailActivity extends AppCompatActivity {
                             if (user != null) {
                                 participantScore.userName = user.getDisplayName();
                                 participantScore.userImage = user.getAvtUrl();
+                                count[0]++;
+                            }
+                            if(count[0] == topThreeParticipants.size()){
+                                updateLeaderBoardDialog();
                             }
                         }
 

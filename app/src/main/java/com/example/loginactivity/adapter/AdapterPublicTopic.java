@@ -121,9 +121,8 @@ public class AdapterPublicTopic extends RecyclerView.Adapter<AdapterPublicTopic.
         return topics.size();
     }
 
-    public void newWordList(ArrayList<Topic> newList) {
-        topics = newList;
-        notifyDataSetChanged();
+    public void newTopicList(ArrayList<Topic> newList) {
+        this.topics = newList;
     }
 
 

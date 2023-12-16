@@ -1,5 +1,6 @@
 package com.example.loginactivity;
 
+import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
@@ -42,12 +43,11 @@ import com.google.firebase.storage.StorageReference;
 
 public class UpdateProfileActivity extends AppCompatActivity {
     TextView edtName, edtMail;
-    Button btnBack;
+    ImageView btnBack;
     CardView displayName_card, mail_card;
     LinearLayout password_card;
     Uri mUri, avatarUrl;
     ImageView imgAvatar;
-
     StorageReference storageReference;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,10 +60,11 @@ public class UpdateProfileActivity extends AppCompatActivity {
 
     }
 
+    @SuppressLint("WrongViewCast")
     private void initUI() {
         edtName = findViewById(R.id.edt_name);
         edtMail = findViewById(R.id.edt_mail);
-        btnBack = findViewById(R.id.btn_backToProfile);
+        btnBack = findViewById(R.id.btnBack);
         imgAvatar = findViewById(R.id.imageAvatar);
 //        displayName_card = findViewById(R.id.diplayName_card);
 //        mail_card = findViewById(R.id.mail_card);
