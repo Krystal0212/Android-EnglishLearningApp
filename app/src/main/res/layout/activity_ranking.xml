@@ -90,8 +90,8 @@
 
                             <de.hdodenhof.circleimageview.CircleImageView
                                 android:id="@+id/viewAvatar"
-                                android:layout_width="@dimen/_45pxh"
-                                android:layout_height="@dimen/_45pxh"
+                                android:layout_width="@dimen/_55pxh"
+                                android:layout_height="@dimen/_55pxh"
                                 android:layout_centerInParent="true"
                                 android:background="@drawable/img_fluffy"
                                 android:rotation="-15.38" />
@@ -115,7 +115,7 @@
                     <FrameLayout
                         android:id="@+id/frameStackavatarOne"
                         android:layout_width="@dimen/_115pxh"
-                        android:layout_height="@dimen/_80pxv"
+                        android:layout_height="@dimen/_90pxv"
                         android:layout_marginBottom="@dimen/_30pxh">
 
                         <RelativeLayout
@@ -180,11 +180,11 @@
 
                             <de.hdodenhof.circleimageview.CircleImageView
                                 android:id="@+id/viewAvatarTwo"
-                                android:layout_width="@dimen/_50pxh"
-                                android:layout_height="@dimen/_50pxh"
+                                android:layout_width="@dimen/_55pxh"
+                                android:layout_height="@dimen/_55pxh"
                                 android:layout_centerInParent="true"
                                 android:layout_gravity="center"
-                                android:background="@drawable/img_fluffy"
+                                android:background="@color/white"
                                 android:rotation="11.18" />
                         </RelativeLayout>
 
@@ -224,39 +224,37 @@
             android:orientation="vertical"
             android:gravity="center_horizontal">
 
+
             <LinearLayout android:id="@+id/linearRow1"
                 android:layout_height="wrap_content"
                 android:layout_width="@dimen/_300pxh"
                 android:orientation="horizontal">
+
                 <LinearLayout android:id="@+id/linearRowOne1"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/_1pxv"
                     android:layout_marginTop="@dimen/_1pxv"
-                    android:layout_weight="0.81" android:layout_width="0dp" android:orientation="horizontal">
-                    <TextView
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.08"
-                        android:layout_width="0dp"
-                        android:lineSpacingExtra="@dimen/_6pxh"
-                        android:singleLine="true" android:text="@string/lbl_1"
-                        style="@style/txtOpenSansromansemibold16" tools:text="@string/lbl_1"/>
+                    android:layout_width="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_height="@dimen/_24pxh"
+                        android:layout_width="@dimen/_24pxh"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/medal_gold"/>
+
                     <TextView
                         android:id="@+id/txtFirst"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/_1pxv"
                         android:layout_marginStart="@dimen/_7pxh"
-                        android:layout_weight="0.92" android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:lineSpacingExtra="@dimen/_6pxh"
                         android:singleLine="true"
                         android:text="@string/lbl_first_name"
                         style="@style/txtOpenSansromansemibold16" tools:text="@string/lbl_first_name"/>
                 </LinearLayout>
-                <ImageView
-                    android:layout_height="@dimen/_24pxh"
-                    android:layout_marginStart="@dimen/_148pxh"
-                    android:layout_width="@dimen/_24pxh"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/medal_gold"/>
+
             </LinearLayout>
 
             <View

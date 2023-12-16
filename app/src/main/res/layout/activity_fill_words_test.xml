@@ -10,10 +10,8 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_gravity="center"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/_27pxv"
         android:layout_marginEnd="@dimen/_9pxh"
         android:layout_marginStart="@dimen/_8pxh"
-        android:layout_marginTop="@dimen/_60pxv"
         android:layout_width="match_parent"
         android:orientation="vertical">
         <LinearLayout
@@ -30,7 +28,7 @@
                 android:paddingVertical="@dimen/_6pxv"
                 android:scaleType="fitCenter"
                 android:src="@drawable/img_arrowleft_black_900" tools:ignore="ContentDescription"/>
-            <TextView android:ellipsize="end"
+            <TextView
                 android:id="@+id/txtVocabularyQuiz"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.89"
@@ -61,7 +59,7 @@
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager2"
             android:layout_width="@dimen/_336pxh"
-            android:layout_height="@dimen/_600pxv"
+            android:layout_height="@dimen/_550pxv"
             android:layout_marginTop="@dimen/_10pxh"
             android:layout_marginBottom="@dimen/_10pxh"
             android:layout_gravity="center_horizontal">
