@@ -10,7 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clAction"
-        android:layout_width="400dp"
+        android:layout_width="375dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/_40pxv"
         android:background="@color/white"
