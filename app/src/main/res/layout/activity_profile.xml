@@ -69,8 +69,7 @@
                             android:layout_width="wrap_content"
                             android:lineSpacingExtra="@dimen/_8pxh"
                             android:singleLine="true"
-                            android:text="@string/lbl_username"
-                            style="@style/txtOpenSansromansemibold20_1" tools:text="@string/lbl_username"/>
+                            style="@style/txtOpenSansromansemibold20_1" />
                         <TextView android:ellipsize="end"
                             android:id="@+id/txtDisplayname"
                             android:layout_gravity="start"
@@ -201,19 +200,7 @@
                             android:src="@drawable/img_rectangle2161" />
                     </FrameLayout>
                 </FrameLayout>
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Back"
-                    android:backgroundTint="@color/blue"
-                    android:paddingStart="@dimen/_80pxh"
-                    android:paddingTop="@dimen/_10pxh"
-                    android:paddingBottom="@dimen/_10pxh"
-                    android:paddingEnd="@dimen/_80pxh"
-                    android:textSize="@dimen/_20pxh"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginTop="10dp"
-                    android:id="@+id/btn_backToProfile"/>
+
             </LinearLayout>
         </ScrollView>
     </LinearLayout>

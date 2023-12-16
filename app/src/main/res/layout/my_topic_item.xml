@@ -25,20 +25,17 @@
                 android:textSize="20sp"
                 android:textStyle="bold" />
 
-            <androidx.cardview.widget.CardView
+            <TextView
+                android:id="@+id/txt_total_terms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:paddingStart="3dp"
+                android:padding="5dp"
                 android:layout_marginTop="8dp"
-                android:backgroundTint="@color/bluelight">
-                <TextView
-                    android:id="@+id/txt_total_terms"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingStart="3dp"
-                    android:text="Your total terms"
-                    android:textColor="@color/black"
-                    android:textSize="20sp" />
-            </androidx.cardview.widget.CardView>
+                android:background="@drawable/background_item_term"
+                android:text="Your total terms"
+                android:textColor="@color/black"
+                android:textSize="20sp" />
 
 
             <LinearLayout

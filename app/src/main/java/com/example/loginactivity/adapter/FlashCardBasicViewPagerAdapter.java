@@ -97,20 +97,20 @@ public class FlashCardBasicViewPagerAdapter extends  RecyclerView.Adapter<FlashC
         }
 
         holder.flipInterface.setOnClickListener(view -> {
-                    // Kiểm tra nếu thẻ không đang lật
-                    if (!holder.isFlipping) {
-                        holder.isFlipping = true; // Đánh dấu bắt đầu lật thẻ
+            // Kiểm tra nếu thẻ không đang lật
+            if (!holder.isFlipping) {
+                holder.isFlipping = true; // Đánh dấu bắt đầu lật thẻ
 
-                        holder.cardFront.animate().rotationYBy(180).setDuration(300);
-                        holder.cardBack.animate().rotationYBy(180).setDuration(300).setListener(new AnimatorListenerAdapter() {
-                            @Override
-                            public void onAnimationEnd(Animator animation) {
-                                super.onAnimationEnd(animation);
-                                holder.flipInterface.showNext(); // Hiển thị mặt khác của thẻ
-                                holder.isFlipping = false; // Đánh dấu kết thúc lật thẻ
-                            }
-                        });
+                holder.cardFront.animate().rotationYBy(180).setDuration(300);
+                holder.cardBack.animate().rotationYBy(180).setDuration(300).setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                        holder.flipInterface.showNext(); // Hiển thị mặt khác của thẻ
+                        holder.isFlipping = false; // Đánh dấu kết thúc lật thẻ
                     }
+                });
+            }
         });
 
         holder.soundFront.setOnClickListener(view -> {

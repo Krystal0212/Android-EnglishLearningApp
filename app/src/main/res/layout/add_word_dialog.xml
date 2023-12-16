@@ -29,7 +29,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/edt_term"
-            android:layout_marginBottom="20dp"
+            android:layout_marginBottom="12dp"
             android:hint="Term"
             android:background="@drawable/custom_input"
             android:textColorHint="@color/gray_600"/>
