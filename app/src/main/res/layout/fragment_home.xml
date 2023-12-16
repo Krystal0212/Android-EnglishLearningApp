@@ -61,8 +61,7 @@
                         android:layout_marginEnd="@dimen/_5pxh"
                         android:singleLine="true"
                         android:text=","
-                        style="@style/txtRobotoregular15_4"
-                        tools:text="@string/lbl_welcome_back"/>
+                        style="@style/txtRobotoregular15_4"/>
                     <TextView android:ellipsize="end"
                         android:id="@+id/txtTxtUsername"
                         android:layout_height="wrap_content"
