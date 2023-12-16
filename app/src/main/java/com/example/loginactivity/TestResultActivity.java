@@ -78,7 +78,7 @@ public class TestResultActivity extends AppCompatActivity {
         btnClose.setOnClickListener(v -> resultDialog.dismiss());
 
         recyclerViewTestResults.setLayoutManager(new LinearLayoutManager(this));
-        recyclerViewTestResults.setAdapter(new TestResultFillWordsAdapter(testResult));
+//        recyclerViewTestResults.setAdapter(new TestResultFillWordsAdapter(testResult));
 
         resultDialog.show();
     }

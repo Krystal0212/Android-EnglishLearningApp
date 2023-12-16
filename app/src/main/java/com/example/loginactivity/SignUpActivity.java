@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -32,6 +33,8 @@ public class SignUpActivity extends AppCompatActivity {
     EditText edtEmail, edtPassword, edtdisplayName, edtPasswordConfirm;
     Button btnSignup;
     ProgressBar progressBar;
+
+    TextView txtSignIn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +44,7 @@ public class SignUpActivity extends AppCompatActivity {
         initListener();
     }
     private void initUI() {
+        txtSignIn = findViewById(R.id.txtSignIn);
         edtEmail = findViewById(R.id.edtEmail);
         edtPassword = findViewById(R.id.edtPassword);
         edtPasswordConfirm = findViewById(R.id.edtConfirmPassword);
@@ -50,6 +54,10 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     private void initListener() {
+        txtSignIn.setOnClickListener(v -> {
+            onBackPressed();
+            finish();
+        });
         btnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
