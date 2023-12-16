@@ -1,12 +1,17 @@
 package com.example.loginactivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.loginactivity.adapter.TestResultFillWordsAdapter;
 import com.example.loginactivity.models.Question;
 
 import java.util.ArrayList;
@@ -53,5 +58,28 @@ public class TestResultActivity extends AppCompatActivity {
             onBackPressed();
             finish();
         });
+    }
+
+    private void showResult(){
+        final Dialog resultDialog = new Dialog(this,  R.style.RoundedDialog);
+        resultDialog.setContentView(R.layout.layout_test_result_dialog);
+
+        // Set chiều rộng cho dialog bằng cách sử dụng layout parameters
+        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
+        layoutParams.copyFrom(resultDialog.getWindow().getAttributes());
+        layoutParams.width = WindowManager.LayoutParams.MATCH_PARENT;
+        layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
+
+        // Áp dụng các thay đổi về layout
+        resultDialog.getWindow().setAttributes(layoutParams);
+
+        RecyclerView recyclerViewTestResults = resultDialog.findViewById(R.id.recyclerViewTestResults);
+        Button btnClose = resultDialog.findViewById(R.id.btnClose);
+        btnClose.setOnClickListener(v -> resultDialog.dismiss());
+
+        recyclerViewTestResults.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewTestResults.setAdapter(new TestResultFillWordsAdapter(testResult));
+
+        resultDialog.show();
     }
 }

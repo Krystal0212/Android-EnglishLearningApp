@@ -53,4 +53,14 @@
     <color name="gray_901">#1c1c1c</color>
     <color name="blue_500">#1da2f3</color>
 
+    <color name="black_900_dd">#dd000000</color>
+    <color name="purple_A100">#d395ff</color>
+    <color name="deep_orange_100">#fbc6a4</color>
+    <color name="gray_601">#7d7a7a</color>
+    <color name="gray_401">#c4c4c4</color>
+    <color name="black_900_99">#99000000</color>
+    <color name="black_900_33">#33000000</color>
+    <color name="white_A700_bc">#bcffffff</color>
+    <color name="white_A701">#fcfdfd</color>
+    <color name="blue_A100">#87a8ff</color>
 </resources>

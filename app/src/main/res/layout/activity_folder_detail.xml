@@ -64,17 +64,18 @@
         android:id="@+id/folder_topic_recyclerView"/>
 
     <TextView
+        android:id="@+id/txt_empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Empty folder"
-        android:background="@color/white_B"
-        android:textStyle="bold"
-
-        android:textSize="50sp"
-        android:textColor="@color/black"
+        android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
+
+        android:background="@color/gray_601"
         android:gravity="center"
-        android:id="@+id/txt_empty"
-        android:visibility="visible"/>
+        android:text="Empty folder"
+        android:textColor="@color/black"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        android:visibility="visible" />
 
 </RelativeLayout>
