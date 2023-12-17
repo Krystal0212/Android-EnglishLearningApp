@@ -60,63 +60,6 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/txtSignInBy"
-            style="@style/txtRobotoRegular16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="@dimen/_15pxh"
-            android:layout_marginTop="@dimen/_14pxv"
-            android:layout_marginEnd="@dimen/_15pxh"
-            android:ellipsize="end"
-            android:singleLine="true"
-            android:text="@string/lbl_sign_in_by"
-            tools:text="@string/lbl_sign_in_by" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/linearSocialMediaSi"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_15pxh"
-            android:layout_marginTop="@dimen/_18pxv"
-            android:layout_marginEnd="@dimen/_15pxh"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/imageGoogle"
-                android:layout_width="@dimen/_45pxh"
-                android:layout_height="@dimen/_45pxh"
-                android:src="@drawable/img_google"
-                android:layout_marginStart="@dimen/_20pxh"
-                android:scaleType="fitXY"
-                app:layout_constraintLeft_toLeftOf="parent"
-                tools:ignore="ContentDescription,MissingConstraints"
-                 />
-
-            <ImageView
-                android:id="@+id/imageFacebook"
-                android:layout_width="@dimen/_45pxh"
-                android:layout_height="@dimen/_45pxh"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_facebook"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                tools:ignore="ContentDescription,MissingConstraints"
-                tools:src="@drawable/img_facebook" />
-
-            <ImageView
-                android:id="@+id/imageGithub"
-                android:layout_width="@dimen/_45pxh"
-                android:layout_height="@dimen/_45pxh"
-                android:layout_marginEnd="@dimen/_20pxh"
-                android:scaleType="fitXY"
-                android:src="@drawable/img_github"
-                app:layout_constraintRight_toRightOf="parent"
-                tools:ignore="ContentDescription,MissingConstraints"
-                tools:src="@drawable/img_github" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <TextView
             android:id="@+id/txtOrsignin"
             style="@style/txtRobotoRegular16"
             android:layout_width="match_parent"
@@ -274,4 +217,40 @@
                 tools:text="@string/lbl_sign_up" />
         </LinearLayout>
     </LinearLayout>
+
+    <androidx.appcompat.widget.Toolbar
+        android:gravity="center_horizontal"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_22pxh"
+        android:layout_marginStart="@dimen/_22pxh"
+        android:layout_marginTop="@dimen/_21pxv"
+        android:layout_width="match_parent" app:contentInsetStart="0dp">
+        <FrameLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:layout_gravity="center_horizontal">
+
+            <TextView
+                style="@style/txtRubikBubblesregular55"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginStart="@dimen/_10pxh"
+                android:layout_marginTop="@dimen/_10pxv"
+                android:layout_marginBottom="@dimen/_9pxv"
+                android:ellipsize="end"
+                android:gravity="end"
+                android:singleLine="true"
+                android:text="@string/lbl_sign_in"
+                tools:text="@string/lbl_sign_in" />
+
+            <ImageView
+                android:layout_gravity="start"
+                android:layout_height="@dimen/_95pxh"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_width="@dimen/_118pxh"
+                android:scaleType="fitXY"
+                android:src="@drawable/img_fluffy"/>
+        </FrameLayout>
+    </androidx.appcompat.widget.Toolbar>
 </LinearLayout>
