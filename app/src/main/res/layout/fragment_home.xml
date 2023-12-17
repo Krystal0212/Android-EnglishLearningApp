@@ -141,7 +141,7 @@
         </LinearLayout>
         <LinearLayout android:gravity="center_horizontal"
             android:id="@+id/linearCard1"
-            android:layout_height="320dp"
+            android:layout_height="wrap_content"
             android:layout_marginEnd="@dimen/_10pxh"
             android:layout_marginStart="@dimen/_6pxh"
             android:layout_marginTop="@dimen/_15pxv"
@@ -197,9 +197,10 @@
             <FrameLayout android:id="@+id/frameImageCaption"
                 android:layout_gravity="center_horizontal"
                 android:layout_height="@dimen/_140pxv"
-                android:layout_marginEnd="@dimen/_17pxh"
-                android:layout_marginStart="@dimen/_17pxh"
-                android:layout_marginTop="@dimen/_12pxv" android:layout_width="@dimen/_270pxh">
+                android:layout_marginEnd="@dimen/_15pxh"
+                android:layout_marginStart="@dimen/_15pxh"
+                android:layout_marginTop="@dimen/_12pxv"
+                android:layout_width="@dimen/_285pxh">
                 <ImageView android:id="@+id/imageImageOne"
                     android:layout_gravity="start"
                     android:layout_height="match_parent"
@@ -239,31 +240,53 @@
                 </LinearLayout>
 
             </FrameLayout>
-            <TextView android:ellipsize="end"
-                android:id="@+id/txtScore"
+            <LinearLayout android:id="@+id/linearYourScore"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/_10pxh"
-                android:layout_marginStart="@dimen/_4pxh"
-                android:layout_marginTop="@dimen/_1pxv"
-                android:layout_width="wrap_content"
-                android:letterSpacing="0.01"
-                android:lineSpacingExtra="@dimen/_3pxh"
-                android:singleLine="true"
-                android:text="Your score"
-                style="@style/txtRobotoregular16_4" tools:text="Your score"/>
+                android:layout_marginEnd="@dimen/_25pxh"
+                android:layout_marginStart="@dimen/_25pxh"
+                android:layout_marginTop="@dimen/_3pxv"
+                android:layout_width="match_parent" android:orientation="horizontal">
+                <TextView android:ellipsize="end"
+                    android:id="@+id/txtCaption"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/_1pxv"
+                    android:layout_weight="2"
+                    android:layout_width="0dp"
+                    android:lineSpacingExtra="@dimen/_15pxh"
+                    android:singleLine="true"
+                    android:text="@string/lbl_your_score"
+                    style="@style/txtRhodiumLibreregular20" tools:text="@string/lbl_your_score"/>
+                <TextView android:ellipsize="end"
+                    android:id="@+id/txtScore"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_30pxh"
+                    android:layout_marginTop="@dimen/_1pxv"
+                    android:layout_weight="2"
+                    android:layout_width="0dp"
+                    android:letterSpacing="0.01"
+                    android:gravity="center|end"
+                    android:lineSpacingExtra="@dimen/_15pxh"
+                    android:singleLine="true"
+                    android:text="@string/lbl_00"
+                    style="@style/txtRhodiumLibreregular20_1" tools:text="@string/lbl_00"/>
+            </LinearLayout>
             <View android:background="@color/gray_601"
                 android:id="@+id/lineLineseparator"
                 android:layout_gravity="center_horizontal"
                 android:layout_height="@dimen/_1pxv"
                 android:layout_marginEnd="@dimen/_17pxh"
+                android:layout_marginBottom="@dimen/_12pxh"
                 android:layout_marginStart="@dimen/_17pxh"
-                android:layout_marginTop="@dimen/_15pxv" android:layout_width="@dimen/_268pxh"/>
+                android:layout_width="@dimen/_268pxh"/>
         </LinearLayout>
     </LinearLayout>
 
     <androidx.viewpager2.widget.ViewPager2
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_25pxh"
+        android:layout_marginEnd="@dimen/_17pxh"
+        android:layout_marginStart="@dimen/_17pxh"
         android:background="@color/white"
         android:backgroundTint="@color/white"
         android:id="@+id/viewPager2"/>

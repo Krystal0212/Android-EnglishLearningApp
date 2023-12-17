@@ -32,7 +32,10 @@
         android:textColor="@color/black"
         android:textSize="20sp"
         android:id="@+id/btnConfirm"
-        android:layout_alignParentRight="true"/>
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/amber_A100"
+        />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

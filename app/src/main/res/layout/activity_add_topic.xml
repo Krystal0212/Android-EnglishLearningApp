@@ -54,6 +54,7 @@
                 <Button
                     android:id="@+id/btnSave"
                     style="@style/btnSolidRoundedRightCorner"
+                    android:backgroundTint="@color/indigo_800"
                     android:layout_width="@dimen/_95pxh"
                     android:layout_height="@dimen/_35pxv"
                     android:layout_marginStart="@dimen/_38pxh"
