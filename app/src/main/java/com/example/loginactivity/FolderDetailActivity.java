@@ -97,10 +97,8 @@ public class FolderDetailActivity extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                         Topic topic = dataSnapshot.getValue(Topic.class);
                         if (topic != null) {
-                            // Cập nhật hoặc thêm topic vào danh sách
                             updateOrAddTopic(topic);
                         } else {
-                            // Xử lý trường hợp topic bị xóa
                             removeTopic(topicId);
                         }
                         adapter.notifyDataSetChanged();
@@ -108,7 +106,6 @@ public class FolderDetailActivity extends AppCompatActivity {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
-                        // Xử lý lỗi
                     }
                 });
             }
@@ -116,8 +113,6 @@ public class FolderDetailActivity extends AppCompatActivity {
             txt_empty.setVisibility(View.VISIBLE);
         }
 
-        // Cài đặt Adapter cho RecyclerView
-        // ...
     }
 
     private void updateOrAddTopic(Topic newTopic) {
