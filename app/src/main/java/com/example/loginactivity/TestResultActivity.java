@@ -47,13 +47,17 @@ public class TestResultActivity extends AppCompatActivity {
         questions = intent.getParcelableArrayListExtra("questions_mcq");
 
 
-        if(incorrectlyAnsweredQuestions.size() == 0){
             for (Question question : questions) {
                 // Check if the question is in the incorrectly answered list
-                boolean isCorrect = !incorrectlyAnsweredQuestions.contains(question);
+                boolean isCorrect = true;
+                for(Question wrongQuestion : incorrectlyAnsweredQuestions){
+                        if(wrongQuestion.getWord().getEnglish().equals(question.getWord().getEnglish())) {
+                            isCorrect = false;
+                            break;
+                        }
+                }
                 testResults.add(new TestResultMultipleChoices(question.getWord(), isCorrect));
             }
-        }
 
 //        for(int i = 0; i < questions.size(); i++){
 //            Log.d("question", questions.get(i).toString());

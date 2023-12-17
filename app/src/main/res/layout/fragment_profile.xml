@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
     tools:context=".fragment.ProfileFragment"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@drawable/semi_transparent_town">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_height="@dimen/_35pxh"
+        style="@style/groupStylewhite_A700"
         android:orientation="horizontal">
 
         <TextView
@@ -33,22 +33,26 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center"
-        android:paddingTop="40dp">
+        android:paddingTop="40dp"
+        > <!-- Added style -->
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/img_avatar"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            app:civ_border_color="#87a8ff"
+            app:civ_border_width="7dp"
             android:src="@drawable/ic_avatar_default"/>
-
 
         <TextView
             android:id="@+id/txtName"
             android:layout_width="wrap_content"
             android:textColor="@color/black"
+            android:layout_marginTop="20dp"
             android:textStyle="bold"
             android:textSize="18sp"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            style="@style/txtOpenSans16" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -57,30 +61,40 @@
             android:textStyle="bold"
             android:textSize="18sp"
             android:padding="10dp"
-            android:id="@+id/txtEmail"/>
+            android:id="@+id/txtEmail"
+            style="@style/txtOpenSans16" />
 
-        <View
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"/>
-
-        <Button
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Update Profile"
-            android:backgroundTint="@color/blue"
-            android:layout_marginBottom="20dp"
-            android:textColor="@color/white"
-            android:id="@+id/btn_update"/>
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp">
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableLeft="@drawable/ic_sign_out"
-            android:textColor="@color/white"
-            android:text="Sign out"
-            android:id="@+id/btn_signOut"/>
+            <!-- Update Profile Button -->
+            <Button
+                android:id="@+id/btn_update"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="60dp"
+                android:layout_marginStart="60dp"
+                android:text="Update Profile"
+                android:backgroundTint="@color/black"
+                android:textColor="@color/white"/> <!-- Custom style applied -->
+
+            <!-- Sign Out Button -->
+            <Button
+                android:id="@+id/btn_signOut"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="60dp"
+                android:layout_marginStart="60dp"
+                android:gravity="center"
+                android:text="Sign out"
+                android:drawableLeft="@drawable/ic_sign_out"
+                android:drawableTint="@color/white"
+                android:textColor="@color/white"/> <!-- Custom style applied -->
+        </LinearLayout>
     </LinearLayout>
-
-
 </LinearLayout>

@@ -13,7 +13,7 @@ public class Question implements Parcelable {
     private String firstOtherWord;
     private String secondOtherWord;
 
-    protected Question(Parcel in) {
+    public Question(Parcel in) {
         firstOtherWord = in.readString();
         secondOtherWord = in.readString();
         thirdOtherWord = in.readString();
@@ -33,7 +33,6 @@ public class Question implements Parcelable {
             return new Question[size];
         }
     };
-
     public Word getWord() {
         return word;
     }

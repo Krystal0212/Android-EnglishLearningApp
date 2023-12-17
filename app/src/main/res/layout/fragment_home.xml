@@ -67,7 +67,7 @@
                         android:layout_marginStart="4dp"
                         android:layout_weight="0.4"
                         android:layout_width="0dp"
-                        android:singleLine="true"
+                        android:singleLine="false"
                         android:text="@string/lbl_username1"
                         style="@style/txtRobotoregular15_1b" tools:text="@string/lbl_username1"/>
                 </LinearLayout>
