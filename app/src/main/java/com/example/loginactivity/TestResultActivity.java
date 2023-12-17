@@ -11,18 +11,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.loginactivity.adapter.TestResultFillWordsAdapter;
+import com.example.loginactivity.adapter.TestResultMultipleChoicesAdapter;
 import com.example.loginactivity.models.Question;
+import com.example.loginactivity.models.TestResultMultipleChoices;
 
 import java.util.ArrayList;
 
 public class TestResultActivity extends AppCompatActivity {
     ArrayList<Question> incorrectlyAnsweredQuestions = new ArrayList<>();
     ArrayList<Question> questions = new ArrayList<>();
-    Button btn_Topic;
+    ArrayList<TestResultMultipleChoices> testResults = new ArrayList<>();
+    Button btn_Topic, btn_showTestResults;
     TextView txtResult, txtPoint;
     private static int point = 500;
-
 
 
     @Override
@@ -38,10 +39,22 @@ public class TestResultActivity extends AppCompatActivity {
         btn_Topic = findViewById(R.id.btn_back_Topic);
         txtResult = findViewById(R.id.txtResult);
         txtPoint = findViewById(R.id.txtSentenceRight);
+        btn_showTestResults = findViewById(R.id.btn_showTestResults);
 
         Intent intent = getIntent();
         incorrectlyAnsweredQuestions = intent.getParcelableArrayListExtra("incorrectlyAnsweredQuestions");
         questions = intent.getParcelableArrayListExtra("questions");
+
+
+//        if(incorrectlyAnsweredQuestions.size() == 0){
+//        for (Question question : questions) {
+//            // Check if the question is in the incorrectly answered list
+//            boolean isCorrect = !incorrectlyAnsweredQuestions.contains(question);
+//
+//            // Add to test results
+//            testResults.add(new TestResultMultipleChoices(question.getWord(), isCorrect));
+//        }}
+
 
         if (incorrectlyAnsweredQuestions.size() == questions.size()) {
             txtResult.setText("Completed 0/" + questions.size());
@@ -57,6 +70,9 @@ public class TestResultActivity extends AppCompatActivity {
         btn_Topic.setOnClickListener(v -> {
             onBackPressed();
             finish();
+        });
+        btn_showTestResults.setOnClickListener(v -> {
+            showResult();
         });
     }
 
@@ -78,7 +94,7 @@ public class TestResultActivity extends AppCompatActivity {
         btnClose.setOnClickListener(v -> resultDialog.dismiss());
 
         recyclerViewTestResults.setLayoutManager(new LinearLayoutManager(this));
-        recyclerViewTestResults.setAdapter(new TestResultFillWordsAdapter(testResult));
+        recyclerViewTestResults.setAdapter(new TestResultMultipleChoicesAdapter(testResults));
 
         resultDialog.show();
     }
