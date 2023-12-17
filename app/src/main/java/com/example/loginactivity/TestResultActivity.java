@@ -3,6 +3,7 @@ package com.example.loginactivity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
@@ -43,17 +44,24 @@ public class TestResultActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         incorrectlyAnsweredQuestions = intent.getParcelableArrayListExtra("incorrectlyAnsweredQuestions");
-        questions = intent.getParcelableArrayListExtra("questions");
+        questions = intent.getParcelableArrayListExtra("questions_mcq");
 
 
-//        if(incorrectlyAnsweredQuestions.size() == 0){
-//        for (Question question : questions) {
-//            // Check if the question is in the incorrectly answered list
-//            boolean isCorrect = !incorrectlyAnsweredQuestions.contains(question);
+        if(incorrectlyAnsweredQuestions.size() == 0){
+            for (Question question : questions) {
+                // Check if the question is in the incorrectly answered list
+                boolean isCorrect = !incorrectlyAnsweredQuestions.contains(question);
+                testResults.add(new TestResultMultipleChoices(question.getWord(), isCorrect));
+            }
+        }
+
+//        for(int i = 0; i < questions.size(); i++){
+//            Log.d("question", questions.get(i).toString());
+//        }
 //
-//            // Add to test results
-//            testResults.add(new TestResultMultipleChoices(question.getWord(), isCorrect));
-//        }}
+////        for(Question question : questions){
+////            Log.d("question", question.toString());
+////        }
 
 
         if (incorrectlyAnsweredQuestions.size() == questions.size()) {

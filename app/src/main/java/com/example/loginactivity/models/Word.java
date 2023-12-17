@@ -8,6 +8,16 @@ import androidx.annotation.NonNull;
 public class Word implements Parcelable {
     String english;
     String vietnamese;
+
+    @Override
+    public String toString() {
+        return "Word{" +
+                "english='" + english + '\'' +
+                ", vietnamese='" + vietnamese + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
     String description;
 
     public Word(String english, String vietnamese, String description) {

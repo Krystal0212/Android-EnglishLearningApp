@@ -3,6 +3,7 @@ package com.example.loginactivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -59,7 +60,9 @@ public class TestVocabularyActivity extends AppCompatActivity {
         @Override
         public void run() {
             // trang cuối, chuyển trang
-            if(viewPager2.getCurrentItem() == words.size() - 1){
+            if(viewPager2.getCurrentItem() == adapter.getItemCount() - 1){
+                Log.d("ViewPagerDebug", "Last item reached. Transitioning to TestResultActivity.");
+
                 topic = getIntent().getParcelableExtra("topic");
                 String currentTopicID = topic.getId();
                 incorrectlyAnsweredQuestions = adapter.getIncorrectlyAnsweredQuestions();
@@ -82,7 +85,7 @@ public class TestVocabularyActivity extends AppCompatActivity {
                                             .addOnSuccessListener(unused -> {
                                                 Intent intent = new Intent(TestVocabularyActivity.this, TestResultActivity.class);
                                                 intent.putParcelableArrayListExtra("incorrectlyAnsweredQuestions", incorrectlyAnsweredQuestions);
-                                                intent.putParcelableArrayListExtra("questions",questions);
+                                                intent.putParcelableArrayListExtra("questions_mcq", questions);
                                                 startActivity(intent);
                                                 finish();
                                             });
@@ -90,7 +93,7 @@ public class TestVocabularyActivity extends AppCompatActivity {
                                     // ko cap nhat
                                     Intent intent = new Intent(TestVocabularyActivity.this, TestResultActivity.class);
                                     intent.putParcelableArrayListExtra("incorrectlyAnsweredQuestions", incorrectlyAnsweredQuestions);
-                                    intent.putParcelableArrayListExtra("questions",questions);
+                                    intent.putParcelableArrayListExtra("questions_mcq", questions);
                                     startActivity(intent);
                                     finish();
                                 }
@@ -106,6 +109,7 @@ public class TestVocabularyActivity extends AppCompatActivity {
                 });
 
             } else {
+                Log.d("ViewPagerDebug", "Moving to next item.");
                 viewPager2.setCurrentItem(viewPager2.getCurrentItem() + 1);
             }
         }

@@ -77,21 +77,21 @@ public class AdapterWordListTest extends RecyclerView.Adapter<AdapterWordListTes
         }
 
         if (isEnglishMode) {
-            holder.questionTerm.setText(question.getEnglish());
+            holder.questionTerm.setText(question.getWord().getEnglish());
 
             holder.sound.setOnClickListener(view -> {
                 textToSpeechEnglishHelper.setLanguage(Locale.ENGLISH);
-                textToSpeechEnglishHelper.speak(question.getEnglish());
+                textToSpeechEnglishHelper.speak(question.getWord().getEnglish());
             });
         } else if (isVietnameseMode) {
-            holder.questionTerm.setText(question.getVietnamese());
+            holder.questionTerm.setText(question.getWord().getVietnamese());
 
             holder.sound.setOnClickListener(view -> {
                 textToSpeechEnglishHelper.setLanguage(new Locale("vi", "VN"));
-                textToSpeechEnglishHelper.speak(question.getVietnamese());
+                textToSpeechEnglishHelper.speak(question.getWord().getVietnamese());
             });
         }
-        holder.description.setText(question.getDescription());
+        holder.description.setText(question.getWord().getDescription());
 
         String[] options = question.getAnswerOptions();
         int rightPosition = question.getRightAnswerPosition();
@@ -166,9 +166,9 @@ public class AdapterWordListTest extends RecyclerView.Adapter<AdapterWordListTes
             mHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    textToSpeechEnglishHelper.speak(question.getEnglish());
+                    textToSpeechEnglishHelper.speak(question.getWord().getEnglish());
                     textToSpeechVietnameseHelper.setLanguage(new Locale("vi", "VN"));
-                    textToSpeechVietnameseHelper.speak(question.getVietnamese());
+                    textToSpeechVietnameseHelper.speak(question.getWord().getVietnamese());
                 }
             }, 1000);
 
@@ -185,9 +185,9 @@ public class AdapterWordListTest extends RecyclerView.Adapter<AdapterWordListTes
             mHandler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    textToSpeechEnglishHelper.speak(question.getEnglish());
+                    textToSpeechEnglishHelper.speak(question.getWord().getEnglish());
                     textToSpeechVietnameseHelper.setLanguage(new Locale("vi", "VN"));
-                    textToSpeechVietnameseHelper.speak(question.getVietnamese());
+                    textToSpeechVietnameseHelper.speak(question.getWord().getVietnamese());
                 }
             }, 1000);
 

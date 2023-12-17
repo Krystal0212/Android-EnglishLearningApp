@@ -4,6 +4,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -45,15 +46,18 @@ public class TestResultMultipleChoicesAdapter extends RecyclerView.Adapter<TestR
         private final TextView txtQuestion;
         private final TextView txtCorrectAnswer;
         private final ImageView imgResult;
+        private final LinearLayout llUser;
 
         public TestResult2ViewHolder(@NonNull View itemView) {
             super(itemView);
             txtQuestion = itemView.findViewById(R.id.txtQuestion);
             txtCorrectAnswer = itemView.findViewById(R.id.txtCorrectAnswer);
             imgResult = itemView.findViewById(R.id.imgResult);
+            llUser = itemView.findViewById(R.id.llUser);
         }
 
         void bind(TestResultMultipleChoices result) {
+            llUser.setVisibility(View.GONE);
             txtQuestion.setText(result.getWord().getEnglish()); // or getVietnamese based on your need
             txtCorrectAnswer.setText(result.getWord().getVietnamese()); // or getEnglish
             imgResult.setImageResource(result.isCorrect() ? R.drawable.green_checkmark_line_icon : R.drawable.red_x_line_icon);
