@@ -12,8 +12,6 @@
         android:paddingTop="12dp"
         android:orientation="vertical" style="@style/groupStylewhite_A700">
 
-
-
         <LinearLayout
             android:id="@+id/llCardFront"
             style="@style/groupStylewhite_A700cornerRadius_0"
