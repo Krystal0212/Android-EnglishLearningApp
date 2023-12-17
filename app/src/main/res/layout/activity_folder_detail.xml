@@ -67,15 +67,14 @@
         android:id="@+id/txt_empty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
-
-        android:background="@color/gray_601"
+        android:background="@drawable/background_item_2"
         android:gravity="center"
+        android:padding="5dp"
         android:text="Empty folder"
         android:textColor="@color/black"
         android:textSize="50sp"
         android:textStyle="bold"
-        android:visibility="visible" />
+        android:visibility="gone" />
 
 </RelativeLayout>

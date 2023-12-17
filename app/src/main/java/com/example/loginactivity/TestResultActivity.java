@@ -79,9 +79,6 @@ public class TestResultActivity extends AppCompatActivity {
             onBackPressed();
             finish();
         });
-        btn_showTestResults.setOnClickListener(v -> {
-            showResult();
-        });
     }
 
     private void showResult(){

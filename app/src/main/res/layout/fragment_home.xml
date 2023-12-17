@@ -20,10 +20,9 @@
     <LinearLayout android:id="@+id/linearColumnlanguage"
         android:layout_gravity="center"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_15pxv"
+        android:layout_marginBottom="@dimen/_30pxv"
         android:layout_marginEnd="@dimen/_17pxh"
         android:layout_marginStart="@dimen/_17pxh"
-        android:layout_marginTop="@dimen/_7pxv"
         android:layout_width="match_parent" android:orientation="vertical">
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarToolbar"
@@ -58,28 +57,21 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_1pxv"
                         android:layout_width="wrap_content"
-                        android:layout_marginEnd="@dimen/_5pxh"
                         android:singleLine="true"
                         android:text=","
                         style="@style/txtRobotoregular15_4"/>
                     <TextView android:ellipsize="end"
-                        android:id="@+id/txtTxtUsername"
+                        android:id="@+id/txtUsername"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/_1pxv"
-                        android:layout_marginStart="@dimen/_3pxh"
+                        android:layout_marginStart="4dp"
                         android:layout_weight="0.4"
                         android:layout_width="0dp"
                         android:singleLine="true"
                         android:text="@string/lbl_username1"
                         style="@style/txtRobotoregular15_1b" tools:text="@string/lbl_username1"/>
                 </LinearLayout>
-                <ImageView android:id="@+id/imageAvatar"
-                    android:layout_height="@dimen/_40pxh"
-                    android:layout_marginStart="@dimen/_55pxh"
-                    android:layout_width="@dimen/_40pxh"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/img_avatar"
-                    tools:ignore="ContentDescription" tools:src="@drawable/img_avatar"/>
+
             </LinearLayout>
         </androidx.appcompat.widget.Toolbar>
         <pl.droidsonroids.gif.GifImageView android:id="@+id/imageWelcomeGif"
@@ -191,7 +183,7 @@
                         android:text="@string/msg_recently_access"
                         style="@style/txtRibeyeregular14" tools:text="@string/msg_recently_access"/>
                     <TextView android:ellipsize="end"
-                        android:id="@+id/txtDuration"
+                        android:id="@+id/txtRecentlyAccess"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_10pxh"
                         android:layout_width="wrap_content"
@@ -225,25 +217,40 @@
                     <TextView android:ellipsize="end"
                         android:id="@+id/txtTitle"
                         android:layout_height="wrap_content"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:lineSpacingExtra="@dimen/_5pxh"
                         android:singleLine="true"
                         android:text="@string/lbl_topic_name"
                         style="@style/txtRobotoregular24_4" tools:text="@string/lbl_topic_name"/>
                     <TextView android:ellipsize="end"
-                        android:id="@+id/txtTitleOne"
+                        android:id="@+id/txtOwner"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/_10pxh"
                         android:layout_marginStart="@dimen/_4pxh"
                         android:layout_marginTop="@dimen/_1pxv"
+                        android:textStyle="bold"
                         android:layout_width="wrap_content"
                         android:letterSpacing="0.01"
                         android:lineSpacingExtra="@dimen/_3pxh"
                         android:singleLine="true"
                         android:text="@string/lbl_krystald"
                         style="@style/txtRobotoregular16_4" tools:text="@string/lbl_krystald"/>
+
                 </LinearLayout>
+
             </FrameLayout>
+            <TextView android:ellipsize="end"
+                android:id="@+id/txtScore"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/_10pxh"
+                android:layout_marginStart="@dimen/_4pxh"
+                android:layout_marginTop="@dimen/_1pxv"
+                android:layout_width="wrap_content"
+                android:letterSpacing="0.01"
+                android:lineSpacingExtra="@dimen/_3pxh"
+                android:singleLine="true"
+                android:text="Your score"
+                style="@style/txtRobotoregular16_4" tools:text="Your score"/>
             <View android:background="@color/gray_601"
                 android:id="@+id/lineLineseparator"
                 android:layout_gravity="center_horizontal"

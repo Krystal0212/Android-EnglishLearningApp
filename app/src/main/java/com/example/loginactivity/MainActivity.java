@@ -10,7 +10,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.example.loginactivity.adapter.MyMainViewPagerAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OnStartNowClickedListener{
 
     public ViewPager2 mViewPager;
     private BottomNavigationView bottomNavigationView;
@@ -73,5 +73,10 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+    @Override
+    public void onStartNowClicked() {
+        mViewPager.setCurrentItem(1);
+        bottomNavigationView.getMenu().findItem(R.id.bottom_library).setChecked(true);
     }
 }

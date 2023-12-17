@@ -6,6 +6,7 @@ public class User {
     String displayName;
     Boolean verify;
     String id;
+    RecentActivity recentActivity;
     public User() {
     }
 
@@ -55,4 +56,11 @@ public class User {
         this.displayName = displayName;
     }
 
+    public RecentActivity getRecentActivity() {
+        return recentActivity;
+    }
+
+    public void setRecentActivity(RecentActivity recentActivity) {
+        this.recentActivity = recentActivity;
+    }
 }

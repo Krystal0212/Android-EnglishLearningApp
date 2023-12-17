@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ScrollView android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!-- Các view khác của bạn -->
@@ -58,8 +58,8 @@
             android:layout_gravity="center_horizontal" />
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewPager2"
-            android:layout_width="@dimen/_336pxh"
-            android:layout_height="@dimen/_550pxv"
+            android:layout_width="@dimen/_320pxh"
+            android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_10pxh"
             android:layout_marginBottom="@dimen/_10pxh"
             android:layout_gravity="center_horizontal">
