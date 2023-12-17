@@ -9,9 +9,19 @@ import java.util.List;
 public class Question extends Word implements Parcelable {
     private String firstOtherWord;
     private String secondOtherWord;
+
+    public Word getWord() {
+        return word;
+    }
+
+    public void setWord(Word word) {
+        this.word = word;
+    }
+
     private String thirdOtherWord;
     private int rightAnswerPosition;
     private String testMode;
+    private Word word;
 
     public String getTestMode() {
         return testMode;
@@ -23,6 +33,7 @@ public class Question extends Word implements Parcelable {
 
     public Question(Word word, String[] otherWords, String testMode) {
         super(word);
+        this.word = new Word(word);
         this.firstOtherWord = otherWords[0];
         this.secondOtherWord = otherWords[1];
         this.thirdOtherWord = otherWords[2];

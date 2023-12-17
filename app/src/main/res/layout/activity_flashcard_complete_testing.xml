@@ -65,6 +65,22 @@
                 android:scaleType="fitXY"
                 android:src="@drawable/img_cuteastronat0"/>
         </FrameLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:ellipsize="end" android:gravity="center"
+        android:id="@+id/btn_showTestResults"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_9pxh"
+        android:layout_marginStart="@dimen/_8pxh"
+        android:layout_marginTop="@dimen/_20pxv"
+        android:layout_width="match_parent"
+        android:lineSpacingExtra="@dimen/_8pxh"
+        android:paddingBottom="@dimen/_7pxv"
+        android:paddingEnd="@dimen/_30pxh"
+        android:paddingStart="@dimen/_30pxh"
+        android:paddingTop="@dimen/_7pxv" android:singleLine="true"
+        android:text="View result detail"
+        android:textAllCaps="false"
+        style="@style/btnSolidRoundedOutline_2" tools:text="View result detail"/>
         <androidx.appcompat.widget.AppCompatButton
             android:ellipsize="end" android:gravity="center"
             android:id="@+id/btn_back_Topic"
@@ -72,7 +88,7 @@
             android:layout_marginBottom="@dimen/_18pxv"
             android:layout_marginEnd="@dimen/_9pxh"
             android:layout_marginStart="@dimen/_8pxh"
-            android:layout_marginTop="@dimen/_56pxv"
+            android:layout_marginTop="@dimen/_16pxv"
             android:layout_width="match_parent"
             android:lineSpacingExtra="@dimen/_8pxh"
             android:paddingBottom="@dimen/_7pxv"
